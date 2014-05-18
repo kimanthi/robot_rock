@@ -1,0 +1,33 @@
+[submodule "lib/mruby"]
+	path = lib/mruby
+	url = git@github.com:mruby/mruby.git
+[submodule "lib/musl"]
+	path = lib/musl
+	url = git://git.musl-libc.org/musl
+[submodule "lib/sdk"]
+	path = lib/sdk
+	url = git@github.com:scalone/pax_libs.git
+[submodule "mrbgems/mruby-polarssl"]
+	path = mrbgems/mruby-polarssl
+	url = git@github.com:luisbebop/mruby-polarssl.git
+[submodule "mrbgems/mruby-tempfile"]
+	path = mrbgems/mruby-tempfile
+	url = git@github.com:iij/mruby-tempfile.git
+[submodule "mrbgems/mruby-dir"]
+	path = mrbgems/mruby-dir
+	url = git@github.com:iij/mruby-dir.git
+[submodule "mrbgems/mruby-require"]
+	path = mrbgems/mruby-require
+	url = git@github.com:iij/mruby-require.git
+[submodule "mrbgems/mruby-mtest"]
+	path = mrbgems/mruby-mtest
+	url = git@github.com:iij/mruby-mtest.git
+[submodule "mrbgems/mruby-regexp-pcre"]
+	path = mrbgems/mruby-regexp-pcre
+	url = git@github.com:iij/mruby-regexp-pcre.git
+[submodule "mrbgems/mruby-pack"]
+	path = mrbgems/mruby-pack
+	url = git@github.com:iij/mruby-pack.git
+[submodule "mrbgems/mruby-io"]
+	path = mrbgems/mruby-io
+	url = git@github.com:iij/mruby-io.git
