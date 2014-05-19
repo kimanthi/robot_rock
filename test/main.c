@@ -9,18 +9,17 @@
 #include <posapi.h>
 #include <posapi_all.h>
 
-
 /* Include the mruby header */
 #include "mruby.h"
 #include "mruby/compile.h"
 #include "mruby/proc.h"
 
 const APPINFO AppInfo={
-	"CloudWalk Framework",
-	"CloudWalk Framework",
+	"CloudWalk",
+	"AppFramwork",
 	"0.4.2",
 	"pcteam",
-	"CloudWalk Framework",
+	"Framework",
 	"",
 	0,
 	0,
