@@ -17,9 +17,10 @@ SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
 require File.join(MRUBY_PAX_ROOT, "lib", "version.rb")
 
-ENV["CFLAGS"]  = "-mtune=4ksd -mips32r2 -c -EL -O1 -ffixed-14 -ffixed-15 -G0 -fomit-frame-pointer -Wimplicit -Wformat -ffreestanding -mlong-calls -gdwarf-2 -msoft-float"
+# DEBUG soft-float
+#ENV["CFLAGS"]  = "-mtune=4ksd -mips32r2 -c -D_32_ -EL -O1 -ffixed-14 -ffixed-15 -G0 -fomit-frame-pointer -Wimplicit -Wformat -ffreestanding -mlong-calls -gdwarf-2 -msoft-float"
+ENV["CFLAGS"]  = "-mtune=4ksd -mips32r2 -c -D_32_ -EL -O1 -ffixed-14 -ffixed-15 -G0 -fomit-frame-pointer -Wimplicit -Wformat -ffreestanding -mlong-calls -gdwarf-2"
 ENV["LOCINC"]  = "-I\"#{LOCINCLUDE.join("\" -I\"")}\""
-ENV["GCC"]     = File.join(GCC_PAX_BIN, "sde-gcc.exe")
 ENV["GCC"]     = "#{File.join(GCC_PAX_BIN, "sde-gcc.exe")} #{ENV['CFLAGS']} #{ENV["LOCINC"]}"
 ENV['LD']      = File.join(GCC_PAX_BIN, "sde-ld.exe")
 ENV["AR"]      = File.join(GCC_PAX_BIN, "sde-ar.exe")
@@ -75,7 +76,7 @@ if ENV["MRUBY_CONFIG"]
 
   MRuby::Toolchain.new(:pax) do |conf|
     ENV["PATH"]    = "#{ENV["PATH"]};C:\\WINDOWS;C:\\WINDOWS\\system32;#{GCC_PAX_BIN}"
-    ENV["NAME"]    = "mruby-pax"
+    #ENV["NAME"]    = "robot_rock"
     ENV["LOCOBJ"]  = File.join(MRUBY_LIB, "build", "pax", "src")
 
     [conf.cc, conf.cxx, conf.objc, conf.asm].each do |cc|
@@ -174,7 +175,7 @@ namespace :pax do
 
   desc "Setup PAX ENV"
   task :setup do
-    ENV["NAME"]      = "mruby-pax"
+    ENV["NAME"]      = "robot_rock"
     ENV["VERSION"]   = PAX.version
     ENV['POSLIB']    = "d210api"
     ENV["GCCLIB"]    = GCC_PAX_LIB
@@ -205,13 +206,13 @@ namespace :pax do
   SRC = FileList["src/*.c", "test/*c"]
   BIN = SRC.pathmap("%{test,out/obj}X.o").pathmap("%{src,out/obj}X.o")
 
-  SRC << File.join(ENV['POSLIBDIR'], "init_d210.s")
-  BIN << File.join(ENV['LOCOBJ'], "init.o")
+  SRC.insert(0, File.join(ENV['POSLIBDIR'], "init_d210.s"))
+  BIN.insert(0, File.join(ENV['LOCOBJ'], "init.o"))
 
   task :link => BIN do
     sh "#{ENV['LINK']} -o #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} #{BIN.join(" ")} #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")} #{File.join(ENV["POSLIBDIR"], "libd210api.a")} #{File.join(MUSL_ROOT, "lib", "libc.a")} -ld210api -lc"
-    sh "#{File.join(GCC_PAX_BIN, "sde-conv.exe")} -f bin -v -o #{File.join(ENV['LOCOBJ'], "pax-#{PAX.version}.bin")} #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} "
-    sh "#{File.join(GCC_PAX_BIN, "sde-objdump.exe")} -rt -D -S #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} > #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.dasm")} "
+    sh "#{File.join(GCC_PAX_BIN, "sde-conv.exe")} -f bin -v -o #{File.join(ENV['LOCOBJ'], "robot_rock-#{PAX.version}.bin")} #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} "
+    sh "#{File.join(GCC_PAX_BIN, "sde-objdump.exe")} -D -S #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} > #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.dasm")} "
   end
 
   desc "Clobber/Clean PAX"
