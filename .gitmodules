@@ -12,13 +12,13 @@
 	url = git@github.com:luisbebop/mruby-polarssl.git
 [submodule "mrbgems/mruby-tempfile"]
 	path = mrbgems/mruby-tempfile
-	url = git@github.com:iij/mruby-tempfile.git
+	url = git@github.com:cloudwalkio/mruby-tempfile.git
 [submodule "mrbgems/mruby-dir"]
 	path = mrbgems/mruby-dir
-	url = git@github.com:iij/mruby-dir.git
+	url = git@github.com:cloudwalkio/mruby-dir.git
 [submodule "mrbgems/mruby-require"]
 	path = mrbgems/mruby-require
-	url = git@github.com:iij/mruby-require.git
+	url = git@github.com:cloudwalkio/mruby-require.git
 [submodule "mrbgems/mruby-mtest"]
 	path = mrbgems/mruby-mtest
 	url = git@github.com:iij/mruby-mtest.git
@@ -30,7 +30,7 @@
 	url = git@github.com:iij/mruby-pack.git
 [submodule "mrbgems/mruby-io"]
 	path = mrbgems/mruby-io
-	url = git@github.com:iij/mruby-io.git
+	url = git@github.com:cloudwalkio/mruby-io.git
 [submodule "mrbgems/mruby-print"]
 	path = mrbgems/mruby-print
 	url = git@github.com:cloudwalkio/mruby-print.git
