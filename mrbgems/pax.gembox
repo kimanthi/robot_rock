@@ -3,22 +3,22 @@ MRuby::GemBox.new do |conf|
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
 
   # Use to Dir functions, used for mruby-require
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
 
   # Use to Dir functions, used for mruby-require
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
 
   # Use to require ruby and bytecode files
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
 
   # Use to TestUnit
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
 
   # Use to interpret posxml
   # conf.gem :core => "mruby-posxml-parser"
 
   # Use to pack unpack functions
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
 
   # Use to pack unpack functions
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-regexp-pcre")
@@ -30,7 +30,7 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-print")
 
   # Use to IO functions
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-io")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-io")
 
   # tcpsockets
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
