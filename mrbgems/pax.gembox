@@ -27,8 +27,7 @@ MRuby::GemBox.new do |conf|
   conf.gem :core => "mruby-sprintf"
 
   # Use standard print/puts/p
-  # TODO implement on mruby-pax
-  conf.gem :core => "mruby-print"
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-print")
 
   # Use to IO functions
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-io")

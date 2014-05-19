@@ -31,3 +31,6 @@
 [submodule "mrbgems/mruby-io"]
 	path = mrbgems/mruby-io
 	url = git@github.com:iij/mruby-io.git
+[submodule "mrbgems/mruby-print"]
+	path = mrbgems/mruby-print
+	url = git@github.com:cloudwalkio/mruby-print.git
