@@ -3,6 +3,9 @@ MRuby::GemBox.new do |conf|
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
 
   # Use to Dir functions, used for mruby-require
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hs-regexp")
+
+  # Use to Dir functions, used for mruby-require
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
 
   # Use to Dir functions, used for mruby-require

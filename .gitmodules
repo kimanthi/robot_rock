@@ -34,3 +34,6 @@
 [submodule "mrbgems/mruby-print"]
 	path = mrbgems/mruby-print
 	url = git@github.com:cloudwalkio/mruby-print.git
+[submodule "mrbgems/mruby-hs-regexp"]
+	path = mrbgems/mruby-hs-regexp
+	url = git@github.com:masamitsu-murase/mruby-hs-regexp.git
