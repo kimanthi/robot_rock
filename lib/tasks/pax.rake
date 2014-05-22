@@ -17,9 +17,7 @@ SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
 require File.join(MRUBY_PAX_ROOT, "lib", "version.rb")
 
-# DEBUG soft-float
-#ENV["CFLAGS"]  = "-mtune=4ksd -mips32r2 -c -D_32_ -EL -O1 -ffixed-14 -ffixed-15 -G0 -fomit-frame-pointer -Wimplicit -Wformat -ffreestanding -mlong-calls -gdwarf-2 -msoft-float"
-ENV["CFLAGS"]  = "-mtune=4ksd -mips32r2 -c -D_32_ -EL -O1 -ffixed-14 -ffixed-15 -G0 -fomit-frame-pointer -Wimplicit -Wformat -ffreestanding -mlong-calls -gdwarf-2"
+ENV["CFLAGS"]  = "-mtune=4ksd -mips32r2 -c -D_32_ -EL -O1 -ffixed-14 -ffixed-15 -G0 -fomit-frame-pointer -Wimplicit -Wformat -ffreestanding -mlong-calls -gdwarf-2 -msoft-float"
 ENV["LOCINC"]  = "-I\"#{LOCINCLUDE.join("\" -I\"")}\""
 ENV["GCC"]     = "#{File.join(GCC_PAX_BIN, "sde-gcc.exe")} #{ENV['CFLAGS']} #{ENV["LOCINC"]}"
 ENV['LD']      = File.join(GCC_PAX_BIN, "sde-ld.exe")
