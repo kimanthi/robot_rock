@@ -88,7 +88,7 @@ if ENV["MRUBY_CONFIG"]
     end
 
     conf.archiver do |archiver|
-      archiver.command = ENV["AR"] 
+      archiver.command = ENV["AR"]
       archiver.archive_options = 'r %{outfile} %{objs}'
     end
 
