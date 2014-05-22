@@ -210,6 +210,9 @@ namespace :pax do
   task :link => BIN do
     sh "#{ENV['LINK']} -o #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} #{BIN.join(" ")} #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")} #{File.join(ENV["POSLIBDIR"], "libd210api.a")} #{File.join(MUSL_ROOT, "lib", "libc.a")} -ld210api -lc"
     sh "#{File.join(GCC_PAX_BIN, "sde-conv.exe")} -f bin -v -o #{File.join(ENV['LOCOBJ'], "robot_rock-#{PAX.version}.bin")} #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} "
+  end
+
+  task :dump => :setup do
     sh "#{File.join(GCC_PAX_BIN, "sde-objdump.exe")} -D -S #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} > #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.dasm")} "
   end
 
