@@ -8,6 +8,14 @@ Initialize and update submodules
 
 	$ git submodule init
 	$ git submodule update
+
+## Platform Info
+
+Details about the environment
+
+1. Support only 16 bytes file names.
+2. Support only 255 files.
+3. Don't support rename, pipe, f* functions(fseek, fopen, fread).
 	
 	
 ## Usage
