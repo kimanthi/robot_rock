@@ -6,13 +6,13 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hs-regexp")
 
   # Use to Dir functions, used for mruby-require
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
 
   # Use to Dir functions, used for mruby-require
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
 
   # Use to require ruby and bytecode files
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
 
   # Use to TestUnit
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
@@ -33,7 +33,7 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-print")
 
   # Use to IO functions
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-io")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-io")
 
   # tcpsockets
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
