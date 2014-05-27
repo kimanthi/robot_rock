@@ -11,8 +11,19 @@
 
 /* Include the mruby header */
 #include "mruby.h"
+#include "mruby/value.h"
 #include "mruby/compile.h"
 #include "mruby/proc.h"
+
+/* backtrace */
+#include "mruby/variable.h"
+#include "mruby/array.h"
+#include "mruby/string.h"
+#include "mruby/class.h"
+#include "mruby/debug.h"
+
+// file
+#include "my_stat.h"
 
 const APPINFO AppInfo={
 	"CloudWalk",
@@ -62,40 +73,55 @@ pax_allocf(mrb_state *mrb, void *p, size_t size, void *ud)
 	return new_ptr;
 }
 
-mrb_value mrb_get_backtrace(mrb_state *mrb, mrb_value self);
+typedef void (*output_stream_func)(mrb_state*, void*, int, const char*, ...);
+//mrb_value mrb_get_backtrace(mrb_state *mrb, mrb_value self);
+void mrb_output_backtrace(mrb_state *mrb, struct RObject *exc, output_stream_func func, void *stream);
+
+static void
+my_func(mrb_state *mrb, void *stream, int level, const char *format, ...)
+{
+  va_list ap;
+
+  printf("\nbacktrace:\n");
+  va_start(ap, format);
+  //vfprintf((FILE*)stream, format, ap);
+  printf(format, ap);
+  //va_end(ap);
+}
 
 int testSimple1(void)
 {
 	mrb_state *mrb;
 	mrb_value exc;
 	mrb_value backtrace;
+  //char code[] = "puts 'Cheguei'";
 	//char code[] = "def fib n; return n if n < 2; fib(n-2) + fib(n-1); end ; puts fib(25)";
 	//char code[] = "puts Time.now";
-	char code[] = "puts 'Cheguei'; f = File.open('w', 'test'); f.write('MALUCO'); f.close; puts File.read('test')";
-	//char code[] = "puts 'Cheguei'";
+  //char code[] = "puts 'Cheguei'; puts (f = File.open('test', 'w')); puts(f.write('MALUCO')); puts(f.close); k = File.open('test', 'r') ; puts(k.read); k.close";
+  char code[] = "puts 'Cheguei'; puts Kernel.getc; puts Kernel.getc; puts IO.getc; puts 'fim'";
+  //char code[] = "puts 'Cheguei'; puts Kernel.gets('4'); puts 'fim'";
 
 	printf("\nParse Ruby code with mruby\n");
 
-	printf("\nmrb_open 1");
+	printf("\nmrb_open");
 	DelayMs(2000);
 	mrb = mrb_open_allocf(pax_allocf, NULL);
 
 	printf("\nmrb_load_string\n");
 	DelayMs(2000);
-	mrb_load_string(mrb, code);
+  mrb_load_string(mrb, code);
 
-	printf("\nbacktrace");
-	DelayMs(2000);
-	exc = mrb_obj_value(mrb->exc);
-	printf("\nexc%d", exc.tt);
-	DelayMs(2000);
-	backtrace = mrb_get_backtrace(mrb, exc);
-	printf("\nback:%d", backtrace.tt);
-	DelayMs(2000);
-	//printf("\n%s", mrb_str_to_cstr(mrb, mrb_inspect(mrb, backtrace)));
+	//printf("\nbacktrace");
+	//DelayMs(2000);
+  //mrb_output_backtrace(mrb, mrb->exc, my_func, (void *)stderr);
 
 	printf("\nSucesso!");
 	DelayMs(2000);
+
+	printf("\nmrb_close");
+	DelayMs(2000);
+	mrb_close(mrb);
+
 	return 0;
 }
 
@@ -125,21 +151,38 @@ int testSimple1(void)
 	//return 0;
 //}
 
+int testSimple3(void)
+{
+  //test_stat("test3");
+  //create_file_and_directory();
+  //stat_info();
+  //stat_info2();
+  //stat_info4();
+  //file_basename();
+  //file_exists();
+  //file_size();
+  //file_rename();
+  //stat_info4();
+  //get_pax_key();
+  //get_pax_string();
+  get_pax_hz_string();
+}
+
 int main(void)
 {
-	unsigned char time[7], time2[20], buff[20];
-	SystemInit();
+  //unsigned char time[7], time2[20], buff[20];
+  SystemInit();
+  //InitFileSys();
 
-  while (1000) {
-    ScrGotoxy(0, 0);
-    ScrAttrSet(1);
+  while (42) {
+    //ScrGotoxy(0, 0);
+    //ScrAttrSet(1);
     while (42) {
       testSimple1();
       DelayMs(20000);
     }
   }
 
-	return 0;
+  return 0;
 }
-
 
