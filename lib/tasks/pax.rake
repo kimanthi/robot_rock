@@ -227,4 +227,7 @@ namespace :pax do
 
   desc "Compile PAX"
   task :compile => [:setup, :link]
+
+  desc "Rebuild PAX"
+  task :rebuild => [:clean, :compile]
 end
