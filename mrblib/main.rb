@@ -95,6 +95,21 @@ module Main
     #require 'test2'
   end
 
+  def self.test_display_clean
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    puts "KKKKKKKKKKKKK"
+    p IO.getc
+    IO.display_clean
+  end
+
   def self.execute
     loop do
       begin
