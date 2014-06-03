@@ -63,6 +63,8 @@ int pax_connect(void)
 
   iRet = WirelessDial(sAPN,sUser,sPwd);
   printf("\nPPP Logon: %d",iRet);
+  printf("\nPing %d", NetPing("200.219.218.66", 3000, 56));
+  DelayMs(5000);
 
   if (iRet!=0) {
     ScrCls();
