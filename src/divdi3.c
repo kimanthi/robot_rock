@@ -1,3 +1,4 @@
+#ifdef PAX
 #include <endian.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -90,3 +91,4 @@ uint64_t __umoddi3(uint64_t num, uint64_t den)
 	(void) __udivmoddi4(num, den, &v);
 	return v;
 }
+#endif
