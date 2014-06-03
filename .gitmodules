@@ -40,3 +40,6 @@
 [submodule "mrbgems/mruby-pax-network"]
 	path = mrbgems/mruby-pax-network
 	url = git@github.com:cloudwalkio/mruby-pax-network.git
+[submodule "mrbgems/mruby-posxml-parser"]
+	path = mrbgems/mruby-posxml-parser
+	url = git@github.com:cloudwalkio/mruby-posxml-parser.git
