@@ -57,7 +57,7 @@ module Main
     puts "Disconnect #{Network.disconnect}"
   end
 
-  def test_print
+  def self.test_print
     puts "Start"
     puts true.to_s
     puts "#{false}"
