@@ -14,7 +14,7 @@ MRuby::Gem::Specification.new('mruby-pax') do |spec|
   # spec.linker.libraries << 'external_lib'
 
   # Default build files
-  # spec.rbfiles = Dir.glob("#{dir}/mrblib/*.rb")
+  spec.rbfiles = Dir.glob("#{dir}/mrblib/*.rb")
   # spec.objs = Dir.glob("#{dir}/src/*.{c,cpp,m,asm,S}").map { |f| objfile(f.relative_path_from(dir).pathmap("#{build_dir}/%X")) }
   # spec.test_rbfiles = Dir.glob("#{dir}/test/*.rb")
   # spec.test_objs = Dir.glob("#{dir}/test/*.{c,cpp,m,asm,S}").map { |f| objfile(f.relative_path_from(dir).pathmap("#{build_dir}/%X")) }
