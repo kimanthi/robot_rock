@@ -6,7 +6,7 @@
 	url = git://git.musl-libc.org/musl
 [submodule "lib/sdk"]
 	path = lib/sdk
-	url = git@github.com:scalone/pax_libs.git
+	url = git@github.com:cloudwalkio/pax_libs.git
 [submodule "mrbgems/mruby-polarssl"]
 	path = mrbgems/mruby-polarssl
 	url = git@github.com:luisbebop/mruby-polarssl.git
