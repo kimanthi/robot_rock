@@ -169,6 +169,9 @@ namespace :pax do
       FileUtils.cd MRUBY_LIB
       ENV["MRUBY_CONFIG"] = File.expand_path(__FILE__)
     end
+
+    desc "Rebuild"
+    task :rebuild => [:clean, :compile]
   end
 
   desc "Setup PAX ENV"
