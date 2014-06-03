@@ -181,6 +181,7 @@ namespace :pax do
     ENV["ASM"]       = "#{File.join(GCC_PAX_BIN, "sde-gcc.exe")} -xassembler-with-cpp -mtune=4ksd -mips32r2 -msmartmips -c -D_32_ -D_ASSEMBLER_ -EL "
     ENV["LINK"]      = "#{ENV["LD"]} -A mips32r2  -EL --allow-multiple-definition -T#{File.join(ENV["POSLIBDIR"], "sldscript_d210")} -L#{File.join(MUSL_ROOT, "lib")} -I#{File.join(MUSL_ROOT, "lib")}  -L#{GCC_PAX_LIB} -L#{ENV['POSLIBDIR']} -L#{ENV['LOCOBJ']} "
     ENV["OBJ"]       = BIN.join(" ")
+    ENV["GCC"]       = "#{ENV["GCC"]} -DPAX "
 
     ::CLEAN.include "out/obj/*.o"
     ::CLOBBER.include "out/obj/*.bin", "out/obj/*.dasm", "out/obj/*.elf"
