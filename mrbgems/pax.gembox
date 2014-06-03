@@ -78,7 +78,7 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
 
   # Use to interpret posxml
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-posxml-parser")
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-posxml-parser")
 
   # Use to pack unpack functions
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
