@@ -171,7 +171,11 @@ namespace :pax do
     end
 
     desc "Rebuild"
-    task :rebuild => [:clean, :compile]
+    task :rebuild => :setup  do
+      sh "rake clean #{build_args.join(' ')}"
+      sh "rake #{build_args.join(' ')}"
+      exit
+    end
   end
 
   desc "Setup PAX ENV"
