@@ -59,9 +59,6 @@ MRuby::GemBox.new do |conf|
   # network
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-network")
 
-  # tcpsockets
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
-
   # SSL
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
 
