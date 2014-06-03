@@ -90,6 +90,11 @@ module Main
     puts "End"
   end
 
+  def self.test_require
+    #require 'test1'
+    #require 'test2'
+  end
+
   def self.execute
     loop do
       begin
