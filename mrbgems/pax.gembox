@@ -1,42 +1,9 @@
 MRuby::GemBox.new do |conf|
-  # SSL
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
-
-  # Use to Dir functions, used for mruby-require
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hs-regexp")
-
-  # Use to Dir functions, used for mruby-require
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
-
-  # Use to Dir functions, used for mruby-require
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
-
-  # Use to require ruby and bytecode files
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
-
-  # Use to TestUnit
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
-
-  # Use to interpret posxml
-  # conf.gem :core => "mruby-posxml-parser"
-
-  # Use to pack unpack functions
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
-
-  # Use to pack unpack functions
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-regexp-pcre")
-
   # Use standard Kernel#sprintf method
   conf.gem :core => "mruby-sprintf"
 
   # Use standard print/puts/p
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-print")
-
-  # Use to IO functions
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-io")
-
-  # tcpsockets
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
 
   # Use standard Math module
   conf.gem :core => "mruby-math"
@@ -85,4 +52,35 @@ MRuby::GemBox.new do |conf|
 
   # Use extended toplevel object (main) methods
   conf.gem :core => "mruby-toplevel-ext"
+
+  # Use to IO functions
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-io")
+
+
+  # tcpsockets
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
+
+  # SSL
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
+
+  # Use to Dir functions, used for mruby-require
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hs-regexp")
+
+  # Use to Dir functions, used for mruby-require
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
+
+  # Use to Dir functions, used for mruby-require
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
+
+  # Use to require ruby and bytecode files
+  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
+
+  # Use to TestUnit
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
+
+  # Use to interpret posxml
+  # conf.gem :core => "mruby-posxml-parser"
+
+  # Use to pack unpack functions
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
 end
