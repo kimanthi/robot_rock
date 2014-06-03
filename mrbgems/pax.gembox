@@ -85,4 +85,7 @@ MRuby::GemBox.new do |conf|
 
   # Use to pack unpack functions
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
+
+  # MRuby PAX
+  conf.gem File.join(MRUBY_PAX_MGEM, "..")
 end
