@@ -11,4 +11,5 @@ int file_rename(void);
 int get_pax_key(void);
 int get_pax_string(void);
 int get_pax_hz_string(void);
+int scr_print(void);
 

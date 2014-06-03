@@ -389,3 +389,32 @@ int get_pax_hz_string(void)
   return 0;
 }
 
+//ScrPrint
+int scr_print2(void)
+{
+  ScrGotoxy(0, 0);
+  ScrCls();
+  ScrFontSet(ASCII);
+  ScrPrint(0, 0, 0, "Print!!");
+  printf("\nBefore");
+  ScrPrint(5, 3, 0, "Print!!");
+  printf("\n\nAfter");
+  DelayMs(10000);
+}
+
+int scr_print(void)
+{
+  ScrGotoxy(0, 1);
+  printf("AAAAAAAAA");
+  ScrGotoxy(1, 2);
+  printf("AAAAAAAAA");
+  ScrGotoxy(2, 3);
+  printf("AAAAAAAAA");
+  ScrGotoxy(3, 4);
+  printf("AAAAAAAAA");
+  ScrGotoxy(4, 5);
+  printf("AAAAAAAAA");
+
+  DelayMs(10000);
+}
+
