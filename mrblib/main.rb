@@ -91,7 +91,8 @@ module Main
   end
 
   def self.test_require
-    #require 'test1'
+    puts "asdfasdfasd"
+    require 'test1.mrb'
     #require 'test2'
   end
 
@@ -108,12 +109,13 @@ module Main
     puts "KKKKKKKKKKKKK"
     p IO.getc
     IO.display_clean
+    p IO.getc
   end
 
   def self.execute
     loop do
       begin
-        test_read_card
+        test_require
       rescue => @exception
         puts "#{@exception.class}: #{@exception.message}\n#{@exception.backtrace.first}"
         IO.getc
