@@ -1,6 +1,5 @@
 
-
-module Main
+module POS
   def self.test_network_socket
     puts "=" * 20
     puts "Init #{Network.init(:gprs, apn: 'claro.com.br', user: 'claro.com.br', pass: 'claro.com.br')}"
@@ -14,7 +13,7 @@ module Main
     puts "Ping #{Network.ping("nas.scalone.com.br", 10000)}   "
 
     puts "=" * 25
-    puts "TCP #{(tcp = TCPSocket.new('nas.scalone.com.br', 8000)).inspect}"
+    puts "TCP #{(tcp = TCPSocket.new('switch-staging.cloudwalk.io', 8000)).inspect}"
     puts "Send #{tcp.send('303132', 0)} "
     puts "Recv #{tcp.recv(10)} "
     puts "Closed? #{tcp.closed?}"
@@ -114,9 +113,39 @@ module Main
     p IO.getc
   end
 
+  def self.test_connect
+    puts "=" * 26
+    puts "Init #{Network.init(:gprs, apn: 'claro.com.br', user: 'claro.com.br', pass: 'claro.com.br')}"
+    puts "Connect #{Network.connect}"
+    iRet = 1
+    while(iRet == 1)
+      puts("Connected? #{iRet = Network.connected?}")
+      sleep 1
+    end
+  end
+
+  def self.test_socket
+    puts "=" * 25
+    puts "TCP #{(socket = TCPSocket.new('switch-staging.cloudwalk.io', 31415)).inspect}"
+    socket
+  end
+
+  def self.test_handshake(socket, serial_terminal)
+    handshake = "#{serial_terminal};init.rb;1;0.42"
+
+    socket.write handshake.insert(0, handshake.size.chr)
+    @message = socket.read(3)
+
+    if (@message != "err" && @message)
+      @message
+    end
+  end
+
   def self.execute
     loop do
       begin
+        puts "require"
+        sleep 2
         require 'MAIN.RB'
       rescue => @exception
         puts "#{@exception.class}: #{@exception.message}\n#{@exception.backtrace.first}"

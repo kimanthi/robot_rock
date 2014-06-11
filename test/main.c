@@ -54,7 +54,7 @@ int robot_rock_execute(void)
 {
   mrb_state *mrb;
 
-  char code[] = "Main.execute";
+  char code[] = "POS.execute";
 
   //DEBUG
   //printf("\nParse Ruby code with mruby\n");
