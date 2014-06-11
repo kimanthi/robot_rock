@@ -181,23 +181,23 @@ int stat_info3(void)
 
 int stat_info4(void)
 {
-  FILE_INFO info;
+  FILE_INFO *info;
   FILE_INFO *info_ptr;
 
-  memset(&info, 0, 7680);
-  printf("\nFile Info: %d", GetFileInfo(&info));
-  DelayMs(2000);
-  //info2    = &info;
-  info_ptr = &info;
-  //printf("\nfd %d - %s", info2->fid, info2->name);
-  //printf("\nfd %d - at %d - t %d - %s, %d", info.fid, info.attr, info.type, info.name, info.length);
-  //printf("\nfd %d - %s, %d", info2->fid, info2->name, info2->length);
+  info = malloc(sizeof(FILE_INFO)*256);
+
+  printf("\nFile Info: %d", GetFileInfo(info));
+
+  info_ptr = info;
 
   do {
-    printf("\nfd %d - %s - %d", info_ptr->fid, info_ptr->name, info_ptr->length);
-    DelayMs(2000);
-    info_ptr++;
-  } while(info_ptr->fid);
+    printf("\nfd %d - %s - %d", info->fid, info->name, info->length);
+    DelayMs(500);
+    info++;
+  } while(info->fid);
+
+  free(info_ptr);
+  printf("\n GetLastError %d", GetLastError());
 
   //info = (info >> sizeof(FILE_INFO));
   //info = *((&info)++);
@@ -219,7 +219,47 @@ int stat_info4(void)
   //printf("\nfd %d - at %d - t %d - %s, %d", info->fid, info->attr, info->type, info->name, info->length);
   //
 
-  DelayMs(20000);
+  DelayMs(2000);
+}
+
+int stat_info5(FILE_INFO *st)
+{
+  FILE_INFO *info;
+  FILE_INFO *info_ptr;
+  int i=1;
+
+  info = malloc(sizeof(FILE_INFO)*256);
+
+  printf("\nFile Info: %d", GetFileInfo(info));
+
+  info_ptr = info;
+
+  do {
+    printf("\nfd %d - %s - %d", info->fid, info->name, info->length);
+    DelayMs(500);
+    info++;
+    i++;
+    if (i == 3) {
+      memcpy(st, info, sizeof(FILE_INFO));
+    }
+  } while(info->fid);
+
+  free(info_ptr);
+  printf("\n GetLastError %d", GetLastError());
+
+  DelayMs(2000);
+}
+
+int stat_info6(void)
+{
+  FILE_INFO *info;
+  int ret;
+
+  info = malloc(sizeof(FILE_INFO));
+
+  stat_info5(info);
+  printf("\nfile %d %s", info->fid, info->name);
+  DelayMs(4000);
 }
 
 //basename
