@@ -91,9 +91,11 @@ module Main
   end
 
   def self.test_require
-    puts "asdfasdfasd"
-    require 'test1.mrb'
-    #require 'test2'
+    puts "before require"
+    require 'TEST1.MRB'
+    sleep 5
+    require 'TEST2.RB'
+    sleep 5
   end
 
   def self.test_display_clean
