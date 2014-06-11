@@ -91,8 +91,11 @@ module Main
   end
 
   def self.test_require
-    #require 'test1'
-    #require 'test2'
+    puts "before require"
+    require 'TEST1.MRB'
+    sleep 5
+    require 'TEST2.RB'
+    sleep 5
   end
 
   def self.test_display_clean
@@ -108,12 +111,13 @@ module Main
     puts "KKKKKKKKKKKKK"
     p IO.getc
     IO.display_clean
+    p IO.getc
   end
 
   def self.execute
     loop do
       begin
-        test_read_card
+        require 'MAIN.RB'
       rescue => @exception
         puts "#{@exception.class}: #{@exception.message}\n#{@exception.backtrace.first}"
         IO.getc

@@ -72,7 +72,7 @@ MRuby::GemBox.new do |conf|
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
 
   # Use to require ruby and bytecode files
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
 
   # Use to TestUnit
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
