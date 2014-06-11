@@ -117,7 +117,7 @@ module Main
   def self.execute
     loop do
       begin
-        test_require
+        require 'MAIN.RB'
       rescue => @exception
         puts "#{@exception.class}: #{@exception.message}\n#{@exception.backtrace.first}"
         IO.getc
