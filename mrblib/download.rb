@@ -70,7 +70,7 @@ class Download
     # Read header
     return -1 if (socket.read(4).size <= 0)
 
-    response_size, @first_packet = get_response_size
+    response_size, @first_packet = get_rest_response_size
 
     if response_size > 1024
       @first_packet = @first_packet + socket.read(1024)
@@ -95,7 +95,7 @@ class Download
 
   alias :request :riak_mapreduce_request
 
-  def get_response_size
+  def get_rest_response_size
     binary_size, packet, found = "", "", false
     @socket.read(8).each_char do |str|
       if found || str.unpack("H*").first == "83"
