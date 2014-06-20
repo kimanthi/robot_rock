@@ -148,7 +148,8 @@ module POS
         sleep 2
         require 'MAIN.RB'
       rescue => @exception
-        puts "#{@exception.class}: #{@exception.message}\n#{@exception.backtrace.first}"
+        puts "#{@exception.class}: #{@exception.message}"
+        puts "#{@exception.backtrace[0..2].join("\n")}"
         IO.getc
         return nil
       end
