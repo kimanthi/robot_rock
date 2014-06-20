@@ -120,7 +120,7 @@ class Download
 
   def partial_download_to_store(file_name, response_size, file_size)
     begin
-      tmp  = posxml_file_path("tmp_#{file_name}")
+      tmp  = "tmp_#{file_name}"
       file = File.open(tmp, "w+")
 
       if (response_size > 1024)
@@ -141,7 +141,7 @@ class Download
       end
 
       file.close
-      File.rename(tmp, posxml_file_path(file_name))
+      File.rename(tmp, file_name)
       downloaded
     rescue
       -1
@@ -223,11 +223,5 @@ class Download
       string = string + ("\x00" * (size - string.size))
     end
     string
-  end
-
-  private
-  # TODO: repeated code from posxml_parser.rb
-  def posxml_file_path(file_name)
-    "#{path}#{file_name}"
   end
 end
