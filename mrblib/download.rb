@@ -199,13 +199,16 @@ class Download
   end
 
   def mount_request
-    request_size   = [buffer.size].pack("s") + "\x01"
+    request_size   = [@buffer.size].pack("s") + "\x01"
 
     put8("\x12")
     put8("\x1b")
-    @request = [0x00, 0x00, 0x00, 0x00, 0x017, 0x0A].pack("c*")
-    @request << "#{request_size}#{buffer}#{ERL_CONTENT_TYPE}"
-    @request = [@request.size].pack("N") + @request[3..-1]
+    new_request = [@request.size].pack("N")
+    new_request << "\x17"
+    new_request << "\x0A"
+    new_request << "#{request_size}#{@buffer}#{ERL_CONTENT_TYPE}"
+    new_request << @request
+    @request = new_request
   end
 
   def binary_valid?
