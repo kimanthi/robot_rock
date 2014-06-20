@@ -20,9 +20,9 @@ class Download
   # -1: Commnucation error
   # -2: Mapreduce response error
   # -3: IO Error
-  def riak_mapreduce_request(socket, company_name, file_name, crc, current_app, logical_number)
+  def riak_mapreduce_request(socket, company_name, remote_path, file_name, crc, current_app, logical_number)
     @socket, @buffer, @request, @first_packet = socket, "", "", ""
-    key = "#{company_name}_#{file_name}"
+    key = "#{company_name}_#{remote_path}"
 
     ei_encode_version                # version
     ei_encode_list_header(3)         # mapreduce with 3 tuples
@@ -47,7 +47,7 @@ class Download
     ei_encode_list_header(7)         # terceiro elemento, uma list com parametros do walk
     ei_encode_binary(@serial)        # elemento binario serialterminal
     ei_encode_binary(@version)       # elemento binario versao walk
-    ei_encode_binary(file_name)      # elemento binario nomeaplicativo
+    ei_encode_binary(remote_path)      # elemento binario nomeaplicativo
     ei_encode_binary(crc)            # elemento binario crc aplicativo
     ei_encode_binary("")             # elemento binario buffer do posxml
     ei_encode_binary(logical_number) # elemento binario numero do terminal
