@@ -144,9 +144,7 @@ module POS
   def self.execute
     loop do
       begin
-        puts "require"
-        sleep 2
-        require 'MAIN.RB'
+        load "main.rb"
       rescue => @exception
         puts "#{@exception.class}: #{@exception.message}"
         puts "#{@exception.backtrace[0..2].join("\n")}"
