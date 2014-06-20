@@ -107,7 +107,8 @@ class Download
     end
 
     size = ljust(4, binary_size).to_s.unpack("V*").first
-    [size, packet]
+    # Already download, check on store
+    [size - 6, packet]
   end
 
   def makelong(a, b)
