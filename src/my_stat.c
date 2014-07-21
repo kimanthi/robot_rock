@@ -458,3 +458,39 @@ int scr_print(void)
   DelayMs(10000);
 }
 
+void test_print1(void)
+{
+  ST_FONT *Fonts;
+  int num_fonts;
+
+  ScrCls();
+  printf("Before\n");
+  Lcdprintf("Pax Technology Ltd.");
+  //ScrFontSet(ASCII);
+  ScrSelectFont(NULL, NULL);
+  Lcdprintf(" PAX Computer Technology company \nAugust 2001\n");
+  __ScrPrint(0, 0, 1, "Test ASCII %d   ", ASCII);
+  __ScrPrint(2, 2, 1, "Test CFONT %d   ", CFONT);
+  __ScrPrint(4, 4, 1, "Test 1\n");
+  __ScrPrint(6, 6, 1, "Test 1\n");
+  __ScrPrint(8, 8, 1, "Test 1\n");
+  __ScrPrint(10, 10, 1, "Test 1\n");
+  __ScrPrint(12, 12, 1, "Test 1\n");
+  __ScrPrint(14, 14, 1, "Test 1\n");
+  printf("After %d", EnumBaseFont(&Fonts, &num_fonts));
+  printf("\n %d", num_fonts);
+  //__ScrClrLine(2, 3);
+
+}
+
+void test_print2(void)
+{
+  ScrCls();
+  ScrFontSet(ASCII);
+  Lcdprintf("Pax Technology Ltd.");
+  ScrPrint(4, 4, 0, "Test 1\n");
+  ScrGotoxy(0, 5);
+  ScrFontSet(CFONT);
+  Lcdprintf(" PAX Computer Technology company \nAugust 2001\n");
+}
+
