@@ -5,6 +5,7 @@ MRUBY_PAX_ROOT = ENV["MRUBY_PAX_ROOT"] || File.join(File.dirname(File.expand_pat
 MUSL_ROOT      = File.join(MRUBY_PAX_ROOT, "lib", "musl")
 PAX_LIB_ROOT   = File.join(MRUBY_PAX_ROOT, "lib", "sdk")
 MRUBY_LIB      = File.join(MRUBY_PAX_ROOT, "lib", "mruby")
+DA_FUNK_LIB    = File.join(MRUBY_PAX_ROOT, "lib", "da_funk")
 MRUBY_PAX_MGEM = File.join(MRUBY_PAX_ROOT, "mrbgems")
 PAX_LIB_INC    = File.join(PAX_LIB_ROOT, "include")
 MRUBY_PAX_INC  = File.join(MRUBY_PAX_ROOT, "src")
@@ -24,6 +25,7 @@ ENV['LD']      = File.join(GCC_PAX_BIN, "sde-ld.exe")
 ENV["AR"]      = File.join(GCC_PAX_BIN, "sde-ar.exe")
 ENV["GCCDIR"]  = GCC_PAX_PATH
 ENV["GCCBIN"]  = GCC_PAX_BIN
+ENV["MRBC"]    = File.join(MRUBY_LIB, "bin", "mrbc.exe")
 
 if ENV["MRUBY_CONFIG"]
   MRuby::Toolchain.new(:visualcpp) do |conf|
@@ -220,6 +222,44 @@ namespace :pax do
     sh "#{File.join(GCC_PAX_BIN, "sde-conv.exe")} -f bin -v -o #{File.join(ENV['LOCOBJ'], "robot_rock-#{PAX.version}.bin")} #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} "
   end
 
+  desc "Generate mrb file"
+  task :mrbc do
+    FileUtils.rm_rf("#{ENV["LOCOBJ"]}/mrb")
+    FileUtils.mkdir("#{ENV["LOCOBJ"]}/mrb")
+    funk       = File.join(ENV["LOCOBJ"], "mrb", "da_funk.mrb")
+    pax        = File.join(ENV["LOCOBJ"], "mrb", "pax.mrb")
+    pax_files  = Dir[File.join(MRUBY_PAX_ROOT, "mrblib", "*.rb")]
+    funk_files = [
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/crypto.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/display.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/io.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/network.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/printer.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/setting.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/system.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/version.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/walk.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/file_db.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/bitmap.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/codec.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/exception.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/field.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/fields.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/message.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/util.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/version.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/version.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/transaction/download.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/transaction/emv.rb",
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/transaction/iso.rb"
+    ]
+    sh "#{ENV['MRBC']} -o #{funk} #{funk_files.join(" ")}"
+    sh "#{ENV['MRBC']} -o #{pax} #{pax_files.join(" ")}"
+    sh "#{ENV['MRBC']} -o #{File.join(MRUBY_PAX_ROOT, "main.mrb")} #{File.join(MRUBY_PAX_ROOT, "main.rb")}"
+  end
+
+  desc "Dump elf to dasm debug"
   task :dump => :setup do
     sh "#{File.join(GCC_PAX_BIN, "sde-objdump.exe")} -D -S #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} > #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.dasm")} "
   end
