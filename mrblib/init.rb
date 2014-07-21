@@ -140,17 +140,4 @@ module POS
       @message
     end
   end
-
-  def self.execute
-    loop do
-      begin
-        load "main.rb"
-      rescue => @exception
-        puts "#{@exception.class}: #{@exception.message}"
-        puts "#{@exception.backtrace[0..2].join("\n")}"
-        IO.getc
-        return nil
-      end
-    end
-  end
 end

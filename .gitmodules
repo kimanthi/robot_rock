@@ -43,3 +43,6 @@
 [submodule "mrbgems/mruby-posxml-parser"]
 	path = mrbgems/mruby-posxml-parser
 	url = git@github.com:cloudwalkio/mruby-posxml-parser.git
+[submodule "lib/da_funk"]
+	path = lib/da_funk
+	url = git@github.com:cloudwalkio/da_funk.git

@@ -54,7 +54,10 @@ int robot_rock_execute(void)
 {
   mrb_state *mrb;
 
-  char code[] = "POS.execute";
+  //char code[] = "Device::Walk.execute('main.mrb')";
+  //char code[] = "Device::Walk.load";
+  //char code[] = "require './da_funk.mrb'; Device::Walk.start";
+  char code[] = "PAX.start";
 
   //DEBUG
   //printf("\nParse Ruby code with mruby\n");
