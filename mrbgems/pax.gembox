@@ -84,5 +84,6 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
 
   # MRuby PAX
-  conf.gem File.join(MRUBY_PAX_MGEM, "..")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax")
+
 end
