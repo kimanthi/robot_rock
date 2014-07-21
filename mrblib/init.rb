@@ -1,5 +1,5 @@
 
-module POS
+module TestRobotRock
   def self.test_network_socket
     puts "=" * 20
     puts "Init #{Network.init(:gprs, apn: 'claro.com.br', user: 'claro.com.br', pass: 'claro.com.br')}"
