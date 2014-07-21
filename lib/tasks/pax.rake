@@ -30,7 +30,7 @@ if ENV["MRUBY_CONFIG"]
     [conf.cc, conf.cxx].each do |cc|
       cc.command = 'cl.exe'
       cc.flags = [%w(/c /nologo /W3 /D_DEBUG /MDd /Zi /Od /RTC1 /DHAVE_STRING_H /DNO_GETTIMEOFDAY /D_CRT_SECURE_NO_WARNINGS)]
-      cc.include_paths = ["#{MRUBY_ROOT}/include", "Z:\\pax\\mruby-pax\\lib\\sdk\\include"]
+      cc.include_paths = ["#{MRUBY_ROOT}/include", "Z:\\pax\\robot_rock\\lib\\sdk\\include"]
       cc.defines = %w(DISABLE_GEMS)
       cc.option_include_path = '/I%s'
       cc.option_define = '/D%s'
