@@ -46,6 +46,3 @@
 [submodule "lib/da_funk"]
 	path = lib/da_funk
 	url = git@github.com:cloudwalkio/da_funk.git
-[submodule "mrbgems/mruby-pax"]
-	path = mrbgems/mruby-pax
-	url = git@github.com:cloudwalkio/mruby-pax.git
