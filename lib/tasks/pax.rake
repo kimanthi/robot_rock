@@ -230,6 +230,7 @@ namespace :pax do
     pax        = File.join(ENV["LOCOBJ"], "mrb", "pax.mrb")
     pax_files  = Dir[File.join(MRUBY_PAX_ROOT, "mrblib", "*.rb")]
     funk_files = [
+      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/support.rb",
       "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/crypto.rb",
       "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/display.rb",
       "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/io.rb",
