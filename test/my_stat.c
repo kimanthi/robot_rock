@@ -494,3 +494,28 @@ void test_print2(void)
   Lcdprintf(" PAX Computer Technology company \nAugust 2001\n");
 }
 
+int testTime(void)
+{
+  uchar time[7];
+  const char time_string[20];
+
+  memset(&time_string, 0, sizeof(time_string));
+  printf("\n aaa");
+  DelayMs(1000);
+
+  memset(&time, 0, sizeof(time));
+  printf("\n aaa");
+  DelayMs(1000);
+
+  GetTime(&time);
+  printf("\n aaa");
+  DelayMs(1000);
+
+  //"2014-07-22 20:34:50";
+  sprintf(&time_string, "20%02X-%02X-%02X %02X:%02X:%02X", (int)time[0], (int)time[1], (int)time[2], (int)time[3], (int)time[4], (int)time[5]);
+
+  printf("\n %s", time_string);
+  DelayMs(1000);
+}
+
+
