@@ -22,12 +22,6 @@
 #include "mruby/class.h"
 #include "mruby/debug.h"
 
-// file test
-#include "my_stat.h"
-
-//connect
-#include "gprs.h"
-
 const APPINFO AppInfo={
 	"CloudWalk",
 	"AppFramwork",
@@ -83,30 +77,6 @@ int robot_rock_execute(void)
   mrb_close(mrb);
 
   return 0;
-}
-
-int testPAXAPI(void)
-{
-  //test_stat("test3");
-  //create_file_and_directory();
-  //stat_info();
-  //stat_info2();
-  //file_basename();
-  //file_exists();
-  //file_size();
-  //file_rename();
-  //get_pax_key();
-  //get_pax_string();
-  //get_pax_hz_string();
-  //stat_info4(info);
-  //DelayMs(4000);
-  //testPrint(info);
-}
-
-
-int testPAXAPI_GPRS(void)
-{
-  pax_connect();
 }
 
 int main(void)
