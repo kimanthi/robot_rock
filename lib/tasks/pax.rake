@@ -211,7 +211,7 @@ namespace :pax do
     sh "#{ENV["ASM"]} #{t.source} -o #{t.name}"
   end
 
-  SRC = FileList["src/*.c", "test/*c"]
+  SRC = FileList["src/*.c"]
   BIN = SRC.pathmap("%{test,out/obj}X.o").pathmap("%{src,out/obj}X.o")
 
   SRC.insert(0, File.join(ENV['POSLIBDIR'], "init_d210.s"))
