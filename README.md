@@ -27,12 +27,21 @@ Rake tasks availables on Vagrant:
 	rake pax:musl:compile   # Compile Musl libc
 	rake pax:musl:setup     # Setup musl ENV
 	rake pax:setup          # Setup PAX ENV
+	rake pax:mrbc           # Generate mrb file
 	
 Rake tasks availables on Visual Studio Commnad Prompt
 
 	rake pax:mruby:clean    # Clean MRuby
 	rake pax:mruby:compile  # Compile MRuby and generate libmruby.a
 	rake pax:mruby:setup    # Setup
+
+## Ruby Compilation
+
+Command `rake pax:mrbc` compile ruby and generate 2 files. Generate from 2 differents resource to separete DaFunk Library from PAX Library, so I're able to update just the daFunk library.
+
+ - `out/obj/mrb/pax.mrb` mruby bytecode from `mrblib/*.rb`
+ - `out/obj/mrb/da_funk.mrb` mruby bytecode from `lib/da_funk/lib/**/*.rb`
+ 
 
 ## Contributing
 
