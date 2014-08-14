@@ -1,6 +1,6 @@
-# MRuby-pax
+# RobotRock
 
-MRuby on pax, implement the entire dependencies to development and deploy for PAX D200.
+RobotRock is The Walk Ruby Platform on PAX.
 
 ## Setup
 
