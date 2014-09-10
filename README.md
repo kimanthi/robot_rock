@@ -16,6 +16,7 @@ Details about the environment
 1. Support only 16 bytes file names.
 2. Support only 255 files.
 3. Don't support rename, pipe, f* functions(fseek, fopen, fread).
+4. NEVER create more than one file descriptor for the same file, it's could couse leak and problem in the mruby stack, example, File.new,read and File.delete, close the File instance before delete.
 	
 	
 ## Usage
