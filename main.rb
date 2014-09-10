@@ -7,7 +7,7 @@ class Main < Device
     Device::Display.print("Press to Update", 5, 5)
     config
     getc
-    Menu.call
+    Menu.perform
   end
 
   def self.config
@@ -66,7 +66,7 @@ class Main < Device
 end
 
 class Menu
-  def self.call
+  def self.perform
     execute(select_menu)
   end
 
