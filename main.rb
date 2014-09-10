@@ -1,4 +1,6 @@
 class Main < Device
+  APP = :App
+
   def self.call
     super
     Device::Display.clear
@@ -7,7 +9,7 @@ class Main < Device
     Device::Display.print("Press to Update", 5, 5)
     config
     getc
-    Menu.perform
+    Menu.perform(APP)
   end
 
   def self.config
@@ -35,7 +37,7 @@ class Main < Device
       # TODO Check attach
       puts "Donwloading App..."
       # TODO receive file app
-      puts "#{ret = Device::Transaction::Download.request_file("app.rb", "app.mrb")} - #{getc}"
+      puts "#{ret = Device::Transaction::Download.request_file("#{file.split(".").first}.rb", file)} - #{getc}"
       Device::Network.walk_socket.close unless Device::Network.walk_socket.closed?
 
       puts "Donwloaded"
@@ -66,8 +68,8 @@ class Main < Device
 end
 
 class Menu
-  def self.perform
-    execute(select_menu)
+  def self.perform(app)
+    execute(select_menu, app)
   end
 
   def self.select_menu
@@ -80,17 +82,18 @@ class Menu
     getc
   end
 
-  def self.execute(option)
+  def self.execute(option, app)
+    path = "#{app.to_s.downcase}.mrb"
     case option
     when "1"
-      require "app.mrb" unless Object.const_defined?(:App)
+      require path unless Object.const_defined?(app)
       App.call
     when "2"
-      Main::Download.update("app.mrb")
+      Main::Download.update(path)
     when "3"
-      load "app.mrb"
+      load path
     when "4"
-      File.delete("app.mrb")
+      File.delete(path)
     end
   end
 end
