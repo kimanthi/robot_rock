@@ -81,18 +81,32 @@ class Main < Device
 
     def self.check_error(ret)
       case ret
-      when 2
-        puts "File is the same."
-      when 1
-        puts "Success."
-      when 0
-        puts "Encoding error."
-      when -1
-        puts "File not found."
-      when -8
+      when 3
         puts "Serial number not found."
-      else # when -7..-2
+        return false
+      when 2
+        puts "File not found."
+        return false
+      when 1
+        puts "File is the same."
+      when 0
+        puts "Success."
+      when -1
+        puts "Communication failure."
+        return false
+      when -2
+        puts "Encoding error."
+        return false
+      when -3
+        puts "IO Error."
+        return false
+      else
         puts "Communication fail."
+        return false
+      end
+
+      true
+    end
       end
 
       getc
