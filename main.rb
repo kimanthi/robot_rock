@@ -77,6 +77,15 @@ class Main < Device
       getc
 
       check_error ret
+    def self.params_dat
+      if self.attach
+        puts "Donwloading Params..."
+        puts "#{ret = Device::Transaction::Download.request_param_file}"
+        Device::Network.walk_socket.close unless Device::Network.walk_socket.closed?
+
+        parse_apps if ret = check_error(ret)
+        ret
+      end
     end
 
     def self.check_error(ret)
