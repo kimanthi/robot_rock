@@ -10,6 +10,14 @@ class Main < Device
     config
     getc
     Menu.perform(APP)
+  def self.form(txt, min=0, max=8, default="", is_number=true)
+    Device::Display.clear
+    puts txt
+    if is_number
+      form_number(default, min, max)
+    else
+      form_string(default, min, max)
+    end
   end
 
   def self.config
