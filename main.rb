@@ -1,15 +1,20 @@
 class Main < Device
-  APP = :App
-
   def self.call
     super
+
     Device::Display.clear
-    Device::Display.print("CloudWalk", 1, 10)
-    Device::Display.print("Serial #{Device::System.serial}", 3, 5)
-    Device::Display.print("Press to Update", 5, 5)
-    config
-    getc
-    Menu.perform(APP)
+    Device::Display.print("      CloudWalk      ", 1)
+    Device::Display.print("    Serial #{Device::System.serial}", 3, 5)
+    Device::Display.print(" 1 - DebugInit", 6)
+    Device::Display.print(" N - CloudWalkInit", 7)
+
+    if getc == "1"
+      DebugInit.perform
+    else
+      CloudWalkInit.perform
+    end
+  end
+
   def self.form(txt, min=0, max=8, default="", is_number=true)
     Device::Display.clear
     puts txt
