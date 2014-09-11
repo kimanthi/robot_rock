@@ -107,7 +107,18 @@ class Main < Device
 
       true
     end
+
+    def self.parse_apps
+      @params = FileDb.new("params.dat") if File.exists?("params.dat")
+      @apps   = []
+
+      @params["apps_list"].gsub("\"", "").split(";").each do |app|
+        values = app.split(",")
+        mrb    = "#{values[1].gsub("#{Device::Setting.company_name}_", "").split(".")[0]}.mrb"
+        @apps << {:label => values[0], :mrb => mrb, :file => values[1], :available => values[2], :crc => values[3]}
       end
+      getc
+    end
 
       getc
     end
