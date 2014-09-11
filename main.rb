@@ -146,10 +146,47 @@ class Main < Device
   end
 end
 
-class Menu
-  def self.perform(app)
-    execute(select_menu, app)
+class CloudWalkInit
+  def self.perform
+    set_logical_number
+    set_gprs_config
+    params_dat
+    update_apps
+    execute(Main::Download.menu)
   end
+
+  def self.set_logical_number
+    number = Device::Setting.logical_number
+    Device::Setting.logical_number = Main.form("Logical Number (#{number}): ", 0, 4, number, true)
+  end
+
+  def self.set_gprs_config
+    # TODO Scalone We need  the same behaviour as numbers
+    Device::Setting.apn  = Main.form("Apn  (#{Device::Setting.apn}): ", 0, 127, "", false)
+    Device::Setting.user = Main.form("User (#{Device::Setting.user}): ", 0, 127, "", false)
+    Device::Setting.pass = Main.form("Pass (#{Device::Setting.pass}): ", 0, 127, "", false)
+  end
+
+  def self.params_dat
+    Device::Display.clear
+    Device::Display.print("Press to Download Params", 3)
+    getc
+    Main::Download.params_dat
+  end
+
+  def self.update_apps
+    Main::Download.update_apps
+  end
+
+  def self.execute(app)
+    p app[:mrb]
+    getc
+    p require app[:mrb]
+    p a = Device::Support.path_to_class(app[:mrb])
+    a.call
+    getc
+  end
+end
 
 class DebugInit
   def self.perform
