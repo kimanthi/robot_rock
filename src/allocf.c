@@ -3,6 +3,8 @@
 #include "mruby/value.h"
 #include "mruby/compile.h"
 #include "mruby/proc.h"
+#include "posapi.h"
+#include "posapi_all.h"
 
 unsigned long total_allocated_mem = 0;
 int counter=0;
@@ -22,8 +24,9 @@ void *pax_allocf(mrb_state *mrb, void *p, size_t size, void *ud)
       new_ptr = malloc(size);
 
     if(!new_ptr){
-      printf("\nerr %d mem %lu s %d", new_ptr, total_allocated_mem, size);
-      DelayMs(60000);
+      printf("\nMemory Allocation Error: err %d total %lu object %d free %d", new_ptr, total_allocated_mem, size, freesize());
+      kbflush();
+      getkey();
     } else {
       counter++;
       total_allocated_mem += size;
