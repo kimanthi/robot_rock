@@ -24,6 +24,24 @@ class Main < Device
     string
   end
 
+  def self.form_number(default, min, max)
+    string = default
+    loop do
+      Device::Display.print(string, 2, 1)
+
+      case (char = getc)
+      when Device::IO::CANCEL
+        return nil
+      when Device::IO::ENTER
+        return string if (string.size >= min)
+      when Device::IO::BACK
+        # TODO Check this code, for some reason string pointer get lost and print the entire string.
+        # string = string[0..-2]
+        string = "#{string[0..-2]}"
+      else
+        string << char if (string.size < max)
+      end
+    end
   end
 
   class Download
