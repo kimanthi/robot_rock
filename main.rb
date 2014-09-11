@@ -130,28 +130,56 @@ class Menu
     execute(select_menu, app)
   end
 
-  def self.select_menu
+class DebugInit
+  def self.perform
+    config
+    execute(menu, :App)
+  end
+
+  def self.config
+    Device::Setting.logical_number = "1"
+    Device::Setting.apn            = "zap.vivo.com.br"
+    Device::Setting.user           = "vivo"
+    Device::Setting.pass           = "vivo"
+  end
+
+  def self.menu
     Device::Display.clear
     Device::Display.print("Application Menu")
     Device::Display.print("1 - Execute", 2)
     Device::Display.print("2 - Update", 3)
     Device::Display.print("3 - Load", 4)
     Device::Display.print("4 - Remove", 5)
+    Device::Display.print("5 - Params", 6)
+    Device::Display.print("6 - TestWrite", 7)
+    Device::Display.print("7 - Download Apps", 8)
     getc
   end
 
   def self.execute(option, app)
-    path = "#{app.to_s.downcase}.mrb"
+    path     = "#{app.to_s.downcase}.mrb"
     case option
     when "1"
-      require path unless Object.const_defined?(app)
-      App.call
+      require(path)
+      Device::Support.path_to_class(path).call
+      getc
     when "2"
-      Main::Download.update(path)
+      Main::Download.update_app(path)
     when "3"
-      load path
+      puts "Load #{load(path)}"
+      getc
     when "4"
-      File.delete(path)
+      puts "Delete #{File.delete(path)}"
+      getc
+    when "5"
+      Main::Download.params_dat
+      getc
+    when "6"
+      puts "form: #{Main.form("Logical Number: ", 0, 4, "1234", false)}"
+      getc
+    when "7"
+      Main::Download.update_apps
+      getc
     end
   end
 end
