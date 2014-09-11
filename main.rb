@@ -120,7 +120,14 @@ class Main < Device
       getc
     end
 
+    def self.update_apps
+      Device::Display.clear
+      Device::Display.print("Press to Download #{@apps.size} apps", 3)
       getc
+      @apps.each do |app|
+        update_app(app[:rb])
+      end
+    end
     end
   end
 end
