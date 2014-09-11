@@ -128,6 +128,20 @@ class Main < Device
         update_app(app[:rb])
       end
     end
+
+    def self.menu
+      Device::Display.clear
+      Device::Display.print("Application Menu")
+      selected = []
+
+      apps.each_with_index do |app, i|
+        if app[:available] == "1"
+          selected << app
+          Device::Display.print("#{app[:label]}", i+2)
+        end
+      end
+
+      selected[getc.to_i - 1]
     end
   end
 end
