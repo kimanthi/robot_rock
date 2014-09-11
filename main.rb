@@ -20,11 +20,6 @@ class Main < Device
     end
   end
 
-  def self.config
-    Device::Setting.logical_number = "1"
-    Device::Setting.apn            = "zap.vivo.com.br"
-    Device::Setting.user           = "vivo"
-    Device::Setting.pass           = "vivo"
   def self.form_string(default, min, max)
     puts "\n"
     string = Device::IO.get_string(min, max)
@@ -53,7 +48,12 @@ class Main < Device
   end
 
   class Download
-    def self.update(file)
+    class << self
+      attr_accessor :apps
+      @apps  = []
+    end
+
+    def self.attach
       Device::Display.clear
       Device::Display.print("Download App")
       puts "Connecting..."
@@ -62,21 +62,25 @@ class Main < Device
           puts "Connected #{ret}"
         else
           puts "Attach fail #{ret}"
+          return false
         end
       else
         puts "Already connected"
       end
+      true
+    end
 
-      # TODO Check attach
-      puts "Donwloading App..."
-      # TODO receive file app
-      puts "#{ret = Device::Transaction::Download.request_file("#{file.split(".").first}.rb", file)} - #{getc}"
-      Device::Network.walk_socket.close unless Device::Network.walk_socket.closed?
+    def self.update_app(file)
+      # TODO Scalone: Refactor
+      if self.attach
+        puts "Donwloading #{file}..."
+        ret = Device::Transaction::Download.request_file("#{file.split(".").first}.rb", file)
+        Device::Network.walk_socket.close unless Device::Network.walk_socket.closed?
 
-      puts "Donwloaded"
-      getc
+        check_error ret
+      end
+    end
 
-      check_error ret
     def self.params_dat
       if self.attach
         puts "Donwloading Params..."
