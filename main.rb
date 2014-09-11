@@ -17,6 +17,13 @@ class Main < Device
     Device::Setting.apn            = "zap.vivo.com.br"
     Device::Setting.user           = "vivo"
     Device::Setting.pass           = "vivo"
+  def self.form_string(default, min, max)
+    puts "\n"
+    string = Device::IO.get_string(min, max)
+    return default if string.empty?
+    string
+  end
+
   end
 
   class Download
