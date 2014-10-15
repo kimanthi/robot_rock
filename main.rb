@@ -135,7 +135,6 @@ class Main < Device
         mrb    = "#{values[1].gsub("#{Device::Setting.company_name}_", "").split(".")[0]}.mrb"
         @apps << {:label => values[0], :mrb => mrb, :file => values[1], :available => values[2], :crc => values[3]}
       end
-      getc
     end
 
     def self.update_apps
@@ -143,7 +142,7 @@ class Main < Device
       Device::Display.print("Press to Download #{@apps.size} apps", 3)
       getc
       @apps.each do |app|
-        update_app(app[:rb])
+        update_app(app[:mrb])
       end
     end
 
@@ -197,11 +196,9 @@ class CloudWalkInit
   end
 
   def self.execute(app)
-    p app[:mrb]
-    getc
-    p require app[:mrb]
-    p a = Device::Support.path_to_class(app[:mrb])
-    a.call
+    puts "Require #{app[:mrb]} #{require app[:mrb]}"
+    klass = Device::Support.path_to_class(app[:mrb])
+    klass.call if a.respond_to? :call
     getc
   end
 end
