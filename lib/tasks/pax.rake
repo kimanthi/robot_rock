@@ -2,29 +2,19 @@ require 'fileutils'
 require 'rake/clean'
 
 MRUBY_PAX_ROOT = ENV["MRUBY_PAX_ROOT"] || File.join(File.dirname(File.expand_path(__FILE__)), "..", "..")
-MUSL_ROOT      = File.join(MRUBY_PAX_ROOT, "lib", "musl")
 PAX_LIB_ROOT   = File.join(MRUBY_PAX_ROOT, "lib", "sdk")
 MRUBY_LIB      = File.join(MRUBY_PAX_ROOT, "lib", "mruby")
 DA_FUNK_LIB    = File.join(MRUBY_PAX_ROOT, "lib", "da_funk")
 MRUBY_PAX_MGEM = File.join(MRUBY_PAX_ROOT, "mrbgems")
-PAX_LIB_INC    = File.join(PAX_LIB_ROOT, "include")
 MRUBY_PAX_INC  = File.join(MRUBY_PAX_ROOT, "src")
-GCC_PAX_PATH   = File.join(PAX_LIB_ROOT, "build", "gcc-sde")
-GCC_PAX_BIN    = File.join(GCC_PAX_PATH, "bin")
-GCC_PAX_LIB    = File.join(GCC_PAX_PATH, "lib")
-LOCINCLUDE     = [MRUBY_PAX_INC, PAX_LIB_INC, File.join(MRUBY_LIB, "include"), File.join(MUSL_ROOT, "include")]
-DEV_KIT_MAKE   = "C:\\Ruby193\\devkit\\bin\\make"
+GCC_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")
+AR_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-ar")
+LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"), File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include")]
+
 SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
 require File.join(MRUBY_PAX_ROOT, "lib", "version.rb")
 
-ENV["CFLAGS"]  = "-mtune=4ksd -mips32r2 -c -D_32_ -EL -O1 -ffixed-14 -ffixed-15 -G0 -fomit-frame-pointer -Wimplicit -Wformat -ffreestanding -mlong-calls -gdwarf-2 -msoft-float"
-ENV["LOCINC"]  = "-I\"#{LOCINCLUDE.join("\" -I\"")}\""
-ENV["GCC"]     = "#{File.join(GCC_PAX_BIN, "sde-gcc.exe")} #{ENV['CFLAGS']} #{ENV["LOCINC"]}"
-ENV['LD']      = File.join(GCC_PAX_BIN, "sde-ld.exe")
-ENV["AR"]      = File.join(GCC_PAX_BIN, "sde-ar.exe")
-ENV["GCCDIR"]  = GCC_PAX_PATH
-ENV["GCCBIN"]  = GCC_PAX_BIN
 ENV["MRBC"]    = File.join(MRUBY_LIB, "bin", "mrbc.exe")
 
 if ENV["MRUBY_CONFIG"]
@@ -75,13 +65,9 @@ if ENV["MRUBY_CONFIG"]
   end
 
   MRuby::Toolchain.new(:pax) do |conf|
-    ENV["PATH"]    = "#{ENV["PATH"]};C:\\WINDOWS;C:\\WINDOWS\\system32;#{GCC_PAX_BIN}"
-    #ENV["NAME"]    = "robot_rock"
-    ENV["LOCOBJ"]  = File.join(MRUBY_LIB, "build", "pax", "src")
-
     [conf.cc, conf.cxx, conf.objc, conf.asm].each do |cc|
-      cc.command = File.join(GCC_PAX_BIN, "sde-gcc.exe")
-      cc.flags = [%w(-mtune=4ksd -mips32r2 -c -EL -O1 -ffixed-14 -ffixed-15 -G0 -fomit-frame-pointer -Wimplicit -Wformat -ffreestanding -mlong-calls -gdwarf-2 -msoft-float)]
+      cc.command = GCC_PAX_BIN
+      cc.flags = [%w(-O0 -g2 -Wall -funwind-tables)]
       cc.include_paths = ["#{MRUBY_ROOT}/include"].concat(LOCINCLUDE)
       cc.defines = %w()
       cc.option_include_path = '-I%s'
@@ -90,7 +76,7 @@ if ENV["MRUBY_CONFIG"]
     end
 
     conf.archiver do |archiver|
-      archiver.command = ENV["AR"]
+      archiver.command = AR_PAX_BIN
       archiver.archive_options = 'r %{outfile} %{objs}'
     end
 
@@ -106,12 +92,7 @@ if ENV["MRUBY_CONFIG"]
   MRuby::Build.new do |conf|
     # load specific toolchain settings
     toolchain :visualcpp
-
-    #enable_debug
     conf.bins = %w(mrbc)
-
-    # include the default GEMs
-    conf.gembox File.join(MRUBY_PAX_MGEM, "pax")
   end
 
   MRuby::CrossBuild.new('pax') do |conf|
@@ -128,100 +109,56 @@ if ENV["MRUBY_CONFIG"]
 end
 
 namespace :pax do
-  namespace :musl do
-    desc "Setup musl ENV"
-    task :setup do
-      ENV["LOCOBJ"]        = File.join(MUSL_ROOT, "obj")
-      ENV['CROSS_COMPILE'] = File.join(GCC_PAX_BIN, "sde-")
-    end
-
-    desc "Compile Musl libc"
-    task :compile => :setup do
-      FileUtils.cd MUSL_ROOT
-      sh "#{SH_EXE} configure --target=mips"
-      FileUtils.rm_rf("include/bits")
-      FileUtils.cp_r("arch/mips/bits", "include/")
-      sh "#{DEV_KIT_MAKE}"
-      exit
-    end
-
-    desc "Clean Musl libc"
-    task :clean => :setup do
-      FileUtils.cd MUSL_ROOT
-      FileUtils.rm_rf("include/bits")
-      sh "#{DEV_KIT_MAKE} clean"
-      exit
-    end
-  end
-
   namespace :mruby do
     build_args = ARGV[1..-1]
     desc "Compile MRuby and generate libmruby.a"
     task :compile => :setup do
-      exit sh "rake #{build_args.join(' ')}"
+      exit sh "rake --verbose --trace #{build_args.join(' ')}"
     end
 
     desc "Clean MRuby"
-    task :clean => :setup do
+    task :clean => :env do
       exit sh "rake clean #{build_args.join(' ')}"
     end
 
-    desc "Setup"
-    task :setup do
+    desc "Setup env"
+    task :env do
       FileUtils.cd MRUBY_LIB
       ENV["MRUBY_CONFIG"] = File.expand_path(__FILE__)
     end
 
     desc "Rebuild"
-    task :rebuild => :setup  do
+    task :rebuild => :env  do
       sh "rake clean #{build_args.join(' ')}"
-      sh "rake #{build_args.join(' ')}"
+      sh "rake --trace --verbose #{build_args.join(' ')}"
       exit
     end
   end
 
   desc "Setup PAX ENV"
   task :setup do
-    ENV["NAME"]      = "robot_rock"
-    ENV["VERSION"]   = PAX.version
-    ENV['POSLIB']    = "d210api"
-    ENV["GCCLIB"]    = GCC_PAX_LIB
-    ENV["POSLIB"]    = File.join(ENV["POSLIBDIR"], "d210api")
-    ENV["ASM"]       = "#{File.join(GCC_PAX_BIN, "sde-gcc.exe")} -xassembler-with-cpp -mtune=4ksd -mips32r2 -msmartmips -c -D_32_ -D_ASSEMBLER_ -EL "
-    ENV["LINK"]      = "#{ENV["LD"]} -A mips32r2  -EL --allow-multiple-definition -T#{File.join(ENV["POSLIBDIR"], "sldscript_d210")} -L#{File.join(MUSL_ROOT, "lib")} -I#{File.join(MUSL_ROOT, "lib")}  -L#{GCC_PAX_LIB} -L#{ENV['POSLIBDIR']} -L#{ENV['LOCOBJ']} "
-    ENV["OBJ"]       = BIN.join(" ")
-    ENV["GCC"]       = "#{ENV["GCC"]} -DPAX "
-
     ::CLEAN.include "out/obj/*.o"
-    ::CLOBBER.include "out/obj/*.bin", "out/obj/*.dasm", "out/obj/*.elf"
+    ::CLOBBER.include "out/obj/*.bin", "out/obj/*.nostrip"
   end
 
-  ENV["LOCOBJ"]    = File.join(MRUBY_PAX_ROOT, "out", "obj")
-  ENV["POSLIBDIR"] = File.join(PAX_LIB_ROOT, "postype", "d210")
-
+  # TODO Remove or not
   rule '.o' => ["%{out/obj,src}X.c"] do |t|
-    sh "#{ENV["GCC"]} #{t.source} -o #{t.name}"
-  end
-
-  rule '.o' => ["%{out/obj,test}X.c"] do |t|
-    sh "#{ENV["GCC"]} #{t.source} -o #{t.name}"
-  end
-
-  rule File.join(ENV['LOCOBJ'], "init.o") => [File.join(ENV['POSLIBDIR'], "init_d210.s")] do |t|
-    sh "#{ENV["ASM"]} #{t.source} -o #{t.name}"
+    sh "#{GCC_PAX_BIN} -O0 -g2 -Wall -funwind-tables -I#{LOCINCLUDE.join(" -I")} #{t.source} -c -o #{t.name}"
   end
 
   SRC = FileList["src/*.c"]
-  BIN = SRC.pathmap("%{test,out/obj}X.o").pathmap("%{src,out/obj}X.o")
-
-  SRC.insert(0, File.join(ENV['POSLIBDIR'], "init_d210.s"))
-  BIN.insert(0, File.join(ENV['LOCOBJ'], "init.o"))
+  BIN = SRC.pathmap("%{src,out/obj}X.o")
 
   task :link => BIN do
-    # TODO Scalone SSL
-    # sh "#{ENV['LINK']} -o #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} #{BIN.join(" ")} #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")} #{File.join(ENV["POSLIBDIR"], "libd210api.a")} #{File.join(MUSL_ROOT, "lib", "libc.a")} -ld210api -lc -lsslD200_Release.a"
-    sh "#{ENV['LINK']} -o #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} #{BIN.join(" ")} #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")} #{File.join(ENV["POSLIBDIR"], "libd210api.a")} #{File.join(MUSL_ROOT, "lib", "libc.a")} -ld210api -lc"
-    sh "#{File.join(GCC_PAX_BIN, "sde-conv.exe")} -f bin -v -o #{File.join(ENV['LOCOBJ'], "robot_rock-#{PAX.version}.bin")} #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} "
+    sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")} -o\"app.nostrip\" #{BIN.join(" ")} -L\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -losal -Wl,-rpath=//opt/lib -Wl,-rpath=./lib -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -lm -lcrypto -lfreetype -lpng -lpthread -lts -lxui #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")}"
+    FileUtils.mv "app.nostrip", "out/app.nostrip"
+    FileUtils.cd "#{File.join(MRUBY_PAX_ROOT, "out")}"
+    sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-strip")} -g app.nostrip -o\"RobotRock\""
+  end
+
+  task :generate_aip do
+    FileUtils.cd "#{File.join(MRUBY_PAX_ROOT, "out")}"
+    sh "#{File.join(PAX_LIB_ROOT, "sdk", "tools", "genaip")} -I pkginfo -o pkg/RobotRock.aip"
   end
 
   desc "Generate mrb file"
@@ -262,11 +199,6 @@ namespace :pax do
     sh "#{ENV['MRBC']} -o #{File.join(MRUBY_PAX_ROOT, "main.mrb")} #{File.join(MRUBY_PAX_ROOT, "main.rb")}"
   end
 
-  desc "Dump elf to dasm debug"
-  task :dump => :setup do
-    sh "#{File.join(GCC_PAX_BIN, "sde-objdump.exe")} -D -S #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.elf")} > #{File.join(ENV['LOCOBJ'], "#{ENV['NAME']}.dasm")} "
-  end
-
   desc "Clobber/Clean PAX"
   task :clean => [:setup] do
     # Allow task to invoke again
@@ -280,5 +212,5 @@ namespace :pax do
   task :compile => [:setup, :link]
 
   desc "Rebuild PAX"
-  task :rebuild => [:clean, :compile]
+  task :rebuild => [:clean, :compile, :generate_aip]
 end
