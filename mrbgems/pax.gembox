@@ -3,7 +3,7 @@ MRuby::GemBox.new do |conf|
   conf.gem :core => "mruby-sprintf"
 
   # Use standard print/puts/p
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-print")
+  conf.gem :core => "mruby-print"
 
   # Use standard Math module
   conf.gem :core => "mruby-math"
