@@ -10,15 +10,6 @@
 [submodule "mrbgems/mruby-polarssl"]
 	path = mrbgems/mruby-polarssl
 	url = git@github.com:luisbebop/mruby-polarssl.git
-[submodule "mrbgems/mruby-tempfile"]
-	path = mrbgems/mruby-tempfile
-	url = git@github.com:cloudwalkio/mruby-tempfile.git
-[submodule "mrbgems/mruby-dir"]
-	path = mrbgems/mruby-dir
-	url = git@github.com:cloudwalkio/mruby-dir.git
-[submodule "mrbgems/mruby-require"]
-	path = mrbgems/mruby-require
-	url = git@github.com:cloudwalkio/mruby-require.git
 [submodule "mrbgems/mruby-mtest"]
 	path = mrbgems/mruby-mtest
 	url = git@github.com:iij/mruby-mtest.git
@@ -28,24 +19,24 @@
 [submodule "mrbgems/mruby-pack"]
 	path = mrbgems/mruby-pack
 	url = git@github.com:iij/mruby-pack.git
-[submodule "mrbgems/mruby-print"]
-	path = mrbgems/mruby-print
-	url = git@github.com:cloudwalkio/mruby-print.git
 [submodule "mrbgems/mruby-hs-regexp"]
 	path = mrbgems/mruby-hs-regexp
 	url = git@github.com:masamitsu-murase/mruby-hs-regexp.git
-[submodule "mrbgems/mruby-pax-io"]
-	path = mrbgems/mruby-pax-io
-	url = git@github.com:cloudwalkio/mruby-pax-io.git
-[submodule "mrbgems/mruby-pax-network"]
-	path = mrbgems/mruby-pax-network
-	url = git@github.com:cloudwalkio/mruby-pax-network.git
 [submodule "mrbgems/mruby-posxml-parser"]
 	path = mrbgems/mruby-posxml-parser
 	url = git@github.com:cloudwalkio/mruby-posxml-parser.git
 [submodule "lib/da_funk"]
 	path = lib/da_funk
 	url = git@github.com:cloudwalkio/da_funk.git
-[submodule "mrbgems/mruby-pax"]
-	path = mrbgems/mruby-pax
-	url = git@github.com:cloudwalkio/mruby-pax.git
+[submodule "mrbgems/mruby-io"]
+	path = mrbgems/mruby-io
+	url = git@github.com:iij/mruby-io.git
+[submodule "mrbgems/mruby-qrcode"]
+	path = mrbgems/mruby-qrcode
+	url = git@bitbucket.org:sadasant/mruby-qrcode.git
+[submodule "mrbgems/mruby-socket"]
+	path = mrbgems/mruby-socket
+	url = git@github.com:iij/mruby-socket.git
+[submodule "mrbgems/mruby-sleep"]
+	path = mrbgems/mruby-sleep
+	url = git@github.com:matsumoto-r/mruby-sleep.git

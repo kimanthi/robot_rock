@@ -53,26 +53,8 @@ MRuby::GemBox.new do |conf|
   # Use extended toplevel object (main) methods
   conf.gem :core => "mruby-toplevel-ext"
 
-  # Use to IO functions
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-io")
-
-  # network
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-network")
-
-  # SSL
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
-
   # Use to Dir functions, used for mruby-require
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hs-regexp")
-
-  # Use to Dir functions, used for mruby-require
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
-
-  # Use to Dir functions, used for mruby-require
-  # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
-
-  # Use to require ruby and bytecode files
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
 
   # Use to TestUnit
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
@@ -82,8 +64,10 @@ MRuby::GemBox.new do |conf|
 
   # Use to pack unpack functions
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
-
-  # MRuby PAX
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax")
-
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-io")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sleep")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
 end
