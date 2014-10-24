@@ -208,6 +208,17 @@ namespace :pax do
     Rake::Task['clobber'].invoke
   end
 
+  desc "Upload"
+  task :upload do
+    xcb = File.join(PAX_LIB_ROOT, "TermAssist", "tools", "xcb.exe")
+    sh "#{xcb} kill-server"
+    sh "#{xcb} start-server"
+    sh "#{xcb} connect com:com1"
+    sh "#{xcb} installer aip out/pkg/RobotRock.aip"
+    sh "#{xcb} disconnect com:com1"
+    sh "#{xcb} kill-server"
+  end
+
   desc "Compile PAX"
   task :compile => [:setup, :link]
 
