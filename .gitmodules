@@ -1,9 +1,6 @@
 [submodule "lib/mruby"]
 	path = lib/mruby
 	url = git@github.com:mruby/mruby.git
-[submodule "lib/musl"]
-	path = lib/musl
-	url = git://git.musl-libc.org/musl
 [submodule "lib/sdk"]
 	path = lib/sdk
 	url = git@github.com:cloudwalkio/pax_libs.git
