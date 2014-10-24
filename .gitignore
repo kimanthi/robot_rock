@@ -6,4 +6,7 @@ stats
 stats/*
 *.o
 .!*
-out/*
+out/obj/*
+out/RobotRock
+out/app.nostrip
+out/pkg/RobotRock.aip
