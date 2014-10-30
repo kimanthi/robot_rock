@@ -27,7 +27,7 @@
 	url = git@github.com:cloudwalkio/da_funk.git
 [submodule "mrbgems/mruby-io"]
 	path = mrbgems/mruby-io
-	url = git@github.com:iij/mruby-io.git
+	url = git@github.com:scalone/mruby-io.git
 [submodule "mrbgems/mruby-qrcode"]
 	path = mrbgems/mruby-qrcode
 	url = git@bitbucket.org:sadasant/mruby-qrcode.git
