@@ -2,9 +2,6 @@ MRuby::GemBox.new do |conf|
   # Use standard Kernel#sprintf method
   conf.gem :core => "mruby-sprintf"
 
-  # Use standard print/puts/p
-  conf.gem :core => "mruby-print"
-
   # Use standard Math module
   conf.gem :core => "mruby-math"
 
@@ -68,6 +65,7 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-io")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-print")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sleep")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
 end
