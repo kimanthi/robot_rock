@@ -221,4 +221,7 @@ namespace :pax do
 
   desc "Rebuild PAX"
   task :rebuild => [:clean, :compile, :generate_aip]
+
+  desc "Rebuild PAX"
+  task :deploy => [:rebuild, :upload]
 end
