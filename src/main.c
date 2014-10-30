@@ -24,12 +24,8 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-#include "debugger.h"
-#include "font.h"
-#include "header.h"
-#include "lcd.h"
-#include "keyboard.h"
 #include "osal.h"
+#include "ui.h"
 
 /* Include the mruby header */
 #include "mruby.h"
@@ -82,21 +78,23 @@ int robot_rock_execute(void)
     //char code[] = "Device::Walk.execute('main.mrb')";
     //char code[] = "Device::Walk.load";
     //char code[] = "require './da_funk.mrb'; Device::Walk.start";
-    char code[] = "puts \"EEEEEEEEEEEEEEEEE\"";
+    /*char code[] = "print 'aaaaaaa'; sleep 2; p 'BBBBBB'; sleep 2";*/
+    /*char code[] = "print 'aaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccddddd\ndddd\ndddddd\ndddddddd'; sleep 2; p 'BBBBBB'; sleep 2";*/
+    /*char code[] = "print 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccccccddddd\ndddd\ndddddd\ndddddddd'; sleep 10; p 'BBBBBB'; sleep 2";*/
+    /*char code[] = "print '1234567890123456789012345678901234567890'; sleep 2; puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBB'; puts 'CCCCCCCCCCCCCC'; sleep 30";*/
+    char code[] = "puts '1234567890123456789012345678901234567890'; puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBB'; puts 'CCCCCCCCCCCCCC'; sleep 5";
 
     //DEBUG
-    HelloWorld("Parse Ruby code with mruby");
+    display("Parse Ruby code with mruby");
     /*printf("\nParse Ruby code with mruby\n");*/
 
     //DEBUG
-    HelloWorld("mrb_open");
-    sleep(5);
+    display("mrb_open");
     /*mrb = mrb_open_allocf(pax_allocf, NULL);*/
     mrb = mrb_open();
 
     //DEBUG
-    HelloWorld("mrb_load_string\n");
-    sleep(2);
+    display("mrb_load_string\n");
     mrb_load_string(mrb, code);
 
     //DEBUG
@@ -105,68 +103,149 @@ int robot_rock_execute(void)
     //mrb_output_backtrace(mrb, mrb->exc, my_func, (void *)stderr);
 
     //DEBUG
-    HelloWorld("mrb_close");
+    /*sleep(5);*/
+    display("mrb_close");
     sleep(2);
     mrb_close(mrb);
 
     return 0;
 }
 
-int Time2Str(ST_TIME* time, char* str)
+static int GuiInit(int statusbar_height)
 {
-	sprintf(str, "%04d-%02d-%02d %02d:%02d:%02d", time->Year, time->Month, time->Day, time->Hour, time->Minute, time->Second);
+	char value[128];
+	char rotate_str[32];
+	char statusbar_str[32];
+	int ret;
+	char *xui_argv[10];
+	int  xui_argc;
+
+	ret = OsRegGetValue("ro.fac.lcd.rotate", value);
+	if (ret > 0) {
+		snprintf(rotate_str, sizeof(rotate_str), "ROTATE=%s", value);
+	}
+	else {
+		strcpy(rotate_str, "ROTATE=0");
+	}
+
+	if (statusbar_height > 0) {
+		snprintf(statusbar_str, sizeof(statusbar_str), "STATUSBAR=%d", statusbar_height);
+	}
+	else {
+		strcpy(statusbar_str, "STATUSBAR=0");
+	}
+
+	xui_argv[0] = rotate_str;
+	xui_argv[1] = statusbar_str;
+	xui_argv[2] = NULL;
+	xui_argc = 2;
+
+	ret = XuiOpen(xui_argc, xui_argv);
+	if (ret == XUI_RET_OK) {
+		return RET_OK;
+	}
+	else {
+		return -1;
+	}
+
+}
+
+static void GuiDeinit(void)
+{
+	XuiClose();
+}
+
+static void CrashReportInit(void)
+{
+	signal(SIGILL,    OsSaveCrashReport);
+	signal(SIGABRT,   OsSaveCrashReport);
+	signal(SIGBUS,    OsSaveCrashReport);
+	signal(SIGFPE,    OsSaveCrashReport);
+	signal(SIGSEGV,   OsSaveCrashReport);
+	signal(SIGSTKFLT, OsSaveCrashReport);
+	signal(SIGPIPE,   OsSaveCrashReport);
+}
+
+void StatusbarInit(void)
+{
+	XuiSetStatusbarIcon(0,"./res/mobile100.png");
+	XuiSetStatusbarIcon(1,"./res/modem.png");
+	XuiSetStatusbarIcon(2,"./res/ethernet.png");
+	XuiSetStatusbarIcon(3,"./res/wifi100.png");
+	XuiSetStatusbarIcon(4,"./res/lock.png");
+	XuiSetStatusbarIcon(5,"./res/card.png");
+	XuiSetStatusbarIcon(6,"./res/print.png");
+	XuiSetStatusbarIcon(7,"./res/battery0c.png");
+}
+
+int ScreenInit(void)
+{
+	char *bgfilename;
+	XuiImg *imgBg;
+    XuiColor colorTitleBg;
+
+	if (XuiRootCanvas()->width >=320) {
+		bgfilename = "./res/bg_320x240.png";
+	}
+	else {
+		bgfilename = "./res/bg_240x320.png";
+	}
+
+	/* load image */
+	imgBg = XuiImgLoadFromFile(bgfilename);
+
+	/* set background */
+	colorTitleBg.r = 0x10;
+	colorTitleBg.g = 0x00;
+	colorTitleBg.b = 0xfe;
+	colorTitleBg.a = 0xff;
+	XuiCanvasSetBackground(XuiRootCanvas(), XUI_BG_CENTER, imgBg, colorTitleBg);
+	/* after SetBackground, the imgBg can free it */
+	XuiImgFree(imgBg);
+	imgBg = NULL;
+
+	/* init statusbar */
+	StatusbarInit();
+
 	return 0;
 }
 
 int Init()
 {
-	if (OpenFont(FONT_NAME) < 0) {
-		return -1;
-	}
-	if (OpenLcd() < 0) {
-		return -1;
-	}
-	if (OpenKeyboard(KEYBOARD_NAME) < 0) {
-		return -1;
-	}
+    CrashReportInit();
+    GuiInit(18);
+    ScreenInit();
+    OpenFont();
+
+	/*if (OpenFont(FONT_NAME) < 0) {*/
+		/*return -1;*/
+	/*}*/
+	/*if (OpenLcd() < 0) {*/
+		/*return -1;*/
+	/*}*/
+	/*if (OpenKeyboard(KEYBOARD_NAME) < 0) {*/
+		/*return -1;*/
+	/*}*/
 	return 0;
 }
 
-int Finish()
+int DeInit()
 {
 	CloseFont();
-	CloseLcd();
-	CloseKeyboard();
-	return 0;
+	GuiDeinit();
+
+    return 0;
 }
 
-int HelloWorld(char *title)
-{
-	int w, h;
-	int titleHeight = 32;
-	int strLen;
 
-	/* get LCD size*/
-    GetLcdSize(&w, &h);
-
-	/* set background color */
-    DrawLcd(0, 0, w, h, WHITE);
-
-	/* print hello world */
-	strLen = GetStringLength(title, titleHeight);
-	DrawString(title, titleHeight, (w - strLen), titleHeight, BLACK);
-	StartDrawLcd(0, 0, w, h);
-	return 0;
-}
 
 int main(int argc, char **argv)
 {
-    /*ScrClrLine(0, 1);*/
-    /*ScrPrint(0, 0, 1, "Test");*/
 
-	Init();
-
+    OsLog(LOG_INFO, "Teste");
+    Init();
     robot_rock_execute();
+    DeInit();
 
     return 0;
 }
