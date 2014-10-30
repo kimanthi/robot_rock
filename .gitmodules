@@ -46,3 +46,6 @@
 [submodule "mrbgems/mruby-tempfile"]
 	path = mrbgems/mruby-tempfile
 	url = git@github.com:iij/mruby-tempfile.git
+[submodule "mrbgems/mruby-print"]
+	path = mrbgems/mruby-print
+	url = git@github.com:cloudwalkio/mruby-print.git
