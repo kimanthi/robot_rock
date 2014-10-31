@@ -82,7 +82,9 @@ int robot_rock_execute(void)
     /*char code[] = "print 'aaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccddddd\ndddd\ndddddd\ndddddddd'; sleep 2; p 'BBBBBB'; sleep 2";*/
     /*char code[] = "print 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccccccddddd\ndddd\ndddddd\ndddddddd'; sleep 10; p 'BBBBBB'; sleep 2";*/
     /*char code[] = "print '1234567890123456789012345678901234567890'; sleep 2; puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBB'; puts 'CCCCCCCCCCCCCC'; sleep 30";*/
-    char code[] = "puts '1234567890123456789012345678901234567890'; puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBB'; puts 'CCCCCCCCCCCCCC'; sleep 5";
+    /*char code[] = "puts '1234567890123456789012345678901234567890'; puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBB'; puts 'CCCCCCCCCCCCCC'; sleep 5";*/
+    /*char code[] = "puts 'before'; sleep 2; require './mrb/main.mrb'; sleep 2; puts 'after'; sleep 10";*/
+    char code[] = "PAX.start";
 
     //DEBUG
     display("Parse Ruby code with mruby");
@@ -237,11 +239,8 @@ int DeInit()
     return 0;
 }
 
-
-
 int main(int argc, char **argv)
 {
-
     OsLog(LOG_INFO, "Teste");
     Init();
     robot_rock_execute();
