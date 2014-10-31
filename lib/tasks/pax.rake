@@ -163,40 +163,25 @@ namespace :pax do
 
   desc "Generate mrb file"
   task :mrbc do
-    FileUtils.rm_rf("#{ENV["LOCOBJ"]}/mrb")
-    FileUtils.mkdir("#{ENV["LOCOBJ"]}/mrb")
-    funk       = File.join(ENV["LOCOBJ"], "mrb", "da_funk.mrb")
-    pax        = File.join(ENV["LOCOBJ"], "mrb", "pax.mrb")
-    pax_files  = Dir[File.join(MRUBY_PAX_ROOT, "mrblib", "*.rb")]
-    funk_files = [
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/support.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/crypto.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/display.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/io.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/network.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/printer.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/setting.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/system.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/version.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/walk.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/file_db.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/bitmap.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/codec.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/exception.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/field.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/fields.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/message.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/util.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/iso8583/version.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/version.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/transaction/download.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/transaction/emv.rb",
-      "//VBOXSVR/v-root/pax/robot_rock/lib/tasks/../../lib/da_funk/lib/device/transaction/iso.rb"
-    ]
-    sh "#{ENV['MRBC']} -o #{funk} #{funk_files.join(" ")}"
-    sh "#{ENV['MRBC']} -o #{pax} #{pax_files.join(" ")}"
-    sh "#{ENV['MRBC']} -o #{File.join(MRUBY_PAX_ROOT, "main.mrb")} #{File.join(MRUBY_PAX_ROOT, "main.rb")}"
+    # Clean
+    mrb = File.join(MRUBY_PAX_ROOT, "out", "mrb")
+    FileUtils.rm_rf(mrb)
+    FileUtils.mkdir_p(mrb)
+
+    # DaFunk
+    FileUtils.cd DA_FUNK_LIB
+    sh "rake compile"
+    FileUtils.cd MRUBY_PAX_ROOT
+    funk     = File.join(DA_FUNK_LIB, "out", "da_funk.mrb")
+    funk_mrb = File.join(mrb, "da_funk.mrb")
+    FileUtils.mv(funk, funk_mrb)
+
+    # PAX
+    pax_out = File.join(mrb, "pax.mrb")
+    pax_rb  = Dir[File.join(MRUBY_PAX_ROOT, "mrblib", "*.rb")]
+    sh "#{ENV['MRBC']} -o #{pax_out} #{pax_rb.join(" ")}"
+
+    sh "#{ENV['MRBC']} -o #{File.join(mrb, "main.mrb")} #{File.join(MRUBY_PAX_ROOT, "main.rb")}"
   end
 
   desc "Clobber/Clean PAX"
