@@ -26,6 +26,10 @@ static int fix_x(int x)
     colorMsgFg.g = 0x00;
     colorMsgFg.b = 0x00;
     colorMsgFg.a = 0xff;
+static int fix_y(int y)
+{
+    return y * LINE_HEIGHT;
+}
 
     XuiCanvasDrawText(XuiRootCanvas(), x, y, 32, xFont, XUI_TEXT_NORMAL, colorMsgFg, buf);
     return 0;
