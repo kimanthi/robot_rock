@@ -34,6 +34,11 @@ void display(char *buf)
     xdisplay(buf, strlen(buf), 0, 0);
 }
 
+void display_clear_line(int line)
+{
+  XuiClearArea(XuiRootCanvas(), 0, fix_y(line), LINE_HEIGHT, SCREEN_Y);
+}
+
 void display_clear(void)
 {
   XuiClearArea(XuiRootCanvas(), 0, 0, SCREEN_X, SCREEN_Y);
