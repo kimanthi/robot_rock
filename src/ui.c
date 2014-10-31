@@ -34,6 +34,10 @@ void display(char *buf)
     xdisplay(buf, strlen(buf), 0, 0);
 }
 
+void display_clear(void)
+{
+  XuiClearArea(XuiRootCanvas(), 0, 0, SCREEN_X, SCREEN_Y);
+}
 
 XuiFont *OpenFont(void)
 {
