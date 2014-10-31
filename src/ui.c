@@ -6,8 +6,10 @@
 #include <fcntl.h>
 #include <osal.h>
 #include <xui.h>
+#include <ui.h>
 
 XuiFont *xFont;
+XuiColor colorMsgFg;
 
 int xdisplay(char *buf, int len, int x, int y)
 {
@@ -35,6 +37,11 @@ void display(char *buf)
 
 XuiFont *OpenFont(void)
 {
+  colorMsgFg.r = 0x00;
+  colorMsgFg.g = 0x00;
+  colorMsgFg.b = 0x00;
+  colorMsgFg.a = 0xff;
+
 	return xFont = XuiCreateFont("./res/inconsolata.ttf", 0, 0);
 }
 
