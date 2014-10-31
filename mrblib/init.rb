@@ -1,6 +1,6 @@
 
 module TestRobotRock
-  def self.test_network_socket
+  def self.test_network_gprs_socket
     puts "=" * 20
     puts "Init #{Network.init(:gprs, apn: 'claro.com.br', user: 'claro.com.br', pass: 'claro.com.br')}"
     puts "Connect #{Network.connect}"
@@ -9,10 +9,10 @@ module TestRobotRock
       puts("Connected? #{iRet = Network.connected?}")
     end
 
-    puts "=" * 25
+    puts "=" * 20
     puts "Ping #{Network.ping("nas.scalone.com.br", 10000)}   "
 
-    puts "=" * 25
+    puts "=" * 20
     puts "TCP #{(tcp = TCPSocket.new('switch-staging.cloudwalk.io', 8000)).inspect}"
     puts "Send #{tcp.send('303132', 0)} "
     puts "Recv #{tcp.recv(10)} "
@@ -22,7 +22,7 @@ module TestRobotRock
     puts "Disconnect #{Network.disconnect}"
   end
 
-  def self.fib
+  def self.fib(n)
     return n if n < 2
     fib(n-2) + fib(n-1)
   end
@@ -113,7 +113,7 @@ module TestRobotRock
     p IO.getc
   end
 
-  def self.test_connect
+  def self.test_connect_gprs
     puts "=" * 26
     puts "Init #{Network.init(:gprs, apn: 'claro.com.br', user: 'claro.com.br', pass: 'claro.com.br')}"
     puts "Connect #{Network.connect}"
@@ -122,6 +122,19 @@ module TestRobotRock
       puts("Connected? #{iRet = Network.connected?}")
       sleep 1
     end
+  end
+
+  def self.test_connect_wifi
+    puts "Configure"
+    Device::Setting.authentication = Network::Wifi::AUTH_WPA_WPA2_PSK
+    Device::Setting.password       = "planobesemfio"
+    Device::Setting.essid          = "PlanoBe"
+    Device::Setting.channel        = 0
+    Device::Setting.cipher         = 0
+    Device::Setting.mode           = 0
+    Device::Setting.media          = "wifi"
+    puts "=" * 20
+    puts "Attach #{Device::Network.attach}"
   end
 
   def self.test_socket
