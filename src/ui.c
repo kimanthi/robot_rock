@@ -11,28 +11,21 @@
 XuiFont *xFont;
 XuiColor colorMsgFg;
 
-int xdisplay(char *buf, int len, int x, int y)
 static int fix_x(int x)
 {
-    XuiColor colorMsgFg;
-
-    x *= 16;
-    y *= 32;
     return x * LINE_WIDTH;
 }
 
-    XuiClearArea(XuiRootCanvas(), x, y, 320, 32);
-    colorMsgFg.r = 0x00;
-    colorMsgFg.g = 0x00;
-    colorMsgFg.b = 0x00;
-    colorMsgFg.a = 0xff;
 static int fix_y(int y)
 {
     return y * LINE_HEIGHT;
 }
 
-    XuiCanvasDrawText(XuiRootCanvas(), x, y, 32, xFont, XUI_TEXT_NORMAL, colorMsgFg, buf);
-    return 0;
+int xdisplay(char *buf, int len, int x, int y)
+{
+  XuiClearArea(XuiRootCanvas(), fix_x(x), fix_y(y), SCREEN_X, LINE_HEIGHT);
+  XuiCanvasDrawText(XuiRootCanvas(), fix_x(x), fix_y(y), LINE_HEIGHT, xFont, XUI_TEXT_NORMAL, colorMsgFg, buf);
+  return 0;
 }
 
 void display(char *buf)
