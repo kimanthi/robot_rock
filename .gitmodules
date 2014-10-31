@@ -49,3 +49,9 @@
 [submodule "mrbgems/mruby-print"]
 	path = mrbgems/mruby-print
 	url = git@github.com:cloudwalkio/mruby-print.git
+[submodule "mrbgems/mruby-pax-network"]
+	path = mrbgems/mruby-pax-network
+	url = git@github.com:scalone/mruby-pax-network.git
+[submodule "mrbgems/mruby-pax"]
+	path = mrbgems/mruby-pax
+	url = git@github.com:scalone/mruby-pax.git

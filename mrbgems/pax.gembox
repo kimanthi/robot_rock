@@ -60,6 +60,7 @@ MRuby::GemBox.new do |conf|
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-posxml-parser")
 
   # Use to pack unpack functions
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-network")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-io")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-print")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
@@ -69,4 +70,5 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax")
 end
