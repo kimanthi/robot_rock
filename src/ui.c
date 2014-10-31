@@ -12,11 +12,14 @@ XuiFont *xFont;
 XuiColor colorMsgFg;
 
 int xdisplay(char *buf, int len, int x, int y)
+static int fix_x(int x)
 {
     XuiColor colorMsgFg;
 
     x *= 16;
     y *= 32;
+    return x * LINE_WIDTH;
+}
 
     XuiClearArea(XuiRootCanvas(), x, y, 320, 32);
     colorMsgFg.r = 0x00;
