@@ -43,7 +43,7 @@ int get_string(char *sValue, int min, int max, unsigned char mode, int x, int y)
   getStr.x = fix_x(x);
   getStr.y = fix_y(y);
   getStr.font = xFont;
-  getStr.font = LINE_HEIGHT;
+  getStr.size = LINE_HEIGHT;
   getStr.alpha_key = XUI_KEYALPHA;
 
   return XuiGetString(getStr, sValue, mode, min, max);
