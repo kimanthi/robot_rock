@@ -239,12 +239,53 @@ int DeInit()
     return 0;
 }
 
+void testSwipe(void)
+{
+  ST_MSR_DATA track1;
+  ST_MSR_DATA track2;
+  ST_MSR_DATA track3;
+  int ret=0;
+
+  memset(&track1, 0, sizeof(track1));
+  memset(&track2, 0, sizeof(track2));
+  memset(&track3, 0, sizeof(track3));
+
+  ret = OsMsrOpen();
+
+  display("Before Open");
+  if (ret != RET_OK) {
+    display("Open Error: %d", ret);
+    return;
+  }
+
+  OsMsrReset();
+
+  display("Before Swipe");
+  ret = FALSE;
+  while(ret != TRUE && ret != ERR_DEV_NOT_OPEN) {
+    ret = OsMsrSwiped();
+  }
+  display("Swipe: %d", ret);
+
+  OsMsrRead(&track1, &track2, &track3);
+  display("t1 %s", track1.TrackData);
+  display("t2 %s", track2.TrackData);
+  display("t3 %s", track3.TrackData);
+
+  display("Before Close");
+  OsMsrClose();
+}
+
 int main(int argc, char **argv)
 {
     OsLog(LOG_INFO, "Teste");
     Init();
-    robot_rock_execute();
+
+    testSwipe();
+
+    /*robot_rock_execute();*/
     DeInit();
+    OsLog(LOG_INFO, "Finish");
 
     return 0;
 }
