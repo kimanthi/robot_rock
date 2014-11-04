@@ -68,10 +68,15 @@ module TestRobotRock
     puts false
   end
 
-  def self.test_gets
+  def self.test_get_string
     puts "Start"
-    Kernel.gets('4')
+    string = get_string(1, 10)
     puts "End"
+    getc
+    Device::Display.clear
+    puts "Result"
+    puts string
+    getc
   end
 
   def self.test_getc
