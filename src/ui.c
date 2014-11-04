@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
 #include <signal.h>
@@ -28,10 +29,17 @@ int xdisplay(char *buf, int len, int x, int y)
   return 0;
 }
 
-void display(char *buf)
+void display(const char *format, ...)
 {
-    sleep(2);
-    xdisplay(buf, strlen(buf), 0, 0);
+  char dest[128];
+  va_list argptr;
+
+  va_start(argptr, format);
+  vsprintf(dest, format, argptr);
+  va_end(argptr);
+
+  xdisplay(dest, strlen(dest), 0, 0);
+  sleep(2);
 }
 
 int get_string(char *sValue, int min, int max, int mode, int y, int x)

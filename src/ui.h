@@ -4,7 +4,7 @@
 #include <xui.h>
 
 int xdisplay(char *buf, int len, int x, int y);
-void display(char *buf);
+void display(const char *format, ...);
 XuiFont *OpenFont();
 XuiFont *GetFont();
 void CloseFont();
