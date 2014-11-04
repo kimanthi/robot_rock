@@ -8,7 +8,7 @@ void display(char *buf);
 XuiFont *OpenFont();
 XuiFont *GetFont();
 void CloseFont();
-int get_string(char *sValue, int min, int max, unsigned char mode, int x, int y);
+int get_string(char *sValue, int min, int max, int mode, int y, int x);
 
 #define SCREEN_X 320
 #define SCREEN_Y 240

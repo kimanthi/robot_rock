@@ -34,7 +34,7 @@ void display(char *buf)
     xdisplay(buf, strlen(buf), 0, 0);
 }
 
-int get_string(char *sValue, int min, int max, unsigned char mode, int x, int y)
+int get_string(char *sValue, int min, int max, int mode, int y, int x)
 {
   XuiGetStrAttr getStr;
 
