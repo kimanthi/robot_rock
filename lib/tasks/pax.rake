@@ -113,7 +113,7 @@ namespace :pax do
     build_args = ARGV[1..-1]
     desc "Compile MRuby and generate libmruby.a"
     task :compile => :setup do
-      exit sh "rake --verbose --trace #{build_args.join(' ')}"
+      exit sh "rake #{build_args.join(' ')}"
     end
 
     desc "Clean MRuby"
@@ -130,7 +130,7 @@ namespace :pax do
     desc "Rebuild"
     task :rebuild => :env  do
       sh "rake clean #{build_args.join(' ')}"
-      sh "rake --trace --verbose #{build_args.join(' ')}"
+      sh "rake #{build_args.join(' ')}"
       exit
     end
   end
