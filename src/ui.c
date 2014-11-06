@@ -57,6 +57,24 @@ int get_string(char *sValue, int min, int max, int mode, int y, int x)
   return XuiGetString(getStr, sValue, mode, min, max);
 }
 
+void display_bitmap(char *path, int y, int x)
+{
+	XuiImg *img;
+	int imgX;
+	int imgY;
+
+	img  = XuiImgLoadFromFile(path);
+	imgX = XUI_RIGHT_X(0, XuiRootCanvas()->width, img->width);
+	/*imgY = 80;*/
+
+  /*display("x %d, y %d, w %d, h %d", imgX, imgY, img->width, img->height);*/
+  /*img->width = 120;*/
+  /*img->height = 120;*/
+
+	XuiCanvasDrawImg(XuiRootCanvas(), fix_x(x), fix_y(y), img->width, img->height, XUI_BG_NORMAL, img);
+	XuiImgFree(img);
+}
+
 void display_clear_line(int line)
 {
   XuiClearArea(XuiRootCanvas(), 0, fix_y(line), LINE_HEIGHT, SCREEN_Y);
