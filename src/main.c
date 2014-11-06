@@ -284,6 +284,21 @@ void testSwipe(void)
   /*OsMsrClose();*/
 }
 
+void displayImg(void)
+{
+	XuiImg *img;
+
+	img  = XuiImgLoadFromFile("./qrcode.bmp");
+  img->width = 120;
+  img->height = 120;
+
+	XuiCanvasDrawImg(XuiRootCanvas(), 0, 0, 120, 120, XUI_BG_NORMAL, img);
+
+  sleep(4);
+
+	XuiImgFree(img);
+}
+
 int main(int argc, char **argv)
 {
     OsLog(LOG_INFO, "Teste");
