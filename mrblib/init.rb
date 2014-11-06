@@ -1,5 +1,19 @@
 
 module TestRobotRock
+  def self.test_io_read_card
+    fd = IO.sysopen("/dev/msr")
+    card = IO.open(fd, "r")
+    p card.fileno
+    sleep 2
+    loop do
+      value = card.read(10)
+      p value
+      sleep 1
+      break if ! value.nil? && ! value.empty?
+    end
+    card.close
+  end
+
   def self.test_network_gprs_socket
     puts "=" * 20
     puts "Init #{Network.init(:gprs, apn: 'claro.com.br', user: 'claro.com.br', pass: 'claro.com.br')}"
