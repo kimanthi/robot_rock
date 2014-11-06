@@ -87,16 +87,16 @@ int robot_rock_execute(void)
     char code[] = "PAX.start";
 
     //DEBUG
-    display("Parse Ruby code with mruby");
+    /*display("Parse Ruby code with mruby");*/
     /*printf("\nParse Ruby code with mruby\n");*/
 
     //DEBUG
-    display("mrb_open");
+    /*display("mrb_open");*/
     /*mrb = mrb_open_allocf(pax_allocf, NULL);*/
     mrb = mrb_open();
 
     //DEBUG
-    display("mrb_load_string\n");
+    /*display("mrb_load_string\n");*/
     mrb_load_string(mrb, code);
 
     //DEBUG
@@ -106,8 +106,8 @@ int robot_rock_execute(void)
 
     //DEBUG
     /*sleep(5);*/
-    display("mrb_close");
-    sleep(2);
+    /*display("mrb_close");*/
+    /*sleep(2);*/
     mrb_close(mrb);
 
     return 0;
