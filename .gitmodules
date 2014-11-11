@@ -27,7 +27,7 @@
 	url = git@github.com:cloudwalkio/da_funk.git
 [submodule "mrbgems/mruby-io"]
 	path = mrbgems/mruby-io
-	url = git@github.com:scalone/mruby-io.git
+	url = git@github.com:cloudwalkio/mruby-io.git
 [submodule "mrbgems/mruby-qrcode"]
 	path = mrbgems/mruby-qrcode
 	url = git@bitbucket.org:sadasant/mruby-qrcode.git
@@ -48,7 +48,7 @@
 	url = git@github.com:iij/mruby-tempfile.git
 [submodule "mrbgems/mruby-pax-network"]
 	path = mrbgems/mruby-pax-network
-	url = git@github.com:scalone/mruby-pax-network.git
+	url = git@github.com:cloudwalkio/mruby-pax-network.git
 [submodule "mrbgems/mruby-pax"]
 	path = mrbgems/mruby-pax
-	url = git@github.com:scalone/mruby-pax.git
+	url = git@github.com:cloudwalkio/mruby-pax.git
