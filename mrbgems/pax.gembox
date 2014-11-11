@@ -73,4 +73,5 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-network")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-qrcode")
 end

@@ -87,16 +87,16 @@ int robot_rock_execute(void)
     char code[] = "PAX.start";
 
     //DEBUG
-    display("Parse Ruby code with mruby");
+    /*display("Parse Ruby code with mruby");*/
     /*printf("\nParse Ruby code with mruby\n");*/
 
     //DEBUG
-    display("mrb_open");
+    /*display("mrb_open");*/
     /*mrb = mrb_open_allocf(pax_allocf, NULL);*/
     mrb = mrb_open();
 
     //DEBUG
-    display("mrb_load_string\n");
+    /*display("mrb_load_string\n");*/
     mrb_load_string(mrb, code);
 
     //DEBUG
@@ -106,8 +106,8 @@ int robot_rock_execute(void)
 
     //DEBUG
     /*sleep(5);*/
-    display("mrb_close");
-    sleep(2);
+    /*display("mrb_close");*/
+    /*sleep(2);*/
     mrb_close(mrb);
 
     return 0;
@@ -239,12 +239,76 @@ int DeInit()
     return 0;
 }
 
+void testSwipe(void)
+{
+  unsigned char buf[2250];
+  int handle;
+  ST_MSR_DATA track1;
+  ST_MSR_DATA track2;
+  ST_MSR_DATA track3;
+  int ret=0;
+
+  memset(&track1, 0, sizeof(track1));
+  memset(&track2, 0, sizeof(track2));
+  memset(&track3, 0, sizeof(track3));
+
+  /*ret = OsMsrOpen();*/
+
+  /*display("Before Open");*/
+  /*if (ret != RET_OK) {*/
+    /*display("Open Error: %d", ret);*/
+    /*return;*/
+  /*}*/
+
+  /*OsMsrReset();*/
+
+  display("Before Swipe");
+  ret = FALSE;
+  handle = open("/dev/msr", O_RDONLY);
+  while(ret != TRUE && ret != ERR_DEV_NOT_OPEN) {
+    memset(buf, 0, sizeof(buf));
+    ret = read(handle, &buf, 2250);
+    display("%d - %d - %s", handle, ret, buf);
+    sleep(1);
+    /*ret = OsMsrSwiped();*/
+  }
+  close(handle);
+  /*display("Swipe: %d", ret);*/
+
+  /*OsMsrRead(&track1, &track2, &track3);*/
+  /*display("t1 %s", track1.TrackData);*/
+  /*display("t2 %s", track2.TrackData);*/
+  /*display("t3 %s", track3.TrackData);*/
+
+  /*display("Before Close");*/
+  /*OsMsrClose();*/
+}
+
+void displayImg(void)
+{
+	XuiImg *img;
+
+	img  = XuiImgLoadFromFile("./qrcode.bmp");
+  img->width = 120;
+  img->height = 120;
+
+	XuiCanvasDrawImg(XuiRootCanvas(), 0, 0, 120, 120, XUI_BG_NORMAL, img);
+
+  sleep(4);
+
+	XuiImgFree(img);
+}
+
 int main(int argc, char **argv)
 {
     OsLog(LOG_INFO, "Teste");
     Init();
+
+    /*testSwipe();*/
+
     robot_rock_execute();
     DeInit();
+    OsLog(LOG_INFO, "Finish");
 
     return 0;
 }

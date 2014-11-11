@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
 #include <signal.h>
@@ -28,10 +29,17 @@ int xdisplay(char *buf, int len, int x, int y)
   return 0;
 }
 
-void display(char *buf)
+void display(const char *format, ...)
 {
-    sleep(2);
-    xdisplay(buf, strlen(buf), 0, 0);
+  char dest[128];
+  va_list argptr;
+
+  va_start(argptr, format);
+  vsprintf(dest, format, argptr);
+  va_end(argptr);
+
+  xdisplay(dest, strlen(dest), 0, 0);
+  sleep(2);
 }
 
 int get_string(char *sValue, int min, int max, int mode, int y, int x)
@@ -47,6 +55,24 @@ int get_string(char *sValue, int min, int max, int mode, int y, int x)
   getStr.alpha_key = XUI_KEYALPHA;
 
   return XuiGetString(getStr, sValue, mode, min, max);
+}
+
+void display_bitmap(char *path, int y, int x)
+{
+	XuiImg *img;
+	int imgX;
+	int imgY;
+
+	img  = XuiImgLoadFromFile(path);
+	imgX = XUI_RIGHT_X(0, XuiRootCanvas()->width, img->width);
+	/*imgY = 80;*/
+
+  /*display("x %d, y %d, w %d, h %d", imgX, imgY, img->width, img->height);*/
+  /*img->width = 120;*/
+  /*img->height = 120;*/
+
+	XuiCanvasDrawImg(XuiRootCanvas(), fix_x(x), fix_y(y), img->width, img->height, XUI_BG_NORMAL, img);
+	XuiImgFree(img);
 }
 
 void display_clear_line(int line)
