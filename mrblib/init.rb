@@ -225,7 +225,9 @@ module TestRobotRock
 
   def self.test_socket
     puts "=" * 25
-    puts "TCP #{(socket = TCPSocket.new('switch-staging.cloudwalk.io', 31415)).inspect}"
+    #switch-staging.cloudwalk.io
+    puts "TCP #{(socket = TCPSocket.new('54.232.125.226', 31415)).inspect}"
+    getc
     socket
   end
 
