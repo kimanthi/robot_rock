@@ -77,8 +77,11 @@ module TestRobotRock
 
     puts "Attach #{Device::Network.attach}"
     puts "=" * 20
-    puts "Before ping"
-    puts "Ping #{Network.ping("192.168.1.125", 10000)}   "
+    puts "Before CloudWalk socket"
+    self.test_handshake(self.test_socket, "200-200-200")
+    getc
+  end
+
   def self.test_http
     p SimpleHttp.new("http", "google.com", 80).request("GET", "/", {'User-Agent' => "test-agent"})
     getc
