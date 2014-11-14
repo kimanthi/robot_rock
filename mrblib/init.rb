@@ -233,9 +233,12 @@ module TestRobotRock
 
   def self.test_handshake(socket, serial_terminal)
     handshake = "#{serial_terminal};init.rb;1;0.42"
+    handshake = "#{handshake.size.chr}#{handshake}"
 
-    socket.write handshake.insert(0, handshake.size.chr)
+    socket.write handshake
     @message = socket.read(3)
+
+    puts "Message #{@message}"
 
     if (@message != "err" && @message)
       @message
