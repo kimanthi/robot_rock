@@ -1,17 +1,46 @@
 
+class String
+  def chuncks(number)
+    array = []
+    current = 0
+    len =  self.size / number
+    len += 1 if (self.size % number) != 0
+    len.times do |n|
+      array << self[current..(current + number - 1)]
+      current += number
+    end
+    array
+  end
+end
+
 module TestRobotRock
   def self.test_io_read_card
+    Device::Display.clear
     fd = IO.sysopen("/dev/msr")
     card = IO.open(fd, "r")
     p card.fileno
-    sleep 2
-    loop do
-      value = card.read(10)
-      p value
-      sleep 1
-      break if ! value.nil? && ! value.empty?
+    sleep 4
+    value = ""
+    begin
+      loop do
+        value << card.read(1)
+      end
+    rescue
+      p value.size
     end
+    sleep 2
+    p value.split("\n").size
+    sleep 2
+    track1 = value.split("\n")[1]
+    track1_bin = track1.unpack("C*").collect{|a| a.to_s(2)}.join
+    # Track 2
+    p track1_bin.chuncks(5).compact.collect{ |v| str = (v[1..-1].reverse.to_i(2) + 48).chr; str }.join
+    # Track 1
+    p track1_bin.chuncks(7).compact.collect{ |v| str = (v[1..-1].reverse.to_i(2) + 32).chr; str }.join
+
+    sleep 10
     card.close
+    asdf
   end
 
   def self.test_network_gprs_socket
