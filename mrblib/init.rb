@@ -234,19 +234,6 @@ module TestRobotRock
     end
   end
 
-  def self.test_connect_wifi
-    puts "Configure"
-    Device::Setting.authentication = Network::Wifi::AUTH_WPA_WPA2_PSK
-    Device::Setting.password       = "planobesemfio"
-    Device::Setting.essid          = "PlanoBe"
-    Device::Setting.channel        = 0
-    Device::Setting.cipher         = 0
-    Device::Setting.mode           = 0
-    Device::Setting.media          = "wifi"
-    puts "=" * 20
-    puts "Attach #{Device::Network.attach}"
-  end
-
   def self.test_socket
     puts "=" * 25
     #switch-staging.cloudwalk.io
