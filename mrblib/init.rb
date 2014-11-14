@@ -1,17 +1,46 @@
 
+class String
+  def chuncks(number)
+    array = []
+    current = 0
+    len =  self.size / number
+    len += 1 if (self.size % number) != 0
+    len.times do |n|
+      array << self[current..(current + number - 1)]
+      current += number
+    end
+    array
+  end
+end
+
 module TestRobotRock
   def self.test_io_read_card
+    Device::Display.clear
     fd = IO.sysopen("/dev/msr")
     card = IO.open(fd, "r")
     p card.fileno
-    sleep 2
-    loop do
-      value = card.read(10)
-      p value
-      sleep 1
-      break if ! value.nil? && ! value.empty?
+    sleep 4
+    value = ""
+    begin
+      loop do
+        value << card.read(1)
+      end
+    rescue
+      p value.size
     end
+    sleep 2
+    p value.split("\n").size
+    sleep 2
+    track1 = value.split("\n")[1]
+    track1_bin = track1.unpack("C*").collect{|a| a.to_s(2)}.join
+    # Track 2
+    p track1_bin.chuncks(5).compact.collect{ |v| str = (v[1..-1].reverse.to_i(2) + 48).chr; str }.join
+    # Track 1
+    p track1_bin.chuncks(7).compact.collect{ |v| str = (v[1..-1].reverse.to_i(2) + 32).chr; str }.join
+
+    sleep 10
     card.close
+    asdf
   end
 
   def self.test_network_gprs_socket
@@ -34,6 +63,47 @@ module TestRobotRock
     puts "Close #{tcp.close} "
     puts "Closed? #{tcp.closed?}"
     puts "Disconnect #{Network.disconnect}"
+  end
+
+  def self.test_network_wifi_socket
+    Device::Display.clear
+    puts "=" * 20
+    Device::Setting.authentication = "wpa_wpa2_psk"
+    Device::Setting.password       = "planobesemfio"
+    Device::Setting.essid          = "PlanoBe"
+    Device::Setting.channel        = "0"
+    Device::Setting.cipher         = "tkip"
+    Device::Setting.mode           = "station"
+
+    puts "Attach #{Device::Network.attach}"
+    puts "=" * 20
+    puts "Before CloudWalk socket"
+    self.test_handshake(self.test_socket, "200-200-200")
+    getc
+  end
+
+  def self.test_http
+    p SimpleHttp.new("http", "google.com", 80).request("GET", "/", {'User-Agent' => "test-agent"})
+    getc
+  end
+
+  def self.test_https
+    socket = TCPSocket.new('polarssl.org', 443)
+    entropy = PolarSSL::Entropy.new
+    ctr_drbg = PolarSSL::CtrDrbg.new(entropy)
+    ssl = PolarSSL::SSL.new
+    ssl.set_endpoint(PolarSSL::SSL::SSL_IS_CLIENT)
+    ssl.set_authmode(PolarSSL::SSL::SSL_VERIFY_NONE)
+    ssl.set_rng(ctr_drbg)
+    ssl.set_socket(socket)
+    ssl.handshake
+    ssl.write("GET / HTTP/1.0\r\nHost: polarssl.org\r\n\r\n")
+    response = ""
+    while chunk = ssl.read(1024)
+      response << chunk
+    end
+    p "https response size: #{response.size}"
+    getc
   end
 
   def self.test_generate_qrcode
@@ -164,30 +234,22 @@ module TestRobotRock
     end
   end
 
-  def self.test_connect_wifi
-    puts "Configure"
-    Device::Setting.authentication = Network::Wifi::AUTH_WPA_WPA2_PSK
-    Device::Setting.password       = "planobesemfio"
-    Device::Setting.essid          = "PlanoBe"
-    Device::Setting.channel        = 0
-    Device::Setting.cipher         = 0
-    Device::Setting.mode           = 0
-    Device::Setting.media          = "wifi"
-    puts "=" * 20
-    puts "Attach #{Device::Network.attach}"
-  end
-
   def self.test_socket
     puts "=" * 25
-    puts "TCP #{(socket = TCPSocket.new('switch-staging.cloudwalk.io', 31415)).inspect}"
+    #switch-staging.cloudwalk.io
+    puts "TCP #{(socket = TCPSocket.new('54.232.125.226', 31415)).inspect}"
+    getc
     socket
   end
 
   def self.test_handshake(socket, serial_terminal)
     handshake = "#{serial_terminal};init.rb;1;0.42"
+    handshake = "#{handshake.size.chr}#{handshake}"
 
-    socket.write handshake.insert(0, handshake.size.chr)
+    socket.write handshake
     @message = socket.read(3)
+
+    puts "Message #{@message}"
 
     if (@message != "err" && @message)
       @message
