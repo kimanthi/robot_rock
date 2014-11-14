@@ -68,11 +68,11 @@ module TestRobotRock
   def self.test_network_wifi_socket
     Device::Display.clear
     puts "=" * 20
-    Device::Setting.authentication = "wpa2_psk"
+    Device::Setting.authentication = "wpa_wpa2_psk"
     Device::Setting.password       = "planobesemfio"
     Device::Setting.essid          = "PlanoBe"
     Device::Setting.channel        = "0"
-    Device::Setting.cipher         = "ccmp"
+    Device::Setting.cipher         = "tkip"
     Device::Setting.mode           = "station"
 
     puts "Attach #{Device::Network.attach}"
