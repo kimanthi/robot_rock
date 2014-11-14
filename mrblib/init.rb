@@ -65,6 +65,23 @@ module TestRobotRock
     puts "Disconnect #{Network.disconnect}"
   end
 
+  def self.test_network_wifi_socket
+    Device::Display.clear
+    puts "=" * 20
+    Device::Setting.authentication = "wpa2_psk"
+    Device::Setting.password       = "planobesemfio"
+    Device::Setting.essid          = "PlanoBe"
+    Device::Setting.channel        = "0"
+    Device::Setting.cipher         = "ccmp"
+    Device::Setting.mode           = "station"
+
+    puts "Attach #{Device::Network.attach}"
+    puts "=" * 20
+    puts "Before ping"
+    puts "Ping #{Network.ping("192.168.1.125", 10000)}   "
+    getc
+  end
+
   def self.test_generate_qrcode
     msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     qr  = QR.new(msg)
