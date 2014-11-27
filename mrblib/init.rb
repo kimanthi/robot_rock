@@ -88,7 +88,13 @@ module TestRobotRock
   end
 
   def self.test_https
-    socket = TCPSocket.new('polarssl.org', 443)
+    p SimpleHttp.new("https", "google.com", 443).request("GET", "/", {'User-Agent' => "test-agent"})
+    getc
+  end
+
+  def self.test_ssl
+    Device::Display.clear
+    socket = TCPSocket.new('switch-staging.cloudwalk.io', 31416)
     entropy = PolarSSL::Entropy.new
     ctr_drbg = PolarSSL::CtrDrbg.new(entropy)
     ssl = PolarSSL::SSL.new
@@ -96,13 +102,9 @@ module TestRobotRock
     ssl.set_authmode(PolarSSL::SSL::SSL_VERIFY_NONE)
     ssl.set_rng(ctr_drbg)
     ssl.set_socket(socket)
-    ssl.handshake
-    ssl.write("GET / HTTP/1.0\r\nHost: polarssl.org\r\n\r\n")
-    response = ""
-    while chunk = ssl.read(1024)
-      response << chunk
-    end
-    p "https response size: #{response.size}"
+    ret = ssl.handshake
+    puts "After Handshake #{ret}"
+    p test_handshake(ssl, "200-200-200")
     getc
   end
 
