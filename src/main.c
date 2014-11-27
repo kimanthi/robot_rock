@@ -263,6 +263,36 @@ void playMario(void)
   close(fd);
   free(buff);
 }
+
+void playTone(void)
+{
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+  OsBeep(2, 200);
+  OsBeep(3, 200);
+  OsBeep(4, 200);
+  OsBeep(5, 200);
+  OsBeep(6, 200);
+
+  sleep(2);
+
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+  OsBeep(0, 200);
+  sleep(1);
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+
+  sleep(2);
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+  OsBeep(0, 200);
+  sleep(1);
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+
+}
+
 int main(int argc, char **argv)
 {
   OsLog(LOG_INFO, "Teste");
