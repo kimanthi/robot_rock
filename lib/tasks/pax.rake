@@ -209,4 +209,7 @@ namespace :pax do
 
   desc "Rebuild PAX"
   task :deploy => [:rebuild, :upload]
+
+  desc "Compile MRB, generate package and upload"
+  task :mrb_load => [:mrbc, :generate_aip, :upload]
 end
