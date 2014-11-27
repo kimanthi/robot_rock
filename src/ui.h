@@ -9,7 +9,7 @@ void display_bitmap(char *path, int y, int x);
 XuiFont *OpenFont();
 XuiFont *GetFont();
 void CloseFont();
-int get_string(char *sValue, int min, int max, int mode, int y, int x);
+int get_string(char *sValue[128], int min, int max, int mode, int y, int x);
 
 #define SCREEN_X 320
 #define SCREEN_Y 240
