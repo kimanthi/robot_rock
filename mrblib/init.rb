@@ -68,18 +68,26 @@ module TestRobotRock
   def self.test_network_wifi_socket
     Device::Display.clear
     puts "=" * 20
+    #Device::Setting.authentication = "wpa2_psk"
     Device::Setting.authentication = "wpa_wpa2_psk"
     Device::Setting.password       = "planobesemfio"
     Device::Setting.essid          = "PlanoBe"
+    #Device::Setting.password       = "ibexes0057"
+    #Device::Setting.essid          = "Telemovel"
+    #Device::Setting.password       = "desgracapelada"
+    #Device::Setting.essid          = "Barril do Chaves"
     Device::Setting.channel        = "0"
-    Device::Setting.cipher         = "tkip"
-    Device::Setting.mode           = "station"
+    Device::Setting.cipher         = Device::Network::PARE_CIPHERS_TKIP
+    Device::Setting.mode           = Device::Network::MODE_STATION
 
     puts "Attach #{Device::Network.attach}"
     puts "=" * 20
-    puts "Before CloudWalk socket"
-    self.test_handshake(self.test_socket, "200-200-200")
+
+    puts "Ping #{Network.ping("192.168.1.127", 3000)}   "
+    puts "NAS Ping #{Network.ping("nas.scalone.com.br", 10000)}   "
     getc
+    self.test_http
+    asdfasdf
   end
 
   def self.test_http
