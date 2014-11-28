@@ -30,7 +30,7 @@
 	url = git@github.com:cloudwalkio/mruby-io.git
 [submodule "mrbgems/mruby-qrcode"]
 	path = mrbgems/mruby-qrcode
-	url = git@bitbucket.org:sadasant/mruby-qrcode.git
+	url = git@github.com:sadasant/mruby-qrcode.git
 [submodule "mrbgems/mruby-socket"]
 	path = mrbgems/mruby-socket
 	url = git@github.com:iij/mruby-socket.git
