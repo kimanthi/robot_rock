@@ -239,6 +239,60 @@ int DeInit()
   return 0;
 }
 
+void playMario(void)
+{
+  int fd, ret = 0;
+  char *buff;
+  int len;
+  struct stat state;
+  char FILENAME[20]="./res/smb_coin.wav";
+
+  stat(FILENAME, &state);
+  len = state.st_size;
+  display("len %d\n", len);
+  buff = (char *) malloc(len * sizeof(char));
+  fd = open(FILENAME, O_RDONLY);
+
+  if(fd<0) display("Open File Fail\n");
+
+  ret = read(fd, buff, len);
+  ret = OsPlayWave(buff, len, 3, 0);
+
+  if(ret != RET_OK) display("PlayWave Fail %d\n", ret);
+
+  close(fd);
+  free(buff);
+}
+
+void playTone(void)
+{
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+  OsBeep(2, 200);
+  OsBeep(3, 200);
+  OsBeep(4, 200);
+  OsBeep(5, 200);
+  OsBeep(6, 200);
+
+  sleep(2);
+
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+  OsBeep(0, 200);
+  sleep(1);
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+
+  sleep(2);
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+  OsBeep(0, 200);
+  sleep(1);
+  OsBeep(0, 200);
+  OsBeep(1, 200);
+
+}
+
 int main(int argc, char **argv)
 {
   OsLog(LOG_INFO, "Teste");

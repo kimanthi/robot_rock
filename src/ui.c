@@ -42,9 +42,12 @@ void display(const char *format, ...)
   sleep(2);
 }
 
-int get_string(char *sValue, int min, int max, int mode, int y, int x)
+int get_string(char *sValue[128], int min, int max, int mode, int y, int x)
 {
   XuiGetStrAttr getStr;
+
+  memset(&getStr, 0, sizeof(getStr));
+  memset(sValue, 0, sizeof(128));
 
   getStr.parent = XuiRootCanvas();
   getStr.fg = colorMsgFg;
@@ -52,24 +55,16 @@ int get_string(char *sValue, int min, int max, int mode, int y, int x)
   getStr.y = fix_y(y);
   getStr.font = xFont;
   getStr.size = LINE_HEIGHT;
-  getStr.alpha_key = XUI_KEYALPHA;
+  getStr.alpha_key = XUI_KEYF1;
 
-  return XuiGetString(getStr, sValue, mode, min, max);
+  return XuiGetString(getStr, (char *)sValue, mode, min, max);
 }
 
 void display_bitmap(char *path, int y, int x)
 {
 	XuiImg *img;
-	int imgX;
-	int imgY;
 
 	img  = XuiImgLoadFromFile(path);
-	imgX = XUI_RIGHT_X(0, XuiRootCanvas()->width, img->width);
-	/*imgY = 80;*/
-
-  /*display("x %d, y %d, w %d, h %d", imgX, imgY, img->width, img->height);*/
-  /*img->width = 120;*/
-  /*img->height = 120;*/
 
 	XuiCanvasDrawImg(XuiRootCanvas(), fix_x(x), fix_y(y), img->width, img->height, XUI_BG_NORMAL, img);
 	XuiImgFree(img);

@@ -3,10 +3,12 @@ class Main < Device
     super
 
     Device::Display.clear
-    Device::Display.print("      CloudWalk      ", 1)
-    Device::Display.print("    Serial #{Device::System.serial}", 3, 5)
-    Device::Display.print(" 1 - DebugInit", 6)
-    Device::Display.print(" N - CloudWalkInit", 7)
+    Device::Display.print("CloudWalk", 1, 5)
+    Device::Display.print("Serial #{Device::System.serial}", 3, 4)
+
+    Device::Display.clear
+    Device::Display.print(" 1 - DebugInit", 2)
+    Device::Display.print(" N - CloudWalkInit", 4)
 
     if getc == "1"
       DebugInit.perform
@@ -18,38 +20,15 @@ class Main < Device
   def self.form(txt, min=0, max=8, default="", is_number=true)
     Device::Display.clear
     puts txt
-    if is_number
-      form_number(default, min, max)
-    else
-      form_string(default, min, max)
-    end
-  end
 
-  def self.form_string(default, min, max)
     puts "\n"
-    string = Device::IO.get_string(min, max)
+    if is_number
+      string = get_string(min, max, IO_INPUT_NUMBERS)
+    else
+      string = get_string(min, max)
+    end
     return default if string.empty?
     string
-  end
-
-  def self.form_number(default, min, max)
-    string = default
-    loop do
-      Device::Display.print(string, 2, 1)
-
-      case (char = getc)
-      when Device::IO::CANCEL
-        return nil
-      when Device::IO::ENTER
-        return string if (string.size >= min)
-      when Device::IO::BACK
-        # TODO Check this code, for some reason string pointer get lost and print the entire string.
-        # string = string[0..-2]
-        string = "#{string[0..-2]}"
-      else
-        string << char if (string.size < max)
-      end
-    end
   end
 
   class Download
@@ -166,7 +145,7 @@ end
 class CloudWalkInit
   def self.perform
     set_logical_number
-    set_gprs_config
+    set_wifi_config
     params_dat
     update_apps
     execute(Main::Download.menu)
@@ -175,6 +154,15 @@ class CloudWalkInit
   def self.set_logical_number
     number = Device::Setting.logical_number
     Device::Setting.logical_number = Main.form("Logical Number (#{number}): ", 0, 4, number, true)
+  end
+
+  def self.set_wifi_config
+    Device::Setting.authentication = Main.form(" Authentication (#{Device::Setting.authentication}): ", 0, 127, "", false)
+    Device::Setting.password       = Main.form(" Password (#{Device::Setting.password}): ", 0, 127, "", false)
+    Device::Setting.essid          = Main.form(" Essid (#{Device::Setting.essid}): ", 0, 127, "", false)
+    Device::Setting.channel        = Main.form(" Channel (#{Device::Setting.channel}): ", 0, 127, "", false)
+    Device::Setting.cipher         = Main.form(" Cipher (#{Device::Setting.cipher}): ", 0, 127, "", false)
+    Device::Setting.mode           = Main.form(" Mode (#{Device::Setting.mode}): ", 0, 127, "", false)
   end
 
   def self.set_gprs_config
