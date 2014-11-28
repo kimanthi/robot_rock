@@ -145,7 +145,7 @@ end
 class CloudWalkInit
   def self.perform
     set_logical_number
-    set_gprs_config
+    set_wifi_config
     params_dat
     update_apps
     execute(Main::Download.menu)
@@ -154,6 +154,15 @@ class CloudWalkInit
   def self.set_logical_number
     number = Device::Setting.logical_number
     Device::Setting.logical_number = Main.form("Logical Number (#{number}): ", 0, 4, number, true)
+  end
+
+  def self.set_wifi_config
+    Device::Setting.authentication = Main.form(" Authentication (#{Device::Setting.authentication}): ", 0, 127, "", false)
+    Device::Setting.password       = Main.form(" Password (#{Device::Setting.password}): ", 0, 127, "", false)
+    Device::Setting.essid          = Main.form(" Essid (#{Device::Setting.essid}): ", 0, 127, "", false)
+    Device::Setting.channel        = Main.form(" Channel (#{Device::Setting.channel}): ", 0, 127, "", false)
+    Device::Setting.cipher         = Main.form(" Cipher (#{Device::Setting.cipher}): ", 0, 127, "", false)
+    Device::Setting.mode           = Main.form(" Mode (#{Device::Setting.mode}): ", 0, 127, "", false)
   end
 
   def self.set_gprs_config
