@@ -18,38 +18,15 @@ class Main < Device
   def self.form(txt, min=0, max=8, default="", is_number=true)
     Device::Display.clear
     puts txt
-    if is_number
-      form_number(default, min, max)
-    else
-      form_string(default, min, max)
-    end
-  end
 
-  def self.form_string(default, min, max)
     puts "\n"
-    string = Device::IO.get_string(min, max)
+    if is_number
+      string = get_string(min, max, IO_INPUT_NUMBERS)
+    else
+      string = get_string(min, max)
+    end
     return default if string.empty?
     string
-  end
-
-  def self.form_number(default, min, max)
-    string = default
-    loop do
-      Device::Display.print(string, 2, 1)
-
-      case (char = getc)
-      when Device::IO::CANCEL
-        return nil
-      when Device::IO::ENTER
-        return string if (string.size >= min)
-      when Device::IO::BACK
-        # TODO Check this code, for some reason string pointer get lost and print the entire string.
-        # string = string[0..-2]
-        string = "#{string[0..-2]}"
-      else
-        string << char if (string.size < max)
-      end
-    end
   end
 
   class Download
