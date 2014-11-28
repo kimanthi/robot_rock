@@ -14,6 +14,12 @@ class String
 end
 
 module TestRobotRock
+
+  def self.beep
+    Device::Audio.beep(3, 2000)
+    getc
+  end
+
   def self.test_io_read_card
     Device::Display.clear
     fd = IO.sysopen("/dev/msr")
