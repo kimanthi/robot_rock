@@ -4,11 +4,10 @@ class Main < Device
 
     Device::Display.clear
     Device::Display.print("CloudWalk", 1, 5)
-    Device::Display.print("Serial #{Device::System.serial}", 3, 4)
+    Device::Display.print("Serial #{Device::System.serial}", 2, 4)
 
-    Device::Display.clear
-    Device::Display.print(" 1 - DebugInit", 2)
-    Device::Display.print(" N - CloudWalkInit", 4)
+    Device::Display.print(" 1 - DebugInit", 5)
+    Device::Display.print(" N - CloudWalkInit", 6)
 
     if getc == "1"
       DebugInit.perform
