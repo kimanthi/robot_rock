@@ -75,7 +75,7 @@ module TestRobotRock
     Device::Display.clear
     puts "=" * 20
     #Device::Setting.authentication = "wpa2_psk"
-    Device::Setting.authentication = "wpa_wpa2_psk"
+    Device::Setting.authentication = "wpawpa2psk"
     Device::Setting.password       = "planobesemfio"
     Device::Setting.essid          = "PlanoBe"
     #Device::Setting.password       = "ibexes0057"
