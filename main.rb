@@ -159,12 +159,21 @@ class CloudWalkInit
   end
 
   def self.set_wifi_config
-    Device::Setting.authentication = Main.form(" Authentication (#{Device::Setting.authentication}): ", 0, 127, "", false)
-    Device::Setting.password       = Main.form(" Password (#{Device::Setting.password}): ", 0, 127, "", false)
-    Device::Setting.essid          = Main.form(" Essid (#{Device::Setting.essid}): ", 0, 127, "", false)
-    Device::Setting.channel        = Main.form(" Channel (#{Device::Setting.channel}): ", 0, 127, "", false)
-    Device::Setting.cipher         = Main.form(" Cipher (#{Device::Setting.cipher}): ", 0, 127, "", false)
-    Device::Setting.mode           = Main.form(" Mode (#{Device::Setting.mode}): ", 0, 127, "", false)
+    Device::Display.clear
+    puts "Would like to configure connection?"
+    puts "1 - Yes"
+    puts "2 - No"
+    configure = getc
+    if (configure == "1")
+      # TODO Scalone check media
+      Device::Setting.media = Device::Network::MEDIA_WIFI
+      Device::Setting.authentication = Main.form(" Authentication (#{Device::Setting.authentication}): ", 0, 127, "", false)
+      Device::Setting.password       = Main.form(" Password (#{Device::Setting.password}): ", 0, 127, "", false)
+      Device::Setting.essid          = Main.form(" Essid (#{Device::Setting.essid}): ", 0, 127, "", false)
+      Device::Setting.channel        = Main.form(" Channel (#{Device::Setting.channel}): ", 0, 127, "", false)
+      Device::Setting.cipher         = Main.form(" Cipher (#{Device::Setting.cipher}): ", 0, 127, "", false)
+      Device::Setting.mode           = Main.form(" Mode (#{Device::Setting.mode}): ", 0, 127, "", false)
+    end
   end
 
   def self.set_gprs_config
