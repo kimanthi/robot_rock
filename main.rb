@@ -76,32 +76,33 @@ class Main < Device
     end
 
     def self.check_error(ret)
+      value = true
       case ret
       when 3
         puts "Serial number not found."
-        return false
+        value =  false
       when 2
         puts "File not found."
-        return false
+        value = false
       when 1
         puts "File is the same."
       when 0
         puts "Success."
       when -1
         puts "Communication failure."
-        return false
+        value = false
       when -2
         puts "Encoding error."
-        return false
+        value = false
       when -3
         puts "IO Error."
-        return false
+        value = false
       else
         puts "Communication fail."
-        return false
+        value = false
       end
 
-      true
+      value
     end
 
     def self.parse_apps
