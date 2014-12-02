@@ -195,9 +195,10 @@ class CloudWalkInit
   end
 
   def self.execute(app)
-    puts "Require #{app[:mrb]} #{require app[:mrb]}"
+    return if app.nil? || ! File.exists?("./#{app[:mrb]}")
+    puts(require "./#{app[:mrb]}")
     klass = Device::Support.path_to_class(app[:mrb])
-    klass.call if a.respond_to? :call
+    klass.call if klass.respond_to? :call
     getc
   end
 end
