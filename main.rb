@@ -66,7 +66,7 @@ class Main < Device
 
     def self.params_dat
       if self.attach
-        puts "Donwloading Params..."
+        puts "Downloading Params..."
         puts "#{ret = Device::Transaction::Download.request_param_file}"
         Device::Network.walk_socket.close unless Device::Network.walk_socket.closed?
 
