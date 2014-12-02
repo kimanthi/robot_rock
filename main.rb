@@ -198,10 +198,27 @@ class DebugInit
   end
 
   def self.config
-    Device::Setting.logical_number = "1"
-    Device::Setting.apn            = "zap.vivo.com.br"
-    Device::Setting.user           = "vivo"
-    Device::Setting.pass           = "vivo"
+    #WIFI
+    Device::Setting.media          = Device::Network::MEDIA_WIFI
+    Device::Setting.authentication = Device::Network::AUTH_WPA2_PSK
+    Device::Setting.password       = "desgracapelada"
+    Device::Setting.essid          = "Barril do Chaves"
+    Device::Setting.channel        = "0"
+    Device::Setting.cipher         = Device::Network::PARE_CIPHERS_CCMP
+    Device::Setting.mode           = Device::Network::MODE_STATION
+
+    # WIFI Office
+    #Device::Setting.authentication = Device::Network::AUTH_WPA_WPA2_PSK
+    #Device::Setting.cipher         = Device::Network::PARE_CIPHERS_TKIP
+    #Device::Setting.password       = "planobesemfio"
+    #Device::Setting.essid          = "PlanoBe"
+
+    #GPRS
+    #Device::Setting.mode           = Network::MEDIA_GPRS
+    #Device::Setting.logical_number = "1"
+    #Device::Setting.apn            = "zap.vivo.com.br"
+    #Device::Setting.user           = "vivo"
+    #Device::Setting.pass           = "vivo"
   end
 
   def self.menu
