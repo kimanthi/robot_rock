@@ -106,7 +106,7 @@ class Main < Device
     end
 
     def self.parse_apps
-      @params = FileDb.new("params.dat") if File.exists?("params.dat")
+      @params = FileDb.new("./params.dat") if File.exists?("./params.dat")
       @apps   = []
 
       @params["apps_list"].gsub("\"", "").split(";").each do |app|
@@ -117,6 +117,7 @@ class Main < Device
     end
 
     def self.update_apps
+      @apps ||= []
       Device::Display.clear
       Device::Display.print("Press to Download #{@apps.size} apps", 3)
       getc
@@ -146,9 +147,10 @@ class CloudWalkInit
   def self.perform
     set_logical_number
     set_wifi_config
-    params_dat
-    update_apps
-    execute(Main::Download.menu)
+    if params_dat
+      update_apps
+      execute(Main::Download.menu)
+    end
   end
 
   def self.set_logical_number
