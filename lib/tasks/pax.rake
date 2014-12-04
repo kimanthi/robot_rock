@@ -164,7 +164,7 @@ namespace :pax do
   desc "Generate mrb file"
   task :mrbc do
     # Clean
-    mrb = File.join(MRUBY_PAX_ROOT, "out", "mrb")
+    mrb = File.join(MRUBY_PAX_ROOT, "out", "robot_rock")
     FileUtils.rm_rf(mrb)
     FileUtils.mkdir_p(mrb)
 
