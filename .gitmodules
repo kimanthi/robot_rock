@@ -52,3 +52,6 @@
 [submodule "mrbgems/mruby-pax"]
 	path = mrbgems/mruby-pax
 	url = git@github.com:cloudwalkio/mruby-pax.git
+[submodule "mrbgems/mruby-miniz"]
+	path = mrbgems/mruby-miniz
+	url = git@github.com:scalone/mruby-miniz.git
