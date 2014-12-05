@@ -194,7 +194,7 @@ int ScreenInit(void)
   return 0;
 }
 
-int Init()
+void Init(void)
 {
   CrashReportInit();
   GuiInit(18);
@@ -279,7 +279,6 @@ int main(int argc, char **argv)
 {
   OsLog(LOG_INFO, "Teste");
   Init();
-
   robot_rock_execute();
   DeInit();
   OsLog(LOG_INFO, "Finish");
