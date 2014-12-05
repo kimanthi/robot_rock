@@ -15,6 +15,35 @@ end
 
 module TestRobotRock
 
+  def self.test_zip
+    Device::Display.clear
+    puts "Preparation to zip"
+
+    test = File.open("test.txt", "w+")
+    test.write("AAAAAAAAAAAAAA1")
+    test.close
+
+    test2 = File.open("test2.txt", "w+")
+    test2.write("BBBBBBBBBBBBBB2")
+    test2.close
+
+    Device::Display.clear
+    puts "Before zip"
+    getc
+    puts Miniz.zip("test.zip", "test.txt", "test2.txt")
+    getc
+
+    puts "Before unzip"
+    getc
+    puts Miniz.unzip("test.zip", "./mrb")
+    getc
+
+    puts "Before Open"
+    getc
+    puts File.open("./mrb/test/test.txt").read
+    getc
+  end
+
   def self.beep
     Device::Audio.beep(3, 2000)
     getc
