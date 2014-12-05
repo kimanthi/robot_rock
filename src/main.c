@@ -71,43 +71,25 @@ void *pax_allocf(mrb_state *mrb, void *p, size_t size, void *ud)
   return new_ptr;
 }
 
+mrb_state *mrb;
+
+mrb_state *mrb_robot(void)
+{
+  return mrb;
+}
+
 int robot_rock_execute(void)
 {
-  mrb_state *mrb;
-
-  //char code[] = "Device::Walk.execute('main.mrb')";
-  //char code[] = "Device::Walk.load";
-  //char code[] = "require './da_funk.mrb'; Device::Walk.start";
-  /*char code[] = "print 'aaaaaaa'; sleep 2; p 'BBBBBB'; sleep 2";*/
-  /*char code[] = "print 'aaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccddddd\ndddd\ndddddd\ndddddddd'; sleep 2; p 'BBBBBB'; sleep 2";*/
-  /*char code[] = "print 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccccccddddd\ndddd\ndddddd\ndddddddd'; sleep 10; p 'BBBBBB'; sleep 2";*/
-  /*char code[] = "print '1234567890123456789012345678901234567890'; sleep 2; puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBB'; puts 'CCCCCCCCCCCCCC'; sleep 30";*/
-  /*char code[] = "puts '1234567890123456789012345678901234567890'; puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBB'; puts 'CCCCCCCCCCCCCC'; sleep 5";*/
-  /*char code[] = "puts 'before'; sleep 2; require './mrb/main.mrb'; sleep 2; puts 'after'; sleep 10";*/
+  mrbc_context *c;
   char code[] = "PAX.start";
-
-  //DEBUG
-  /*display("Parse Ruby code with mruby");*/
-  /*printf("\nParse Ruby code with mruby\n");*/
-
-  //DEBUG
-  /*display("mrb_open");*/
-  /*mrb = mrb_open_allocf(pax_allocf, NULL);*/
   mrb = mrb_open();
 
-  //DEBUG
-  /*display("mrb_load_string\n");*/
-  mrb_load_string(mrb, code);
+  c = mrbc_context_new(mrb);
 
-  //DEBUG
-  //printf("\nbacktrace");
-  //DelayMs(2000);
-  //mrb_output_backtrace(mrb, mrb->exc, my_func, (void *)stderr);
+  mrb_load_string_cxt(mrb, code, c);
 
-  //DEBUG
-  /*sleep(5);*/
-  /*display("mrb_close");*/
-  /*sleep(2);*/
+  mrbc_context_free(mrb, c);
+
   mrb_close(mrb);
 
   return 0;
