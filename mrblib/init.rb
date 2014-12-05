@@ -15,6 +15,12 @@ end
 
 module TestRobotRock
 
+  def self.test_execute
+    puts Time.now
+    Device::Runtime.execute("global.mrb")
+    puts Time.now
+  end
+
   def self.test_zip
     Device::Display.clear
     puts "Preparation to zip"
