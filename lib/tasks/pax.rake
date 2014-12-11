@@ -201,6 +201,17 @@ namespace :pax do
     sh "#{xcb} disconnect com:com3"
   end
 
+  desc "Test Platform Main"
+  task :test do
+    test_path = File.join(MRUBY_PAX_ROOT, "test")
+    FileUtils.rm_rf(File.join(test_path, "execution"))
+    FileUtils.mkdir_p(File.join(test_path, "execution", "robot_rock"))
+    FileUtils.cp(File.join(test_path, "main.rb"), File.join(test_path, "execution", "main.rb"))
+    FileUtils.cd File.join(test_path, "execution")
+
+    sh "mruby ./main.rb"
+  end
+
   desc "Compile PAX"
   task :compile => [:setup, :link]
 
