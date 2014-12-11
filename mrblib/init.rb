@@ -14,6 +14,37 @@ class String
 end
 
 module TestRobotRock
+  def self.test_display_clear
+    Device::Display.clear
+    puts "1asdfasdf"
+    puts "2asdfasdf"
+    puts "3asdfasdf"
+    puts "4asdfasdf"
+    getc
+    Device::Display.clear
+    puts "5asdfasdf"
+    getc
+
+    Device::Display.clear
+    Device::Display.puts "1asdfasdf"
+    Device::Display.puts "2asdfasdf"
+    Device::Display.puts "3asdfasdf"
+    Device::Display.puts "4asdfasdf"
+    getc
+    Device::Display.clear
+    Device::Display.puts "5asdfasdf"
+    getc
+
+    Device::Display.clear
+    Device::Display.print "1asdfasdf"
+    Device::Display.print "2asdfasdf"
+    Device::Display.print "3asdfasdf"
+    Device::Display.print "4asdfasdf"
+    getc
+    Device::Display.clear
+    Device::Display.print "5asdfasdf"
+    getc
+  end
 
   def self.test_execute
     puts Time.now
