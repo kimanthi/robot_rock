@@ -88,9 +88,8 @@ class CloudWalkInit
 
   # TODO Scalone: refactoring needed about app[:zip]
   def self.execute(app)
-    Device::Display.clear
     return if app.nil?
-    Miniz.unzip(app[:zip])
+    return unless Miniz.unzip(app[:zip])
     Device::Runtime.execute(app[:zip].split(".")[0])
   end
 end
