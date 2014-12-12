@@ -42,8 +42,9 @@ end
 class Main < Device
   def self.call
     #Device::System.klass = Main
-    Device::Setting.logical_number = "1"
+    Device::Setting.logical_number = "2"
     p Device::ParamsDat.update_apps
+    p Miniz.unzip("white-surf-1.zip")
   end
 end
 
