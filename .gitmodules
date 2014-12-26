@@ -55,3 +55,6 @@
 [submodule "mrbgems/mruby-miniz"]
 	path = mrbgems/mruby-miniz
 	url = git@github.com:scalone/mruby-miniz.git
+[submodule "mrbgems/mruby-json"]
+	path = mrbgems/mruby-json
+	url = git@github.com:mattn/mruby-json.git
