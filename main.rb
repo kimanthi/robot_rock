@@ -23,6 +23,7 @@ class CloudWalkInit
 
   def self.perform
     self.set_logical_number
+    self.set_wifi_config
     if Device::ParamsDat.update_apps
       self.execute(Device::ParamsDat.application_menu)
     end
