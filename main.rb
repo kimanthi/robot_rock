@@ -57,7 +57,7 @@ class CloudWalkInit
     Device::Setting.media          = Device::Network::MEDIA_WIFI
     Device::Setting.mode           = Device::Network::MODE_STATION
 
-    #Device::Setting.authentication = Device::Network::AUTH_WPA2_PSK
+    #Device::Setting.authentication = Device::Network::AUTH_WPA_WPA2_PSK
     #Device::Setting.cipher         = Device::Network::PARE_CIPHERS_CCMP
     #Device::Setting.password       = "desgracapelada"
     #Device::Setting.essid          = "Barril do Chaves"
