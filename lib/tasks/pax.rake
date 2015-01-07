@@ -206,7 +206,7 @@ namespace :pax do
   end
 
   desc "Test Platform Main"
-  task :test do
+  task :test => :mrbc do
     test_path = File.join(MRUBY_PAX_ROOT, "test")
     FileUtils.rm_rf(File.join(test_path, "execution"))
     FileUtils.mkdir_p(File.join(test_path, "execution", "robot_rock"))
