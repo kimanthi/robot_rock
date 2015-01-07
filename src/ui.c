@@ -85,7 +85,7 @@ XuiFont *OpenFont(void)
   colorMsgFg.r = 0x00;
   colorMsgFg.g = 0x00;
   colorMsgFg.b = 0x00;
-  colorMsgFg.a = 0x00;
+  colorMsgFg.a = 0xff;
 
 	return xFont = XuiCreateFont("./res/inconsolata.ttf", 0, 0);
 }
