@@ -174,7 +174,7 @@ namespace :pax do
 
     # DaFunk
     FileUtils.cd DA_FUNK_LIB
-    sh "rake compile"
+    sh "rake"
     FileUtils.cd MRUBY_PAX_ROOT
     funk     = File.join(DA_FUNK_LIB, "out", "da_funk.mrb")
     funk_mrb = File.join(mrb, "da_funk.mrb")
