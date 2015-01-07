@@ -8,7 +8,7 @@ DA_FUNK_LIB    = File.join(MRUBY_PAX_ROOT, "lib", "da_funk")
 MRUBY_PAX_MGEM = File.join(MRUBY_PAX_ROOT, "mrbgems")
 MRUBY_PAX_INC  = File.join(MRUBY_PAX_ROOT, "src")
 GCC_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")
-AR_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-ar")
+AR_PAX_BIN     = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-ar")
 LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"), File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include")]
 
 SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
