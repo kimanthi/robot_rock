@@ -15,7 +15,11 @@ SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
 require File.join(MRUBY_PAX_ROOT, "lib", "version.rb")
 
-ENV["MRBC"]    = File.join(MRUBY_LIB, "bin", "mrbc.exe")
+if RUBY_PLATFORM == "i386-mingw32"
+  ENV["MRBC"]  = File.join(MRUBY_LIB, "bin", "mrbc.exe")
+else
+  ENV["MRBC"]  ||= "env mrbc"
+end
 
 if ENV["MRUBY_CONFIG"]
   MRuby::Toolchain.new(:visualcpp) do |conf|
