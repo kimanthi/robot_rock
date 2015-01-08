@@ -14,12 +14,12 @@ XuiColor colorMsgFg;
 
 static int fix_x(int x)
 {
-    return x * LINE_WIDTH;
+  return x * LINE_WIDTH;
 }
 
 static int fix_y(int y)
 {
-    return y * LINE_HEIGHT;
+  return y * LINE_HEIGHT;
 }
 
 int xdisplay(char *buf, int len, int x, int y)
@@ -62,12 +62,12 @@ int get_string(char *sValue[128], int min, int max, int mode, int y, int x)
 
 void display_bitmap(char *path, int y, int x)
 {
-	XuiImg *img;
+  XuiImg *img;
 
-	img  = XuiImgLoadFromFile(path);
+  img  = XuiImgLoadFromFile(path);
 
-	XuiCanvasDrawImg(XuiRootCanvas(), fix_x(x), fix_y(y), img->width, img->height, XUI_BG_NORMAL, img);
-	XuiImgFree(img);
+  XuiCanvasDrawImg(XuiRootCanvas(), fix_x(x), fix_y(y), img->width, img->height, XUI_BG_NORMAL, img);
+  XuiImgFree(img);
 }
 
 void display_clear_line(int line)
@@ -87,15 +87,15 @@ XuiFont *OpenFont(void)
   colorMsgFg.b = 0x00;
   colorMsgFg.a = 0xff;
 
-	return xFont = XuiCreateFont("./res/inconsolata.ttf", 0, 0);
+  return xFont = XuiCreateFont("./res/inconsolata.ttf", 0, 0);
 }
 
 void CloseFont(void)
 {
-	XuiDestroyFont(xFont);
+  XuiDestroyFont(xFont);
 }
 
 XuiFont *GetFont(void)
 {
-	return xFont;
+  return xFont;
 }
