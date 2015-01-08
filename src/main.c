@@ -185,15 +185,6 @@ void Init(void)
   ScreenInit();
   OpenFont();
 
-  /*if (OpenFont(FONT_NAME) < 0) {*/
-  /*return -1;*/
-  /*}*/
-  /*if (OpenLcd() < 0) {*/
-  /*return -1;*/
-  /*}*/
-  /*if (OpenKeyboard(KEYBOARD_NAME) < 0) {*/
-  /*return -1;*/
-  /*}*/
   return 0;
 }
 
