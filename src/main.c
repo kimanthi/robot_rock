@@ -275,6 +275,43 @@ void playTone(void)
 
 }
 
+int img_sample(int argc, char **argv)
+{
+  XuiFont *font_simsun_0;
+  char *xui_argv[] = {"ROTATE=0","STATUSBAR=22"};
+  XuiImg *img_bg;
+  XuiColor colorTitleBg;
+  /*XuiWindow *gifSoldier;*/
+
+  XuiOpen(sizeof(xui_argv)/sizeof(xui_argv[0]), xui_argv);
+
+  /*colorTitleBg.r = 0xff;*/
+  /*colorTitleBg.g = 0xff;*/
+  /*colorTitleBg.b = 0xff;*/
+  /*colorTitleBg.a = 0x00;*/
+  /*XuiCanvasSetBackground(XuiRootCanvas(), XUI_BG_NORMAL, NULL, colorTitleBg);*/
+
+  font_simsun_0 = XuiCreateFont("./res/arial.ttf", 0, 0);
+  img_bg = XuiImgLoadFromFile("./res/qrcode4.bmp");
+
+  XuiSetStatusbarIcon(0,"./res/mobile100.png");
+  XuiSetStatusbarIcon(1,"./res/modem.png");
+  XuiSetStatusbarIcon(2,"./res/ethernet.png");
+  XuiSetStatusbarIcon(3,"./res/wifi100.png");
+  XuiSetStatusbarIcon(4,"./res/lock.png");
+  XuiSetStatusbarIcon(5,"./res/card.png");
+  XuiSetStatusbarIcon(6,"./res/print.png");
+  XuiSetStatusbarIcon(7,"./res/battery50.png");
+
+  /*gifSoldier = XuiCreateGif(XuiRootCanvas(), 0, 0, 159, 159, "./res/qrcode.bmp");*/
+  /*XuiShowWindow(gifSoldier, 1, 1);*/
+
+  XuiCanvasDrawImg(XuiRootCanvas(), 0, 0, img_bg->width, img_bg->height, XUI_BG_NORMAL, img_bg);
+
+  XuiGetKey();
+  return 0;
+}
+
 int main(int argc, char **argv)
 {
   OsLog(LOG_INFO, "Teste");
