@@ -164,31 +164,15 @@ void StatusbarInit(void)
 
 int ScreenInit(void)
 {
-  char *bgfilename;
-  XuiImg *imgBg;
   XuiColor colorTitleBg;
 
-  if (XuiRootCanvas()->width >=320) {
-    bgfilename = "./res/bg_320x240.png";
-  }
-  else {
-    bgfilename = "./res/bg_240x320.png";
-  }
+  colorTitleBg.r = 0xff;
+  colorTitleBg.g = 0xff;
+  colorTitleBg.b = 0xff;
+  colorTitleBg.a = 0x00;
 
-  /* load image */
-  imgBg = XuiImgLoadFromFile(bgfilename);
+  XuiCanvasSetBackground(XuiRootCanvas(), XUI_BG_NORMAL, NULL, colorTitleBg);
 
-  /* set background */
-  colorTitleBg.r = 0x10;
-  colorTitleBg.g = 0x00;
-  colorTitleBg.b = 0xfe;
-  colorTitleBg.a = 0xff;
-  XuiCanvasSetBackground(XuiRootCanvas(), XUI_BG_CENTER, imgBg, colorTitleBg);
-  /* after SetBackground, the imgBg can free it */
-  XuiImgFree(imgBg);
-  imgBg = NULL;
-
-  /* init statusbar */
   StatusbarInit();
 
   return 0;
