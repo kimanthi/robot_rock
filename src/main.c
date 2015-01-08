@@ -181,7 +181,7 @@ int ScreenInit(void)
 void Init(void)
 {
   CrashReportInit();
-  GuiInit(18);
+  GuiInit(22);
   ScreenInit();
   OpenFont();
 
