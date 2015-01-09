@@ -1,6 +1,14 @@
 require '../../out/robot_rock/da_funk.mrb'
 
 class TestPlatform
+  IO = ::IO
+
+  class IO
+    def get_string(min, max, mode)
+      gets
+    end
+  end
+
   class Display
     def self.print(*args)
       puts args
