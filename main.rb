@@ -89,7 +89,7 @@ class CloudWalkInit
   # TODO Scalone: refactoring needed about app[:zip]
   def self.execute(app)
     Device::Display.clear
-    if app.nil? || File.exists?(app[:zip])
+    if app.nil? || ! File.exists?(app[:zip])
       puts "App not exist"
     else
       if Miniz.unzip(app[:zip])
