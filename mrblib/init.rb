@@ -200,12 +200,13 @@ module TestRobotRock
     file.close
     Device::Display.print("File Save", 3)
     getc
-    asdfas
   end
 
   def self.test_print_bitmap
+    Device::Display.clear
     puts "Before print"
-    Device::Display.print_bitmap("./qrcode.bmp")
+    getc
+    Device::Display.print_bitmap("./qrcode.bmp", 0, 0)
     getc
   end
 
