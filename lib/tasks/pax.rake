@@ -9,7 +9,7 @@ MRUBY_PAX_MGEM = File.join(MRUBY_PAX_ROOT, "mrbgems")
 MRUBY_PAX_INC  = File.join(MRUBY_PAX_ROOT, "src")
 GCC_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")
 AR_PAX_BIN     = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-ar")
-LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"), File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include")]
+LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"), File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include"), File.join(PAX_LIB_ROOT, "emv")]
 
 SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
@@ -154,7 +154,9 @@ namespace :pax do
   BIN = SRC.pathmap("%{src,out/obj}X.o")
 
   task :link => BIN do
-    sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")} -o\"app.nostrip\" #{BIN.join(" ")} -L\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -losal -Wl,-rpath=//opt/lib -Wl,-rpath=./lib -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -lm -lcrypto -lfreetype -lpng -lpthread -lts -lxui #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")}"
+    #CTLS link
+    #sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")} -o\"app.nostrip\" #{BIN.join(" ")} -L\"#{File.join(PAX_LIB_ROOT, "emv")}\" -L\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -losal -Wl,-rpath=//opt/lib -Wl,-rpath=./lib -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -lm -lcrypto -lfreetype -lpng -lpthread -lts -lxui #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")} -lEMVS2FMProlin_v506 -lClEntryS2FMProlin_ccv_v502 -lClEntryS2FMProlin_v502 -lClMCS2FMProlin_ccv_v402 -lClWaveS2FMProlin_v303"
+    sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")} -o\"app.nostrip\" #{BIN.join(" ")} -L\"#{File.join(PAX_LIB_ROOT, "emv")}\" -L\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -losal -Wl,-rpath=//opt/lib -Wl,-rpath=./lib -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -lm -lcrypto -lfreetype -lpng -lpthread -lts -lxui #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")} -lEMVS2FMProlin_v506"
     FileUtils.mv "app.nostrip", "out/app.nostrip"
     FileUtils.cd "#{File.join(MRUBY_PAX_ROOT, "out")}"
     sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-strip")} -g app.nostrip -o\"RobotRock\""
