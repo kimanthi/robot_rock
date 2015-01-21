@@ -10,8 +10,6 @@
 #include <unistd.h>
 #include <signal.h>
 #include <fcntl.h>
-#include <osal.h>
-#include <xui.h>
 
 #include <linux/input.h>
 #include <linux/fb.h>
@@ -26,6 +24,8 @@
 
 #include "osal.h"
 #include "ui.h"
+#include <xui.h>
+#include "emvlib_Prolin.h"
 
 /* Include the mruby header */
 #include "mruby.h"
@@ -142,10 +142,17 @@ int DeInit()
   return 0;
 }
 
+void emv_test_open(void)
+{
+  /*Should return 0*/
+  display("EMVCore Init %d", EMVCoreInit());
+}
+
 int main(int argc, char **argv)
 {
   OsLog(LOG_INFO, "Teste");
   Init();
+  emv_test_open();
   robot_rock_execute();
   DeInit();
   OsLog(LOG_INFO, "Finish");
