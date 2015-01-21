@@ -131,7 +131,7 @@ void Init(void)
   ScreenInit();
   OpenFont();
 
-  return 0;
+  return;
 }
 
 int DeInit()
