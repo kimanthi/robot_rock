@@ -152,7 +152,6 @@ int main(int argc, char **argv)
 {
   OsLog(LOG_INFO, "Teste");
   Init();
-  emv_test_open();
   robot_rock_execute();
   DeInit();
   OsLog(LOG_INFO, "Finish");
