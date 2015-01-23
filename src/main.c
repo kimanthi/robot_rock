@@ -10,8 +10,6 @@
 #include <unistd.h>
 #include <signal.h>
 #include <fcntl.h>
-#include <osal.h>
-#include <xui.h>
 
 #include <linux/input.h>
 #include <linux/fb.h>
@@ -26,6 +24,8 @@
 
 #include "osal.h"
 #include "ui.h"
+#include <xui.h>
+#include "emvlib_Prolin.h"
 
 /* Include the mruby header */
 #include "mruby.h"
@@ -131,7 +131,7 @@ void Init(void)
   ScreenInit();
   OpenFont();
 
-  return 0;
+  return;
 }
 
 int DeInit()
@@ -140,6 +140,12 @@ int DeInit()
   GuiDeinit();
 
   return 0;
+}
+
+void emv_test_open(void)
+{
+  /*Should return 0*/
+  display("EMVCore Init %d", EMVCoreInit());
 }
 
 int main(int argc, char **argv)

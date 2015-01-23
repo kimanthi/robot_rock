@@ -14,6 +14,15 @@ class String
 end
 
 module TestRobotRock
+  def self.test_emv
+    Device::Display.clear
+    puts "Before"
+    getc
+    Device::Display.clear
+    puts "Result #{PAX::EMV.core_init.inspect}"
+    getc
+  end
+
   def self.test_display_clear
     Device::Display.clear
     puts "1asdfasdf"
