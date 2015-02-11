@@ -34,7 +34,7 @@ class TestPlatform
 
   class System
     def self.serial
-      "50111541"
+      "50111547"
     end
   end
 
@@ -49,10 +49,9 @@ end
 
 class Main < Device
   def self.call
-    #Device::System.klass = Main
-    Device::Setting.logical_number = "2"
+    Device::System.klass = Main
+    Device::Setting.logical_number = "1410"
     p Device::ParamsDat.update_apps
-    p Miniz.unzip("white-surf-1.zip")
   end
 end
 
