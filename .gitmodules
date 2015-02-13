@@ -58,3 +58,6 @@
 [submodule "mrbgems/mruby-json"]
 	path = mrbgems/mruby-json
 	url = git@github.com:mattn/mruby-json.git
+[submodule "mrbgems/mruby-context"]
+	path = mrbgems/mruby-context
+	url = git@github.com:scalone/mruby-context.git
