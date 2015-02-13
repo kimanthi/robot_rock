@@ -76,4 +76,5 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-qrcode")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-miniz")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-json")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-context")
 end
