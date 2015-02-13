@@ -17,9 +17,7 @@ class Main < Device
 end
 
 class CloudWalkInit
-  class << self
-    include Device::Helper
-  end
+  include Device::Helper
 
   def self.perform
     self.set_logical_number
