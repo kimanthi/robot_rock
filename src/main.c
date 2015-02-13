@@ -50,7 +50,7 @@ mrb_state *mrb_robot(void)
 int robot_rock_execute(void)
 {
   mrbc_context *c;
-  char code[] = "PAX.start";
+  char code[] = "Context.new('main', 'PAX')";
   mrb = mrb_open();
 
   c = mrbc_context_new(mrb);
