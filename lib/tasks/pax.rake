@@ -170,7 +170,7 @@ namespace :pax do
   desc "Generate mrb file"
   task :mrbc do
     # Clean
-    mrb = File.join(MRUBY_PAX_ROOT, "out", "robot_rock")
+    mrb = File.join(MRUBY_PAX_ROOT, "out", "main")
     FileUtils.rm_rf(mrb)
     FileUtils.mkdir_p(mrb)
 
@@ -211,7 +211,7 @@ namespace :pax do
   task :test => :mrbc do
     test_path = File.join(MRUBY_PAX_ROOT, "test")
     FileUtils.rm_rf(File.join(test_path, "execution"))
-    FileUtils.mkdir_p(File.join(test_path, "execution", "robot_rock"))
+    FileUtils.mkdir_p(File.join(test_path, "execution", "main"))
     FileUtils.cp(File.join(test_path, "main.rb"), File.join(test_path, "execution", "main.rb"))
     FileUtils.cd File.join(test_path, "execution")
 
