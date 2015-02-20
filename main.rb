@@ -83,20 +83,5 @@ class CloudWalkInit
     Device::Setting.user = form("User (#{Device::Setting.user}): ", 0, 127, "", false)
     Device::Setting.pass = form("Pass (#{Device::Setting.pass}): ", 0, 127, "", false)
   end
-
-  # TODO Scalone: refactoring needed about app[:zip]
-  def self.execute(app)
-    Device::Display.clear
-    if app.nil? || ! File.exists?(app[:zip])
-      puts "App not exist"
-    else
-      if Miniz.unzip(app[:zip])
-        return Device::Runtime.execute(app[:zip].split(".")[0])
-      else
-        puts "Problem to unzip app files"
-      end
-    end
-    getc
-  end
 end
 
