@@ -64,3 +64,6 @@
 [submodule "mrbgems/mruby-msgpack"]
 	path = mrbgems/mruby-msgpack
 	url = git@github.com:scalone/mruby-msgpack.git
+[submodule "lib/main"]
+	path = lib/main
+	url = git@github.com:cloudwalkio/main.git
