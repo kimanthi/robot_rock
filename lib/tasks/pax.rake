@@ -5,6 +5,7 @@ MRUBY_PAX_ROOT = ENV["MRUBY_PAX_ROOT"] || File.join(File.dirname(File.expand_pat
 PAX_LIB_ROOT   = File.join(MRUBY_PAX_ROOT, "lib", "sdk")
 MRUBY_LIB      = File.join(MRUBY_PAX_ROOT, "lib", "mruby")
 DA_FUNK_LIB    = File.join(MRUBY_PAX_ROOT, "lib", "da_funk")
+MAIN_LIB       = File.join(MRUBY_PAX_ROOT, "lib", "main")
 MRUBY_PAX_MGEM = File.join(MRUBY_PAX_ROOT, "mrbgems")
 MRUBY_PAX_INC  = File.join(MRUBY_PAX_ROOT, "src")
 GCC_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")
@@ -182,12 +183,18 @@ namespace :pax do
     funk_mrb = File.join(mrb, "da_funk.mrb")
     FileUtils.mv(funk, funk_mrb)
 
+    # Main
+    FileUtils.cd MAIN_LIB
+    sh "rake"
+    FileUtils.cd MRUBY_PAX_ROOT
+    main     = File.join(MAIN_LIB, "out", "main", "main.mrb")
+    main_mrb = File.join(mrb, "main.mrb")
+    FileUtils.mv(main, main_mrb)
+
     # PAX
     pax_out = File.join(mrb, "pax.mrb")
     pax_rb  = Dir[File.join(MRUBY_PAX_ROOT, "mrblib", "*.rb")]
     sh "#{ENV['MRBC']} -o #{pax_out} #{pax_rb.join(" ")}"
-
-    sh "#{ENV['MRBC']} -o #{File.join(mrb, "main.mrb")} #{File.join(MRUBY_PAX_ROOT, "main.rb")}"
   end
 
   desc "Clobber/Clean PAX"
