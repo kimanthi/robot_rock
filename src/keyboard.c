@@ -30,8 +30,7 @@ static int compare_timeval(struct timeval *a, struct timeval *b)
 /**
  * keyboard test case
  * return KEY if successful
- * return -1 if fail
- * return -2 if timeout
+ * return 18 if timeout
  */
 int GetKey(long timeout)
 {
@@ -53,7 +52,7 @@ int GetKey(long timeout)
     if (rd < size) {
       if (timeout != 0) {
         gettimeofday(&tv2, NULL);
-        if (compare_timeval(&tv2, &tv1) != 0) return -2;
+        if (compare_timeval(&tv2, &tv1) == 1) return 18;
       }
 
       continue;
