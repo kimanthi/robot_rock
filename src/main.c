@@ -6,39 +6,18 @@
 #include <string.h>
 #include <stdarg.h>
 
-/* Sample */
-#include <unistd.h>
-#include <signal.h>
-#include <fcntl.h>
-
-#include <linux/input.h>
-#include <linux/fb.h>
-#include <fcntl.h>
-#include <linux/fb.h>
-#include <linux/stddef.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/ioctl.h>
-#include <sys/mman.h>
-#include <unistd.h>
-
+/*PAX*/
 #include "osal.h"
 #include "ui.h"
 #include <xui.h>
 #include "emvlib_Prolin.h"
+#include "keyboard.h"
 
 /* Include the mruby header */
 #include "mruby.h"
 #include "mruby/value.h"
 #include "mruby/compile.h"
 #include "mruby/proc.h"
-
-/* backtrace */
-#include "mruby/variable.h"
-#include "mruby/array.h"
-#include "mruby/string.h"
-#include "mruby/class.h"
-#include "mruby/debug.h"
 
 mrb_state *mrb;
 
