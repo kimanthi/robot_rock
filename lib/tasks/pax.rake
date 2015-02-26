@@ -175,6 +175,14 @@ namespace :pax do
     FileUtils.rm_rf(mrb)
     FileUtils.mkdir_p(mrb)
 
+    # Main
+    FileUtils.cd MAIN_LIB
+    sh "rake"
+    FileUtils.cd MRUBY_PAX_ROOT
+    FileList[File.join(MAIN_LIB, "out", "main", "*")].each do |file|
+      FileUtils.mv(file, mrb)
+    end
+
     # DaFunk
     FileUtils.cd DA_FUNK_LIB
     sh "rake"
@@ -182,14 +190,6 @@ namespace :pax do
     funk     = File.join(DA_FUNK_LIB, "out", "da_funk.mrb")
     funk_mrb = File.join(mrb, "da_funk.mrb")
     FileUtils.mv(funk, funk_mrb)
-
-    # Main
-    FileUtils.cd MAIN_LIB
-    sh "rake"
-    FileUtils.cd MRUBY_PAX_ROOT
-    main     = File.join(MAIN_LIB, "out", "main", "main.mrb")
-    main_mrb = File.join(mrb, "main.mrb")
-    FileUtils.mv(main, main_mrb)
 
     # PAX
     pax_out = File.join(mrb, "pax.mrb")
