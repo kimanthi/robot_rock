@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <unistd.h>
+#include <signal.h>
+#include <fcntl.h>
 
 /*PAX*/
 #include "osal.h"
