@@ -150,11 +150,9 @@ void emv_test_open(void)
 
 int main(int argc, char **argv)
 {
-  OsLog(LOG_INFO, "Teste");
   Init();
   robot_rock_execute();
   DeInit();
-  OsLog(LOG_INFO, "Finish");
 
   return 0;
 }
