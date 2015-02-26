@@ -1,148 +1,69 @@
-/*------------------------------------------------------------
-* FileName: keyboard.c
-* Author: LuX
-* Date: 2013-02-20
-* Example of how to use keyboard.
-* PAX does not provide the interface of how to set keypad tones.
-* Developers can directly use linux input subsystem to implement the keyboard event.
-------------------------------------------------------------*/
 #include "constant.h"
 #include "header.h"
 #include "keyboard.h"
+#include <sys/time.h>
 
-static int gfd = -1;
-
-/**
- * open keyboard
- * [in] filename keyboard file name, such as "/dev/input/event0"
- * return keyboard device (>=0)
- */
-int OpenKeyboard(const char* filename)
-{
-	gfd = open(filename, O_RDWR);
-	return gfd;
+/* Adds 'interval_ms' to timeval 'a' and store in 'result'
+   - 'interval_ms' is in milliseconds */
+static void add_ms_to_timeval(struct timeval *a, unsigned long interval_ms, struct timeval *result) {
+  result->tv_sec = a->tv_sec + (interval_ms / 1000);
+  result->tv_usec = a->tv_usec + ((interval_ms % 1000) * 1000);
+  if (result->tv_usec > 1000000) {
+    result->tv_usec -= 1000000;
+    result->tv_sec++;
+  }
 }
 
-/**
- * close keyboard
- * return 0 if successful, else return -1
- */
-int CloseKeyboard()
+static int compare_timeval(struct timeval *a, struct timeval *b)
 {
-	return close(gfd);
-}
-
-/**
- * get key value (>=0), see macro in linux/input.h, such as KEY_1, KEY_CANCEL, etc.
- * return key value
- */
-int GetKey()
-{
-	int i;
-	int ret;
-	int eventNum = 0;
-	struct input_event ev[64];
-	struct pollfd events[1];
-	int size = sizeof(struct input_event);
-	int rd = 0;
-	memset(events, 0, sizeof(events));
-	events[0].fd = gfd;
-	events[0].events = POLLIN | POLLERR;
-	ret = poll(events, 1, 0);
-	if ((ret <= 0) || (events[0].revents & POLLERR))
-	{
-		return -1;
-	}
-	if (events[0].revents & POLLIN)
-	{
-		memset(ev, 0, sizeof(ev));
-		rd = read(gfd, ev, sizeof(ev));
-		if (rd < size)
-		{
-			return -1;
-		}
-		eventNum = rd / size;
-		for (i = 0; i < eventNum; ++i)
-		{
-			/* EV_KEY means type is key (not mouse, etc) */
-			if (ev[i].type == EV_KEY && ev[i].value == 1)
-			{
-				return ev[i].code;
-			}
-		}
-	}
-	return -1;
+  if (a->tv_sec > b->tv_sec)
+    return 1;
+  else if (a->tv_sec < b->tv_sec)
+    return -1;
+  else if (a->tv_usec > b->tv_usec)
+    return 1;
+  else if (a->tv_usec < b->tv_usec)
+    return -1;
+  return 0;
 }
 
 /**
  * keyboard test case
- * return 0 if successful
+ * return KEY if successful
+ * return -1 if fail
+ * return -2 if timeout
  */
-int TestKeyboard()
+int GetKey(long timeout)
 {
-	int i;
-	int rd;
-	static struct input_event ev[64];
-	int flag = 1;
-	int event_num;
-	int size = sizeof(struct input_event);
-	int fd = OpenKeyboard(KEYBOARD_NAME);
-	while (flag == 1)
-	{
-		rd = read(fd, ev, sizeof(ev));
-		if (rd < size)
-		{
-			continue;
-		}
+  struct timeval tv1, tv2;
+  int i;
+  int rd;
+  static struct input_event ev[64];
+  int flag = 1;
+  int event_num;
+  int size = sizeof(struct input_event);
+  int fd = open(KEYBOARD_NAME, O_RDWR | O_NONBLOCK);
 
-		event_num = rd / size;
-		for (i = 0; i < event_num; ++i)
-		{
-			/* EV_KEY means type is key (not mouse, etc) */
-			if (ev[i].type == EV_KEY)
-			{
-				/* value 1 means press key */
-				/* value 0 means release key */
-				/* value 2 means long press key */
-				if (ev[i].value == 1)
-				{
-					switch (ev[i].code)
-					{
-					case KEY_F1...KEY_F4:
-						printf("press key F%d\n", ev[i].code - KEY_F1 + 1);
-						break;
-					case KEY_1...KEY_9:
-						printf("press key %d\n", ev[i].code - KEY_1 + 1);
-						break;
-					case KEY_0:
-						printf("press key 0\n");
-						break;
-					case KEY_KPASTERISK:
-						printf("press key #\n");
-						break;
-					case KEY_NUMLOCK:
-						printf("press key Alpha\n");
-						break;
-					case KEY_BACKSPACE:
-						printf("press key Backspace\n");
-						break;
-					case KEY_ENTER:
-						printf("press key Enter\n");
-						break;
-					case KEY_CANCEL:
-						flag = 0;
-						break;
-					default:
-						continue;
-					}
-				}
-				else if (ev[i].value == 0)
-				{
-					printf("release key %d\n", ev[i].code);
-				}
-			}
-		}
-	}
-	CloseKeyboard();
-	return 0;
+  gettimeofday(&tv1, NULL);
+  add_ms_to_timeval(&tv1, timeout, &tv1);
+
+  while (flag == 1) {
+    rd = read(fd, ev, sizeof(ev));
+
+    if (rd < size) {
+      if (timeout != 0) {
+        gettimeofday(&tv2, NULL);
+        if (compare_timeval(&tv2, &tv1) != 0) return -2;
+      }
+
+      continue;
+    }
+
+    event_num = rd / size;
+    for (i = 0; i < event_num; ++i) {
+      if (ev[i].type == EV_KEY) return ev[i].code;
+    }
+  }
+  close(fd);
+  return 0;
 }
