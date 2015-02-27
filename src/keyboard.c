@@ -63,7 +63,13 @@ int GetKey(long timeout)
 
     event_num = rd / size;
     for (i = 0; i < event_num; ++i) {
-      if (ev[i].type == EV_KEY) return ev[i].code;
+      /* value 1 means press key */
+      /* value 0 means release key */
+      /* value 2 means long press key */
+      if (ev[i].type == EV_KEY && ev[i].value == 1){
+        code = ev[i].code;
+        flag = 0;
+      }
     }
   }
   close(fd);
