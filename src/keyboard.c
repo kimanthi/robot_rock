@@ -35,6 +35,7 @@ static int compare_timeval(struct timeval *a, struct timeval *b)
 int GetKey(long timeout)
 {
   struct timeval tv1, tv2;
+  int code = 18; // TIMEOUT
   int i;
   int rd;
   static struct input_event ev[64];
@@ -52,7 +53,7 @@ int GetKey(long timeout)
     if (rd < size) {
       if (timeout != 0) {
         gettimeofday(&tv2, NULL);
-        if (compare_timeval(&tv2, &tv1) == 1) return 18;
+        if (compare_timeval(&tv2, &tv1) == 1) break;
       }
 
       continue;
@@ -64,5 +65,6 @@ int GetKey(long timeout)
     }
   }
   close(fd);
-  return 0;
+  return code;
 }
+
