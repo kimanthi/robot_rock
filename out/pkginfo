@@ -2,4 +2,5 @@ appinfo
 RobotRock
 res/
 lib/
-main/
+main/
+shared/
