@@ -41,7 +41,7 @@ int GetKey(long timeout)
   int flag = 1;
   int event_num;
   int size = sizeof(struct input_event);
-  int fd = open(KEYBOARD_NAME, O_RDWR | O_NONBLOCK);
+  int fd = open(KEYBOARD_NAME, O_RDONLY | O_NONBLOCK);
 
   gettimeofday(&tv1, NULL);
   add_ms_to_timeval(&tv1, timeout, &tv1);
