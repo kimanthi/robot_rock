@@ -194,7 +194,7 @@ namespace :pax do
     # PAX
     pax_out = File.join(mrb, "pax.mrb")
     pax_rb  = Dir[File.join(MRUBY_PAX_ROOT, "mrblib", "*.rb")]
-    sh "#{ENV['MRBC']} -o #{pax_out} #{pax_rb.join(" ")}"
+    sh "#{ENV['MRBC']} -g -o #{pax_out} #{pax_rb.join(" ")}"
   end
 
   desc "Clobber/Clean PAX"
