@@ -97,6 +97,7 @@ if ENV["MRUBY_CONFIG"]
   MRuby::Build.new do |conf|
     # load specific toolchain settings
     toolchain :visualcpp
+    conf.cc.defines = %w(ENABLE_DEBUG)
     conf.bins = %w(mrbc)
   end
 
@@ -104,7 +105,7 @@ if ENV["MRUBY_CONFIG"]
     #TODO builddir
     toolchain :pax
 
-    conf.cc.defines = %w(PAX EXIT_FAILURE)
+    conf.cc.defines = %w(PAX EXIT_FAILURE ENABLE_DEBUG)
     conf.cc.include_paths << MRUBY_PAX_INC
     conf.bins = []
     conf.gembox File.join(MRUBY_PAX_MGEM, "pax")
