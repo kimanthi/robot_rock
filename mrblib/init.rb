@@ -23,6 +23,19 @@ module TestRobotRock
     getc
   end
 
+  def self.test_emv_get_parameter
+    Device::Display.clear
+    puts "Before"
+    getc
+    Device::Display.clear
+    PAX::EMV.get_parameter.each do |key,value|
+      puts "-[#{key.inspect}][#{value.inspect}]"
+      sleep 2
+    end
+
+    getc
+  end
+
   def self.test_display_clear
     Device::Display.clear
     puts "1asdfasdf"
