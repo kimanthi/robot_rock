@@ -64,6 +64,17 @@ module TestRobotRock
 
     getc
   end
+
+  def self.test_icc
+    self.test_emv
+    Device::Display.clear
+    puts "Before"
+    getc
+    Device::Display.clear
+    PAX::EMV.init
+    puts "after"
+    getc
+  end
     end
 
     getc
