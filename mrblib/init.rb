@@ -153,6 +153,14 @@ module TestRobotRock
     getc
   end
 
+  def self.emv_get_pki
+    Device::Display.clear
+    pki = PAX::EMV.get_pki(0)
+    pki.each do |k,v|
+      puts "[#{k.inspect}]-[#{v.inspect}]"
+      getc(60000)
+    end
+    puts "Finish"
     getc
   end
 
