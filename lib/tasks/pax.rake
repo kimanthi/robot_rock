@@ -28,7 +28,7 @@ if ENV["MRUBY_CONFIG"]
       cc.command = 'cl.exe'
       cc.flags = [%w(/c /nologo /W3 /D_DEBUG /MDd /Zi /Od /RTC1 /DHAVE_STRING_H /DNO_GETTIMEOFDAY /D_CRT_SECURE_NO_WARNINGS)]
       cc.include_paths = ["#{MRUBY_ROOT}/include", "Z:\\pax\\robot_rock\\lib\\sdk\\include"]
-      cc.defines = %w(DISABLE_GEMS)
+      cc.defines = %w(DISABLE_GEMS ENABLE_DEBUG)
       cc.option_include_path = '/I%s'
       cc.option_define = '/D%s'
       cc.compile_options = "%{flags} /Fo%{outfile} %{infile}"
@@ -74,7 +74,7 @@ if ENV["MRUBY_CONFIG"]
       cc.command = GCC_PAX_BIN
       cc.flags = [%w(-O0 -g2 -Wall -funwind-tables)]
       cc.include_paths = ["#{MRUBY_ROOT}/include"].concat(LOCINCLUDE)
-      cc.defines = %w()
+      cc.defines = %w(ENABLE_DEBUG)
       cc.option_include_path = '-I%s'
       cc.option_define = '-D%s'
       cc.compile_options = '%{flags} -c %{infile} -o %{outfile} '
