@@ -28,9 +28,42 @@ module TestRobotRock
     puts "Before"
     getc
     Device::Display.clear
-    PAX::EMV.get_parameter.each do |key,value|
-      puts "-[#{key.inspect}][#{value.inspect}]"
-      sleep 2
+    emv = PAX::EMV.get_parameter
+
+    p "MerchId[" + emv["MerchId"] + "]"
+    getc
+    p "TermId[" + emv["TermId"] + "]"
+    getc
+    p "TerminalType[" + emv["TerminalType"].unpack("H*").first + "]"
+    getc
+    p "Capability[" + emv["Capability"].unpack("H*").first + "]"
+    getc
+    p "ExCapability[" + emv["ExCapability"].unpack("H*").first + "]"
+    getc
+    p "CountryCode[" + emv["CountryCode"].unpack("H*").first + "]"
+    getc
+    p "TransCurrCode[" + emv["TransCurrCode"].unpack("H*").first + "]"
+    getc
+    p "TransCurrExp[" + emv["TransCurrExp"].unpack("H*").first + "]"
+    getc
+    p "ReferCurrCode[" + emv["ReferCurrCode"].unpack("H*").first + "]"
+    getc
+    p "ReferCurrExp[" + emv["ReferCurrExp"].unpack("H*").first + "]"
+    getc
+    p "TransType[" + emv["TransType"].unpack("H*").first + "]"
+    getc
+    p "ForceOnline[" + emv["ForceOnline"].unpack("H*").first + "]"
+    getc
+    p "GetDataPIN[" + emv["GetDataPIN"].unpack("H*").first + "]"
+    getc
+    p "SurportPSESel[" + emv["SurportPSESel"].unpack("H*").first + "]"
+    getc
+
+    Device::Display.clear
+    puts "END"
+
+    getc
+  end
     end
 
     getc
