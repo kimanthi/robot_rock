@@ -13,7 +13,8 @@
 #include "osal.h"
 #include "ui.h"
 #include <xui.h>
-#include "emvlib_Prolin.h"
+// #include "emvlib_Prolin.h"
+#include "MID/structDefine.h"
 #include "keyboard.h"
 
 /* Include the mruby header */
@@ -21,6 +22,12 @@
 #include "mruby/value.h"
 #include "mruby/compile.h"
 #include "mruby/proc.h"
+
+ST_EVENT_MSG   *glEdcMsgPtr;					// manager event
+
+static int main_sub(const ST_EVENT_MSG *pstEventMsg);
+
+extern int event_main(ST_EVENT_MSG *pstEventMsg);
 
 const uint8_t start[] = {
   0x52,0x49,0x54,0x45,0x30,0x30,0x30,0x32,0x28,0x53,0x00,0x00,0x00,0xa2,0x4d,0x41,
@@ -140,15 +147,28 @@ int DeInit()
 void emv_test_open(void)
 {
   /*Should return 0*/
-  display("EMVCore Init %d", EMVCoreInit());
+  // display("EMVCore Init %d", EMVCoreInit());
+}
+
+int event_main(ST_EVENT_MSG *pstEventMsg)
+{
+	glEdcMsgPtr = pstEventMsg;	// save the event pointer
+	return main_sub(pstEventMsg);
 }
 
 int main(int argc, char **argv)
 {
+  ST_EVENT_MSG	stEventMsg;
+  event_main(&stEventMsg);
+  return 0;
+}
+
+int main_sub(const ST_EVENT_MSG *pstEventMsg)
+{
   Init();
+  SystemInit();
   robot_rock_execute();
   DeInit();
 
   return 0;
 }
-
