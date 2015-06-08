@@ -44,6 +44,35 @@ Command `rake pax:mrbc` compile ruby and generate 2 files. Generate from 2 diffe
  - `out/obj/mrb/da_funk.mrb` mruby bytecode from `lib/da_funk/lib/**/*.rb`
  
 
+## Linking libraries
+
+#### Path
+
+1. Configure local path library - Add path lib with -L, lib/tasks/pax.rake:161: `-L”lib/emv”`, example: `-L\"#{File.join(PAX_LIB_ROOT, "emv")}\”`
+2. Configure remote path library(terminal) - Add library path considering the internal terminal path, this, in specific, already is confgured, but is good to metion, check it lib/tasks/pax.rake:161: `-Wl,-rpath=./lib`.
+
+#### Library file
+
+After configured the path we need to configure the files locally and remotally.
+
+1. Local file - It is necessary to add the file name, without extension and prefix "lib" with `-l`, on `lib/tasks/pax.rake:161`, `-l<nome lib sem extensão>`, example: `-lEMVS2FMProlin_v506` (We have this file locally `lib/sdk/emv/libEMVS2FMProlin_v506.so`)
+2. Remote file - It is necessary to create a symbol link of the file on `out/lib/lib`, because this directory will be uploaded to terminal. Remember to create this symbol link using relative path, example:
+
+```
+$ pwd
+/Users/thiagoscalone/projects/plano_be/walk/pax/robot_rock
+$ cd out/lib/
+$ ln -s ../../lib/sdk/emv/libEMVS2FMProlin_v506.so ./
+```
+
+You should **NOT** create from the project root path:
+
+```
+$ pwd
+/Users/thiagoscalone/projects/plano_be/walk/pax/robot_rock
+$ ln -s lib/sdk/emv/libEMVS2FMProlin_v506.so ./out/lib
+```
+
 ## Contributing
 
 1. Fork it
