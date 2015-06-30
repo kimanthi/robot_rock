@@ -154,6 +154,26 @@ module TestRobotRock
     getc
     puts "App Selection #{PAX::EMV.app_select(icc.slot, 1)}"
     getc
+
+    Device::Display.clear
+    puts "Read App Data #{PAX::EMV.read_data}"
+    getc
+
+    Device::Display.clear
+    puts "Tlv 0x5F20"
+    puts "#{PAX::EMV.get_tlv(0x5F20)}"
+    puts "Tlv 0x4F"
+    puts "#{PAX::EMV.get_tlv(0x4F).unpack("H*")}"
+    puts "Tlv 0x5A"
+    puts "#{PAX::EMV.get_tlv(0x5A).unpack("H*")}"
+    getc
+
+    Device::Display.clear
+    puts "Tlv 0x57"
+    puts "#{PAX::EMV.get_tlv(0x57).unpack("H*")}"
+    puts "Tlv 0x5F24"
+    puts "#{PAX::EMV.get_tlv(0x5F24).unpack("H*")}"
+    getc
   end
 
   def self.emv_get_pki
