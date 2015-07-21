@@ -20,14 +20,20 @@ module TestRobotRock
     puts "Clear Keys #{PAX::Crypto.delete_all_keys}"
     getc
     Device::Display.clear
-    puts "Load IPEK #{PAX::Crypto.load_ipek(1, PAX::Crypto::LOADKEY_DES, "0123456789ABCDEF")}"
+    puts "Load IPEK #{PAX::Crypto.load_ipek(1, PAX::Crypto::LOADKEY_3DES, ["6AC292FAA1315B4D858AB3A3D7D5933A"].pack("H*"), ["FFFF9876543210E00000"].pack("H*"))}"
     getc
+    Device::Display.clear
+    puts "Enter pin ..."
+    dukpt = PAX::Crypto.get_pin_dukpt(1, "00004012345678909")
 
-    timeout = Time.now + 30
-    # sth like this...
-    # loop do
-    #   break if ((PAX::Crypto.get_pin_dukpt(bla,bla,bla)) || timeout < Time.now)
-    # end
+    dukpt.each do |k,v|
+      Device::Display.clear
+      puts "[#{k.inspect}]"
+      puts "#{v.unpack("H*")}"
+      getc(60000)
+    end
+    puts "Finish"
+    getc
   end
 
   def self.test_emv
