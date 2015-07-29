@@ -20,11 +20,11 @@ module TestRobotRock
     puts "Clear Keys #{PAX::Crypto.delete_all_keys}"
     getc
     Device::Display.clear
-    puts "Load IPEK #{PAX::Crypto.load_ipek(1, PAX::Crypto::LOADKEY_3DES, ["6AC292FAA1315B4D858AB3A3D7D5933A"].pack("H*"), ["FFFF9876543210E00000"].pack("H*"))}"
+    puts "Load IPEK #{PAX::Pinpad.load_ipek(1, PAX::Pinpad::LOADKEY_3DES, ["6AC292FAA1315B4D858AB3A3D7D5933A"].pack("H*"), ["FFFF9876543210E00000"].pack("H*"))}"
     getc
     Device::Display.clear
     puts "Enter pin ..."
-    dukpt = PAX::Crypto.get_pin_dukpt(1, "00004012345678909")
+    dukpt = PAX::Pinpad.get_pin_dukpt(1, "00004012345678909")
 
     dukpt.each do |k,v|
       Device::Display.clear
@@ -32,6 +32,13 @@ module TestRobotRock
       puts "#{v.unpack("H*")}"
       getc(60000)
     end
+    Device::Display.clear
+    puts "Load PIN KEY #{PAX::Pinpad.load_pin_key(1, PAX::Pinpad::LOADKEY_DES, ["0123456789ABCDEF"].pack("H*"))}"
+    getc
+    Device::Display.clear
+    puts "Enter pin ..."
+    pin = PAX::Pinpad.get_pin(1, "00004012345678909")
+    puts "#{pin.unpack("H*")}"
     puts "Finish"
     getc
   end
@@ -137,12 +144,11 @@ module TestRobotRock
     # Smartcon iEMV - Online only
     #table_emv = "2841049907AAA0000001010300000000000000000001SMARTCON iEMV ON03008C008400000769862000000000000001010049000076E0E8C06000F0F000225000000000000000000000000000000000C3500000000000000000000000000000000000000000000000000000000000000000000000009F37049F47018F019F3201000000000000000000Y1Z1Y3Z3"
     # Smartcon iEMV - Offline
-    table_emv = "2841041007AAA0000001010400000000000000000001SMARTCON iEMV OF03008C008400000769862000000000000001010049000076E0E8C06000F0F001225000000000000000000000000000000000C3500000000000000000000000000000000000000000000000000000000000000000000000009F37049F47018F019F3201000000000000000000Y1Z1Y3Z3"
-    table_pki = "61120408AAA0000001F1003010001176D9E36579B94A5FF3150B64643D85C06E6E9F0682BE56CDD69FCB053913495BDBC327DA3CAC0EA2A0DA1D55DF7C66A0C6F6A9039FA72753C434F4A63BED54062799DF1F6D6E1F315A8F4109721126E11F4FF562C18A4AE6A4D9F0C2A5C2A8E44D6A98628C7E25290584F0F3D9ECE6566FDB7688596649BEC89A1CBC8BBED075538300D0D83FF8755E1CE73668908C387E14ACDF0F9F1DE436A5A07308812D6AE3A16170EDF2522B36FBE94358F50C0B6900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014dddd1d9b9a3b2eeace63a5ba9dd6f4441ce10af000000000000000000000000000000000000000000"
-
-    # VISA
-    #table_emv = "2841040107A000000003101000000000000000000001CREDITO         030084000000000769862000000000000001010049000076E0E8C06000F0F001220000000000000000000000000000000000C3500000000000000000000000000000000000000000000000000000000000000000000000009F37049F47018F019F3201000000000000000000Y1Z1Y3Z3"
+    #table_emv = "2841041007AAA0000001010400000000000000000001SMARTCON iEMV OF030001008400000769862000000000000001010049000076E0E8806000F0F001225000000000000000000000000000000000C3500000000000000000000000000000000000000000000000000000000000000000000000009F37049F47018F019F3201000000000000000000Y1Z1Y3Z3"
     #table_pki = "61120408AAA0000001F1003010001176D9E36579B94A5FF3150B64643D85C06E6E9F0682BE56CDD69FCB053913495BDBC327DA3CAC0EA2A0DA1D55DF7C66A0C6F6A9039FA72753C434F4A63BED54062799DF1F6D6E1F315A8F4109721126E11F4FF562C18A4AE6A4D9F0C2A5C2A8E44D6A98628C7E25290584F0F3D9ECE6566FDB7688596649BEC89A1CBC8BBED075538300D0D83FF8755E1CE73668908C387E14ACDF0F9F1DE436A5A07308812D6AE3A16170EDF2522B36FBE94358F50C0B6900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014dddd1d9b9a3b2eeace63a5ba9dd6f4441ce10af000000000000000000000000000000000000000000"
+    # VISA
+    table_emv = "2841040307A000000003101000000000000000000001CREDITO         03008C008400000769862000000000000001010049000076E0E8C06000F0F001220000000000000000000000000000000000C3500000000000000000000000000000000000000000000000000000000000000000000000009F37049F47018F019F3201000000000000000000Y1Z1Y3Z3"
+    table_pki = "61120405A00000000399201030000128AB79FCC9520896967E776E64444E5DCDD6E13611874F3985722520425295EEA4BD0C2781DE7F31CD3D041F565F747306EED62954B17EDABA3A6C5B85A1DE1BEB9A34141AF38FCF8279C9DEA0D5A6710D08DB4124F041945587E20359BAB47B7575AD94262D4B25F264AF33DEDCF28E09615E937DE32EDC03C54445FE7E38277700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014ABFFD6B1C51212D05552E431C5B17007D2F5E6D000000000000000000000000000000000000000000"
 
     Device::Display.clear
     puts "CoreInit #{PAX::EMV.core_init.inspect}"
@@ -181,55 +187,170 @@ module TestRobotRock
     puts "Read App Data #{PAX::EMV.read_data}"
     getc
 
+    # E0:1110 0000|60:0110 0000
+    # Terminal Capabilities Byte 1 - Card Data Input Capability
+    # Manual key entry
+    # Magnetic stripe
+    # IC with contacts
+    # RFU
+    # RFU
+    # RFU
+    # RFU
+    # RFU
+
+    # D8:1101 1000|F8:1111 1000
+    # Terminal Capabilities Byte 2 - CVM Capability
+    # Plaintext PIN for ICC verification
+    # Enciphered PIN for online verification
+    # Signature (paper)
+    # Enciphered PIN for offline verification
+    # No CVM Required
+    # RFU
+    # RFU
+    # RFU
+
+    # C0:1100 0000|C8:1100 1000
+    # Terminal Capabilities Byte 3 - Security Capability
+    # SDA
+    # DDA
+    # Card capture
+    # RFU
+    # CDA
+    # RFU
+    # RFU
+    # RFU
+
     Device::Display.clear
-    puts "GetTlv 0x5F20"
-    puts "#{PAX::EMV.get_tlv(0x5F20)}"
-    puts "GetTlv 0x4F"
-    puts "#{PAX::EMV.get_tlv(0x4F).unpack("H*")}"
-    puts "GetTlv 0x5A"
-    puts "#{PAX::EMV.get_tlv(0x5A).unpack("H*")}"
+    puts "GetTlv 0x9F33" # E0E8C0
+    puts "#{PAX::EMV.get_tlv(0x9F33).unpack("H*").to_s.upcase}"
     getc
 
+    Device::Display.clear
+    #   84:Dedicated File (DF) Name
+    #   5A:Application Primary Account Number (PAN)
+    # 5F34:Application Primary Account Number (PAN) Sequence Number (PSN)
+    # 9F03:Amount, Other
+    # 9F26:Application Cryptogram (AC)
+    # 9F27:Cryptogram Information Data (CID)
+    # 9F10:Issuer Application Data (IAD)
+    # 9F37:Unpredictable Number (UN)
+    # 9F36:Application Transaction Counter (ATC)
+    #   95:Terminal Verification Results (TVR)
+    #   9A:Transaction Date
+    #   9C:Transaction Type
+    # 9F02:Amount, Authorised
+    # 5F2A:Transaction Currency Code
+    #   82:Application Interchange Profile (AIP)
+    # 9F1A:Terminal Country Code
+    # 9F47:Integrated Circuit Card (ICC) Public Key Exponent
+    # 9F35:Terminal Type
+
+    # Amount, Authorised
+    # puts "SetTlv 0x81 #{PAX::EMV.set_tlv(0x81, ["00000000"].pack("H*"))}"
+    # Amount, Authorised
+    puts "SetTlv 0x9F02 #{PAX::EMV.set_tlv(0x9F02, ["000000000123"].pack("H*"))}"
+    # Amount, Other
+    puts "SetTlv 0x9F03 #{PAX::EMV.set_tlv(0x9F03, ["000000000000"].pack("H*"))}"
+    # Transaction Date
+    puts "SetTlv 0x9A #{PAX::EMV.set_tlv(0x9A, ["120831"].pack("H*"))}"
+    # Transaction Type
+    puts "SetTlv 0x9C #{PAX::EMV.set_tlv(0x9C, ["00"].pack("H*"))}"
+    # Application Usage Control
+    puts "SetTlv 0x9F07 #{PAX::EMV.set_tlv(0x9F07, ["FFFF"].pack("H*"))}"
+    # Terminal Floor Limit
+    puts "SetTlv 0x9F1B #{PAX::EMV.set_tlv(0x9F1B, ["0000C350"].pack("H*"))}"
+    # Terminal Type
+    puts "SetTlv 0x9F35 #{PAX::EMV.set_tlv(0x9F35, ["23"].pack("H*"))}"
+    # Unpredictable Number
+    puts "SetTlv 0x9F37 #{PAX::EMV.set_tlv(0x9F37, ["0D5BD902"].pack("H*"))}"
+    getc
+
+    #05704230890341069
+    #00004012345678909
     Device::Display.clear
     puts "GetTlv 0x57"
     puts "#{PAX::EMV.get_tlv(0x57).unpack("H*")}"
     puts "GetTlv 0x5F24"
     puts "#{PAX::EMV.get_tlv(0x5F24).unpack("H*")}"
-    getc
-
-    Device::Display.clear
-    puts "SetTlv 0x9F02"
-    puts "#{PAX::EMV.set_tlv(0x9F02, "001234")}"
-
-    puts "SetTlv 0x9F04"
-    puts "#{PAX::EMV.set_tlv(0x9F04, "1000")}"
+    puts "GetTlv 0x5F28"
+    puts "#{PAX::EMV.get_tlv(0x5F28).unpack("H*")}"
     getc
 
     Device::Display.clear
     puts "GetTlv 0x9F02"
-    puts "#{PAX::EMV.get_tlv(0x9F02)}"
-    puts "GetTlv 0x9F04"
-    puts "#{PAX::EMV.get_tlv(0x9F04)}"
+    puts "#{PAX::EMV.get_tlv(0x9F02).unpack("H*")}"
+    puts "GetTlv 0x9F03"
+    puts "#{PAX::EMV.get_tlv(0x9F03).unpack("H*")}"
+    puts "GetTlv 0x9F1B"
+    puts "#{PAX::EMV.get_tlv(0x9F1B).unpack("H*")}"
     getc
 
-    # Device::Display.clear
-    # puts "Card Auth #{PAX::EMV.card_auth}"
-    # getc
-    #
-    # Device::Display.clear
-    # puts "Start Trans #{PAX::EMV.start_transaction(1000)}"
-    # getc
+    Device::Display.clear
+    puts "Card Auth #{PAX::EMV.card_auth}"
+    getc
 
-    #￼TC: Transaction approved
-    #AAC: Transaction declined
-    #ARQC: Online authorisation requested
+    Device::Display.clear
+    puts "Start Trans #{PAX::EMV.start_transaction(123)}"
+    puts "GetTlv 0x9F27" #80
+    puts "#{PAX::EMV.get_tlv(0x9F27).unpack("H*")}"
+    getc
 
-    # Device::Display.clear
-    # puts "GetTlv 0x95"
-    # puts "#{PAX::EMV.get_tlv(0x95).unpack("H*")}"
-    # puts "GetTlv 0x9B"
-    # puts "#{PAX::EMV.get_tlv(0x9B).unpack("H*")}"
-    # getc
+    # 02: 0000 0010                                                  10: 0001 0000
+    # TVR Byte 1                                                     TVR Byte 2
+    # Offline data authentication was not performed                  ICC and terminal have different application versions
+    # SDA failed                                                     Expired application
+    # ICC data missing                                               Application not yet effective
+    # Card appears on terminal exception file                        Requested service not allowed for card product
+    # DDA failed                                                     New card
+    # CDA failed                                                     RFU
+    # RFU                                                            RFU
+    # RFU                                                            RFU
+
+    # 04: 0000 0100                                                  00: 0000 0000
+    # TVR Byte 3                                                     TVR Byte 4
+    # Cardholder verification was not successful                     Transaction exceeds floor limit
+    # Unrecognised CVM                                               Lower consecutive offline limit exceeded
+    # PIN Try Limit exceeded                                         Upper consecutive offline limit exceeded
+    # PIN entry required and PIN pad not present or not working      Transaction selected randomly for online processing
+    # PIN entry required, PIN pad present, but PIN was not entered   Merchant forced transaction online
+    # Online PIN entered                                             RFU
+    # RFU                                                            RFU
+    # RFU                                                            RFU
+
+    # 00: 0000 0000
+    # TVR Byte 5
+    # Default TDOL used
+    # Issuer authentication failed
+    # Script processing failed before final GENERATE AC
+    # Script processing failed after final GENERATE AC
+    # RFU
+    # RFU
+    # RFU
+    # RFU
+
+    Device::Display.clear
+    puts "GetTlv 0x95" # 0210040000
+    puts "#{PAX::EMV.get_tlv(0x95).unpack("H*").to_s.upcase}"
+
+    # E8: 1110 1000
+    # TSI Byte 1
+    # Offline data authentication was performed
+    # Cardholder verification was performed
+    # Card risk management was performed
+    # Issuer authentication was performed
+    # Terminal risk management was performed
+    # Script processing was performed
+    # RFU
+    # RFU
+
+    puts "GetTlv 0x9B" # E800
+    puts "#{PAX::EMV.get_tlv(0x9B).unpack("H*").to_s.upcase}"
+    getc
+
+    Device::Display.clear
+    puts "GetTlv 0x9F34" # 020300
+    puts "#{PAX::EMV.get_tlv(0x9F34).unpack("H*").to_s.upcase}"
+    getc
   end
 
   def self.emv_get_pki
