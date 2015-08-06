@@ -24,20 +24,28 @@ end
 
 if ENV["MRUBY_CONFIG"]
   MRuby::Toolchain.new(:visualcpp) do |conf|
-    [conf.cc, conf.cxx].each do |cc|
-      cc.command = 'cl.exe'
-      cc.flags = [%w(/c /nologo /W3 /D_DEBUG /MDd /Zi /Od /RTC1 /DHAVE_STRING_H /DNO_GETTIMEOFDAY /D_CRT_SECURE_NO_WARNINGS)]
-      cc.include_paths = ["#{MRUBY_ROOT}/include", "Z:\\pax\\robot_rock\\lib\\sdk\\include"]
-      cc.defines = %w(DISABLE_GEMS ENABLE_DEBUG)
+    [conf.cc].each do |cc|
+      cc.command = ENV['CC'] || 'cl.exe'
+      # C4013: implicit function declaration
+      cc.flags = [ENV['CFLAGS'] || %w(/c /nologo /W3 /we4013 /Zi /MD /O2 /D_CRT_SECURE_NO_WARNINGS)]
+      cc.defines = %w(DISABLE_GEMS MRB_STACK_EXTEND_DOUBLING ENABLE_DEBUG)
       cc.option_include_path = '/I%s'
       cc.option_define = '/D%s'
       cc.compile_options = "%{flags} /Fo%{outfile} %{infile}"
     end
 
+    [conf.cxx].each do |cxx|
+      cxx.command = ENV['CXX'] || 'cl.exe'
+      cxx.flags = [ENV['CXXFLAGS'] || ENV['CFLAGS'] || %w(/c /nologo /W3 /Zi /MD /O2 /EHsc /D_CRT_SECURE_NO_WARNINGS)]
+      cxx.defines = %w(DISABLE_GEMS MRB_STACK_EXTEND_DOUBLING ENABLE_DEBUG)
+      cxx.option_include_path = '/I%s'
+      cxx.option_define = '/D%s'
+      cxx.compile_options = "%{flags} /Fo%{outfile} %{infile}"
+    end
+
     conf.linker do |linker|
-      linker.command = 'link.exe'
-      linker.flags = [%w(/nologo)]
-      linker.libraries = %w()
+      linker.command = ENV['LD'] || 'link.exe'
+      linker.flags = [ENV['LDFLAGS'] || %w(/NOLOGO /DEBUG /INCREMENTAL:NO /OPT:ICF /OPT:REF)]
       linker.libraries = %w()
       linker.library_paths = %w()
       linker.option_library = '%s.lib'
@@ -46,12 +54,12 @@ if ENV["MRUBY_CONFIG"]
     end
 
     conf.archiver do |archiver|
-      archiver.command = 'lib.exe'
+      archiver.command = ENV['AR'] || 'lib.exe'
       archiver.archive_options = '/nologo /OUT:%{outfile} %{objs}'
     end
 
     conf.yacc do |yacc|
-      yacc.command = 'bison.exe'
+      yacc.command = ENV['YACC'] || 'bison.exe'
       yacc.compile_options = '-o %{outfile} %{infile}'
     end
 
@@ -72,9 +80,9 @@ if ENV["MRUBY_CONFIG"]
   MRuby::Toolchain.new(:pax) do |conf|
     [conf.cc, conf.cxx, conf.objc, conf.asm].each do |cc|
       cc.command = GCC_PAX_BIN
-      cc.flags = [%w(-O0 -g2 -Wall -funwind-tables)]
+      cc.flags = [%w(-O0 -g2 -Wall -funwind-tables -std=gnu99)]
       cc.include_paths = ["#{MRUBY_ROOT}/include"].concat(LOCINCLUDE)
-      cc.defines = %w(ENABLE_DEBUG)
+      cc.defines = %w(ENABLE_DEBUG MRB_STACK_EXTEND_DOUBLING)
       cc.option_include_path = '-I%s'
       cc.option_define = '-D%s'
       cc.compile_options = '%{flags} -c %{infile} -o %{outfile} '
@@ -238,3 +246,4 @@ namespace :pax do
   desc "Compile MRB, generate package and upload"
   task :mrb_load => [:mrbc, :generate_aip, :upload]
 end
+
