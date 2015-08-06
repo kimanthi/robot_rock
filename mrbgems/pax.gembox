@@ -50,8 +50,26 @@ MRuby::GemBox.new do |conf|
   # Use Fiber class
   conf.gem :core => "mruby-fiber"
 
+  # Use Enumerator class (require mruby-fiber)
+  conf.gem :core => "mruby-enumerator"
+
+  # Use Enumerable::Lazy class (require mruby-enumerator)
+  conf.gem :core => "mruby-enum-lazy"
+
   # Use extended toplevel object (main) methods
   conf.gem :core => "mruby-toplevel-ext"
+
+  # Generate mirb command
+  # conf.gem :core => "mruby-bin-mirb"
+
+  # Generate mruby command
+  # conf.gem :core => "mruby-bin-mruby"
+
+  # Generate mruby-strip command
+  # conf.gem :core => "mruby-bin-strip"
+
+  # Use extensional Kernel module
+  conf.gem :core => "mruby-kernel-ext"
 
   # Use to Dir functions, used for mruby-require
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hs-regexp")
@@ -78,4 +96,5 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-json")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-context")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-msgpack")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-bignum")
 end
