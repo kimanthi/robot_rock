@@ -1,6 +1,6 @@
 [submodule "lib/mruby"]
 	path = lib/mruby
-	url = git@github.com:mruby/mruby.git
+	url = git@github.com:chasonr/mruby.git
 [submodule "lib/sdk"]
 	path = lib/sdk
 	url = git@github.com:cloudwalkio/pax_libs.git
@@ -67,3 +67,24 @@
 [submodule "lib/main"]
 	path = lib/main
 	url = git@github.com:cloudwalkio/main.git
+[submodule "mrbgems/mruby-base58"]
+	path = mrbgems/mruby-base58
+	url = git@github.com:scalone/mruby-base58.git
+[submodule "mrbgems/mruby-hmac"]
+	path = mrbgems/mruby-hmac
+	url = git@github.com:scalone/mruby-hmac.git
+[submodule "mrbgems/mruby-mock"]
+	path = mrbgems/mruby-mock
+	url = git@github.com:iij/mruby-mock.git
+[submodule "mrbgems/mruby-ripemd"]
+	path = mrbgems/mruby-ripemd
+	url = git@github.com:scalone/mruby-ripemd.git
+[submodule "mrbgems/mruby-sha1"]
+	path = mrbgems/mruby-sha1
+	url = git@github.com:scalone/mruby-sha1.git
+[submodule "mrbgems/mruby-sha2"]
+	path = mrbgems/mruby-sha2
+	url = git@github.com:h2so5/mruby-sha2.git
+[submodule "mrbgems/mruby-bignum"]
+	path = mrbgems/mruby-bignum
+	url = git@github.com:chasonr/mruby-bignum.git
