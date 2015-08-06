@@ -71,30 +71,36 @@ MRuby::GemBox.new do |conf|
   # Use extensional Kernel module
   conf.gem :core => "mruby-kernel-ext"
 
-  # Use to Dir functions, used for mruby-require
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hs-regexp")
-
   # Use to TestUnit
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
 
   # Use to interpret posxml
   # conf.gem File.join(MRUBY_PAX_MGEM, "mruby-posxml-parser")
 
   # Use to pack unpack functions
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hs-regexp")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-io")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sleep")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-dir")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tempfile")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-require")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-network")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mtest")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-socket")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pack")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-polarssl")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-qrcode")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-miniz")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sleep")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-msgpack")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-json")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-context")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-msgpack")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-network")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-ripemd")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-hmac")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sha2")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sha1")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-base58")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-bignum")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-simple-random")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mock")
 end
+
