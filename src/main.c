@@ -13,7 +13,6 @@
 #include "osal.h"
 #include "ui.h"
 #include <xui.h>
-#include "emvlib_Prolin.h"
 #include "keyboard.h"
 
 /* Include the mruby header */
@@ -137,18 +136,10 @@ int DeInit()
   return 0;
 }
 
-void emv_test_open(void)
-{
-  /*Should return 0*/
-  display("EMVCore Init %d", EMVCoreInit());
-}
-
 int main(int argc, char **argv)
 {
   Init();
+  SystemInit();
   robot_rock_execute();
   DeInit();
-
-  return 0;
 }
-
