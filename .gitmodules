@@ -91,3 +91,6 @@
 [submodule "lib/mruby"]
 	path = lib/mruby
 	url = git@github.com:scalone/mruby.git
+[submodule "mrbgems/mruby-tinyxml2"]
+	path = mrbgems/mruby-tinyxml2
+	url = git@github.com:h2so5/mruby-tinyxml2.git
