@@ -78,6 +78,8 @@ if ENV["MRUBY_CONFIG"]
   end
 
   MRuby::Toolchain.new(:pax) do |conf|
+    conf.define_singleton_method(:host_target) { "" }
+
     [conf.cc, conf.cxx, conf.objc, conf.asm].each do |cc|
       cc.command = GCC_PAX_BIN
       cc.flags = [%w(-O0 -g2 -Wall -funwind-tables -std=gnu99)]
