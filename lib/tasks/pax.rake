@@ -82,7 +82,7 @@ if ENV["MRUBY_CONFIG"]
       cc.command = GCC_PAX_BIN
       cc.flags = [%w(-O0 -g2 -Wall -funwind-tables -std=gnu99)]
       cc.include_paths = ["#{MRUBY_ROOT}/include"].concat(LOCINCLUDE)
-      cc.defines = %w(ENABLE_DEBUG MRB_STACK_EXTEND_DOUBLING)
+      cc.defines = %w(ENABLE_DEBUG MRB_STACK_EXTEND_DOUBLING SHA256_DIGEST_LENGTH=32 SHA512_DIGEST_LENGTH=64)
       cc.option_include_path = '-I%s'
       cc.option_define = '-D%s'
       cc.compile_options = '%{flags} -c %{infile} -o %{outfile} '
