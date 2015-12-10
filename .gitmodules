@@ -24,19 +24,19 @@
 	url = git@github.com:cloudwalkio/da_funk.git
 [submodule "mrbgems/mruby-io"]
 	path = mrbgems/mruby-io
-	url = git@github.com:cloudwalkio/mruby-io.git
+	url = git@github.com:iij/mruby-io.git
 [submodule "mrbgems/mruby-qrcode"]
 	path = mrbgems/mruby-qrcode
 	url = git@github.com:sadasant/mruby-qrcode.git
 [submodule "mrbgems/mruby-socket"]
 	path = mrbgems/mruby-socket
-	url = git@github.com:cloudwalkio/mruby-socket.git
+	url = git@github.com:iij/mruby-socket.git
 [submodule "mrbgems/mruby-sleep"]
 	path = mrbgems/mruby-sleep
 	url = git@github.com:matsumoto-r/mruby-sleep.git
 [submodule "mrbgems/mruby-dir"]
 	path = mrbgems/mruby-dir
-	url = git@github.com:cloudwalkio/mruby-dir.git
+	url = git@github.com:iij/mruby-dir.git
 [submodule "mrbgems/mruby-require"]
 	path = mrbgems/mruby-require
 	url = git@github.com:iij/mruby-require.git
