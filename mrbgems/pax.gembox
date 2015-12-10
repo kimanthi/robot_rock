@@ -71,6 +71,9 @@ MRuby::GemBox.new do |conf|
   # Use extensional Kernel module
   conf.gem :core => "mruby-kernel-ext"
 
+  conf.gem :core => "mruby-eval"
+  conf.gem :core => "mruby-exit"
+
   # Use to TestUnit
 
   # Use to interpret posxml
