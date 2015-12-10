@@ -113,7 +113,7 @@ if ENV["MRUBY_CONFIG"]
     #TODO builddir
     toolchain :pax
 
-    conf.cc.defines = %w(PAX EXIT_FAILURE ENABLE_DEBUG)
+    conf.cc.defines = %w(PAX ENABLE_DEBUG)
     conf.cc.include_paths << MRUBY_PAX_INC
     conf.bins = []
     conf.gembox File.join(MRUBY_PAX_MGEM, "pax")
