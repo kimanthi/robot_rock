@@ -143,6 +143,12 @@ namespace :pax do
       ENV["MRUBY_CONFIG"] = File.expand_path(__FILE__)
     end
 
+    desc "Build"
+    task :build => :env  do
+      sh "rake #{build_args.join(' ')}"
+      exit
+    end
+
     desc "Rebuild"
     task :rebuild => :env  do
       sh "rake clean #{build_args.join(' ')}"
