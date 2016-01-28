@@ -14,7 +14,7 @@ int get_string(char *sValue[128], int min, int max, int mode, int y, int x);
 #define SCREEN_X 320
 #define SCREEN_Y 240
 
-#define LINE_WIDTH 16
-#define LINE_HEIGHT 32
+#define LINE_WIDTH 17
+#define LINE_HEIGHT 30
 
 #endif  /* PRINT_TEXT_H */
