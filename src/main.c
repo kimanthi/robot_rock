@@ -93,12 +93,6 @@ static void CrashReportInit(void)
 void StatusbarInit(void)
 {
   XuiSetStatusbarIcon(0,"./res/mobile100.png");
-  XuiSetStatusbarIcon(1,"./res/modem.png");
-  XuiSetStatusbarIcon(2,"./res/ethernet.png");
-  XuiSetStatusbarIcon(3,"./res/wifi100.png");
-  XuiSetStatusbarIcon(4,"./res/lock.png");
-  XuiSetStatusbarIcon(5,"./res/card.png");
-  XuiSetStatusbarIcon(6,"./res/print.png");
   XuiSetStatusbarIcon(7,"./res/battery0c.png");
 }
 
