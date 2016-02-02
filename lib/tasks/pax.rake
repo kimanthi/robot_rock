@@ -192,12 +192,20 @@ namespace :pax do
     FileUtils.rm_rf(mrb)
     FileUtils.mkdir_p(mrb)
 
+    shared = File.join(MRUBY_PAX_ROOT, "out", "shared")
+    FileUtils.rm_rf(shared)
+    FileUtils.mkdir_p(shared)
+
+
     # Main
     FileUtils.cd MAIN_LIB
     sh "rake"
     FileUtils.cd MRUBY_PAX_ROOT
     FileList[File.join(MAIN_LIB, "out", "main", "*")].each do |file|
       FileUtils.mv(file, mrb)
+    end
+    FileList[File.join(MAIN_LIB, "out", "shared", "*")].each do |file|
+      FileUtils.mv(file, shared)
     end
 
     # DaFunk
