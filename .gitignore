@@ -11,4 +11,5 @@ out/RobotRock
 out/app.nostrip
 out/pkg/RobotRock.aip
 out/main/*
+out/shared/*
 test/execution/*
