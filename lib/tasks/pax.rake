@@ -199,7 +199,7 @@ namespace :pax do
 
     # Main
     FileUtils.cd MAIN_LIB
-    sh "rake"
+    sh "bundle exec rake"
     FileUtils.cd MRUBY_PAX_ROOT
     FileList[File.join(MAIN_LIB, "out", "main", "*")].each do |file|
       FileUtils.mv(file, mrb)
@@ -210,7 +210,7 @@ namespace :pax do
 
     # DaFunk
     FileUtils.cd DA_FUNK_LIB
-    sh "rake"
+    sh "bundle exec rake"
     FileUtils.cd MRUBY_PAX_ROOT
     funk     = File.join(DA_FUNK_LIB, "out", "da_funk.mrb")
     funk_mrb = File.join(mrb, "da_funk.mrb")
