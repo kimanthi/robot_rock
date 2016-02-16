@@ -185,6 +185,12 @@ namespace :pax do
     sh "#{File.join(PAX_LIB_ROOT, "sdk", "tools", "genaip")} -I pkginfo -o pkg/RobotRock.aip"
   end
 
+  desc "Install gems needed by main project"
+  task :bundle_install do
+    FileUtils.cd MAIN_LIB
+    sh "bundle install"
+  end
+
   desc "Generate mrb file"
   task :mrbc do
     # Clean
@@ -195,7 +201,6 @@ namespace :pax do
     shared = File.join(MRUBY_PAX_ROOT, "out", "shared")
     FileUtils.rm_rf(shared)
     FileUtils.mkdir_p(shared)
-
 
     # Main
     FileUtils.cd MAIN_LIB
