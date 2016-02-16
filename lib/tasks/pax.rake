@@ -14,7 +14,7 @@ LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_
 
 SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
-require File.join(MRUBY_PAX_ROOT, "lib", "version.rb")
+require File.join(MRUBY_PAX_ROOT, "mrblib", "version.rb")
 
 if RUBY_PLATFORM == "i386-mingw32"
   ENV["MRBC"]  = File.join(MRUBY_LIB, "bin", "mrbc.exe")
