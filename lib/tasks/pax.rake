@@ -219,7 +219,7 @@ namespace :pax do
     FileUtils.cd MRUBY_PAX_ROOT
     funk     = File.join(DA_FUNK_LIB, "out", "da_funk.mrb")
     funk_mrb = File.join(mrb, "da_funk.mrb")
-    FileUtils.mv(funk, funk_mrb)
+    FileUtils.cp(funk, funk_mrb)
 
     # PAX
     pax_out = File.join(mrb, "pax.mrb")
