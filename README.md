@@ -1,48 +1,61 @@
 # RobotRock
 
-RobotRock is The Walk Ruby Platform on PAX.
+RobotRock is the Ruby Walk Framework for PAX.
 
 ## Setup
 
-Initialize and update submodules
+1. Clone on `/shared/pax/robot_rock` path.
 
-	$ git submodule init
-	$ git submodule update
+2. Initialize and update submodules
 
-## Platform Info
+```
+$ git submodule init
+$ git submodule update --recursive	
+# If '--rescursive' not work check mrbgems/mruby-polarssl and mrbgems/mruby-qrcode submodules.
+```
 
-Details about the environment
+3. Install C/C++ Express, [check link here.](https://www.visualstudio.com/pt-br/products/visual-studio-express-vs.aspx)
 
-1. Support only 16 bytes file names.
-2. Support only 255 files.
-3. Don't support rename, pipe, f* functions(fseek, fopen, fread).
-4. NEVER create more than one file descriptor for the same file, it's could couse leak and problem in the mruby stack, example, File.new,read and File.delete, close the File instance before delete.    
-	
-	
+4. Insert the terminal on the VM and check driver recognation, if you have problems, check `lib/sdk/driver*`.
+
+5. On `Vagrant ssh` setup bundler, execute `rake pax:bundle_install`.
+
+
+## Compiling and Deploying
+
+1. Compile mruby, generating libmruby.a, on `Visual Studio Prompt Command` using `rake pax:mruby:build`.
+
+2. Compile ruby files, generating mrb files and resources, on `Vagrant ssh` using `rake pax:mrbc`
+
+3. Compile PAX project, generating the final package, on `Vagrant ssh` using `rake pax:rebuild`
+
+4. Upload the package, on `Vagrant ssh` using `rake pax:upload`
+
+
 ## Usage
+
 Rake tasks availables on Vagrant:
 
-	rake pax:clean          # Clobber/Clean PAX
-	rake pax:compile        # Compile PAX
-	rake pax:musl:clean     # Clean Musl libc
-	rake pax:musl:compile   # Compile Musl libc
-	rake pax:musl:setup     # Setup musl ENV
-	rake pax:setup          # Setup PAX ENV
-	rake pax:mrbc           # Generate mrb file
+    rake clean               # Remove any temporary products
+    rake clobber             # Remove any generated files
+    rake pax:bundle_install  # Install gems needed by main project
+    rake pax:clean           # Clobber/Clean PAX
+    rake pax:compile         # Compile PAX
+    rake pax:deploy          # Rebuild PAX
+    rake pax:mrb_load        # Compile MRB, generate package and upload
+    rake pax:mrbc            # Generate mrb file
+    rake pax:rebuild         # Rebuild PAX
+    rake pax:setup           # Setup PAX ENV
+    rake pax:test            # Test Platform Main
+    rake pax:upload          # Upload
 	
 Rake tasks availables on Visual Studio Commnad Prompt
 
-	rake pax:mruby:clean    # Clean MRuby
-	rake pax:mruby:compile  # Compile MRuby and generate libmruby.a
-	rake pax:mruby:setup    # Setup
-
-## Ruby Compilation
-
-Command `rake pax:mrbc` compile ruby and generate 2 files. Generate from 2 differents resource to separete DaFunk Library from PAX Library, so I're able to update just the daFunk library.
-
- - `out/obj/mrb/pax.mrb` mruby bytecode from `mrblib/*.rb`
- - `out/obj/mrb/da_funk.mrb` mruby bytecode from `lib/da_funk/lib/**/*.rb`
- 
+    rake pax:mruby:build     # Build
+    rake pax:mruby:clean     # Clean MRuby
+    rake pax:mruby:compile   # Compile MRuby and generate libmruby.a
+    rake pax:mruby:env       # Setup env
+    rake pax:mruby:rebuild   # Rebuild
 
 ## Linking libraries
 
@@ -80,8 +93,3 @@ $ ln -s lib/sdk/emv/libEMVS2FMProlin_v506.so ./out/lib
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-
-Adicionar assunto sobre File, mrubygem io.
-Adicionar unpack pack
-Escrever mais samples, buscat no gist
