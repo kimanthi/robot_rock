@@ -4,21 +4,20 @@ RobotRock is the Ruby Walk Framework for PAX.
 
 ## Setup
 
-1. Clone on `/shared/pax/robot_rock` path.
+- Clone on `/shared/pax/robot_rock` path.
 
-2. Initialize and update submodules
+- Initialize and update submodules:
 
 ```
-$ git submodule init
-$ git submodule update --recursive	
-# If '--rescursive' not work check mrbgems/mruby-polarssl and mrbgems/mruby-qrcode submodules.
+git submodule update --init --recursive
+# If '--rescursive' not work check mrbgems/mruby-polarssl and mrbgems/mruby-qrcode submodules
 ```
 
-3. Install C/C++ Express, [check link here.](https://www.visualstudio.com/pt-br/products/visual-studio-express-vs.aspx)
+- Install C/C++ Express, [check link here.](https://www.visualstudio.com/pt-br/products/visual-studio-express-vs.aspx)
 
-4. Insert the terminal on the VM and check driver recognation, if you have problems, check `lib/sdk/driver*`.
+- Insert the terminal on the VM and check driver recognation, if you have problems, check `lib/sdk/driver*`.
 
-5. On `Vagrant ssh` setup bundler, execute `rake pax:bundle_install`.
+- On `Vagrant ssh` setup bundler, execute `rake pax:bundle_install`.
 
 
 ## Compiling and Deploying
@@ -85,6 +84,11 @@ $ pwd
 /Users/thiagoscalone/projects/plano_be/walk/pax/robot_rock
 $ ln -s lib/sdk/emv/libEMVS2FMProlin_v506.so ./out/lib
 ```
+
+## Bump version
+
+- Change version number on the files `mrblib/version.rb` and `out/appinfo`.
+
 
 ## Contributing
 
