@@ -90,12 +90,6 @@ static void CrashReportInit(void)
   signal(SIGPIPE,   OsSaveCrashReport);
 }
 
-void StatusbarInit(void)
-{
-  XuiSetStatusbarIcon(0,"./res/mobile100.png");
-  XuiSetStatusbarIcon(7,"./res/battery0c.png");
-}
-
 int ScreenInit(void)
 {
   XuiColor colorTitleBg;
@@ -106,8 +100,6 @@ int ScreenInit(void)
   colorTitleBg.a = 0x00;
 
   XuiCanvasSetBackground(XuiRootCanvas(), XUI_BG_NORMAL, NULL, colorTitleBg);
-
-  StatusbarInit();
 
   return 0;
 }
@@ -130,10 +122,15 @@ int DeInit()
   return 0;
 }
 
+int SystemInit(void);
+
 int main(int argc, char **argv)
 {
   Init();
   SystemInit();
   robot_rock_execute();
   DeInit();
+
+  return 0;
 }
+
