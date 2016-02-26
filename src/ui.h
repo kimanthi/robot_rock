@@ -6,6 +6,8 @@
 int xdisplay(char *buf, int len, int x, int y);
 void display(const char *format, ...);
 void display_bitmap(char *path, int y, int x);
+void display_clear_line(int line);
+void display_clear(void);
 XuiFont *OpenFont();
 XuiFont *GetFont();
 void CloseFont();
