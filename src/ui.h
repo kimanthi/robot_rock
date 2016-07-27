@@ -13,10 +13,16 @@ XuiFont *GetFont();
 void CloseFont();
 int get_string(char *sValue[128], int min, int max, int mode, int y, int x);
 
-#define SCREEN_X 320
-#define SCREEN_Y 240
+#define D200_SCREEN_X 320
+#define D200_SCREEN_Y 240
 
-#define LINE_WIDTH 17
-#define LINE_HEIGHT 30
+#define S920_SCREEN_X 240
+#define S920_SCREEN_Y 320
+
+#define D200_LINE_WIDTH 17
+#define D200_LINE_HEIGHT 30
+
+#define S920_LINE_WIDTH 11
+#define S920_LINE_HEIGHT 20
 
 #endif  /* PRINT_TEXT_H */
