@@ -62,16 +62,22 @@ static int GuiInit(void)
 {
   int ret;
   int  xui_argc=2;
-  char *xui_argv[] = {"ROTATE=0","STATUSBAR=22"};
+  char model[32]="\0";
+  char *xui_argv_s920[] = {"ROTATE=90","STATUSBAR=16"};
+  char *xui_argv_d200[] = {"ROTATE=0","STATUSBAR=22"};
 
-  ret = XuiOpen(xui_argc, xui_argv);
-  if (ret == XUI_RET_OK) {
+  memset(&model, 0, sizeof(model));
+	OsRegGetValue("ro.fac.mach", model);
+
+  if (strcmp(model, "d200") == 0)
+    ret = XuiOpen(xui_argc, xui_argv_d200);
+  else
+    ret = XuiOpen(xui_argc, xui_argv_s920);
+
+  if (ret == XUI_RET_OK)
     return RET_OK;
-  }
-  else {
+  else
     return -1;
-  }
-
 }
 
 static void GuiDeinit(void)
