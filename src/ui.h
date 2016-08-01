@@ -22,7 +22,7 @@ int get_string(char *sValue[128], int min, int max, int mode, int y, int x);
 #define D200_LINE_WIDTH 17
 #define D200_LINE_HEIGHT 30
 
-#define S920_LINE_WIDTH 11
-#define S920_LINE_HEIGHT 20
+#define S920_LINE_WIDTH 12
+#define S920_LINE_HEIGHT 22
 
 #endif  /* PRINT_TEXT_H */
