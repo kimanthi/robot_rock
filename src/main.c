@@ -35,17 +35,16 @@ const uint8_t start[] = {
   0x00,0x08,
 };
 
-mrb_state *mrb;
-
-mrb_state *mrb_robot(void)
-{
-  return mrb;
-}
-
 int robot_rock_execute(void)
 {
   mrbc_context *c;
-  mrb = mrb_open();
+  mrb_state *mrb;
+  mrb_allocf allocf;
+  void *ud;
+
+  context_memprof_init(&allocf, &ud);
+
+  mrb = mrb_open_allocf(allocf, ud);
 
   c = mrbc_context_new(mrb);
 
