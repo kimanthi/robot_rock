@@ -67,7 +67,7 @@ static int GuiInit(void)
   char *xui_argv_d200[] = {"ROTATE=0","STATUSBAR=22"};
 
   memset(&model, 0, sizeof(model));
-	OsRegGetValue("ro.fac.mach", model);
+  OsRegGetValue("ro.fac.mach", model);
 
   if (strcmp(model, "d200") == 0)
     ret = XuiOpen(xui_argc, xui_argv_d200);
