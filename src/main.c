@@ -35,6 +35,8 @@ const uint8_t start[] = {
   0x00,0x08,
 };
 
+void context_memprof_init(mrb_allocf *funp, void **udp);
+
 int robot_rock_execute(void)
 {
   mrbc_context *c;
