@@ -12,10 +12,10 @@
 XuiFont *xFont;
 XuiColor colorMsgFg;
 
-int screen_x    = 0;
-int screen_y    = 0;
-int line_width  = 0;
-int line_height = 0;
+extern int screen_x;
+extern int screen_y;
+extern int line_width;
+extern int line_height;
 
 static int fix_x(int x)
 {
