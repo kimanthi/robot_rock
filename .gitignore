@@ -10,6 +10,7 @@ out/obj/*
 out/RobotRock
 out/app.nostrip
 out/pkg/RobotRock.aip
+out/pkg/*
 out/main/*
 out/shared/*
 test/execution/*
