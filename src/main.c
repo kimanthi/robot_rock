@@ -9,17 +9,18 @@
 #include <signal.h>
 #include <fcntl.h>
 
-/*PAX*/
-#include "osal.h"
-#include "ui.h"
-#include <xui.h>
-#include "keyboard.h"
-
 /* Include the mruby header */
 #include "mruby.h"
 #include "mruby/value.h"
 #include "mruby/compile.h"
 #include "mruby/proc.h"
+
+/*PAX*/
+#include "osal.h"
+#include "ui.h"
+#include <xui.h>
+#include "keyboard.h"
+#include "debugger.h"
 
 const uint8_t start[] = {
   0x52,0x49,0x54,0x45,0x30,0x30,0x30,0x32,0x28,0x53,0x00,0x00,0x00,0xa2,0x4d,0x41,
