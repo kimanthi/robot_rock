@@ -11,5 +11,6 @@
  * return 0 if successful
  */
 int start_debug();
+void ContextLogInfo(mrb_state *mrb, const char *format, ...);
 
 #endif
