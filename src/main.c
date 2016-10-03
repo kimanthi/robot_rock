@@ -63,7 +63,6 @@ int robot_rock_execute(void)
 static int GuiInit(void)
 {
   int ret;
-  int  xui_argc=2;
   char model[32]="\0";
   char *xui_argv_s920[] = {"ROTATE=90","STATUSBAR=16"};
   char *xui_argv_d200[] = {"ROTATE=0","STATUSBAR=22"};
@@ -72,9 +71,9 @@ static int GuiInit(void)
   OsRegGetValue("ro.fac.mach", model);
 
   if (strcmp(model, "d200") == 0)
-    ret = XuiOpen(xui_argc, xui_argv_d200);
+    ret = XuiOpen(2, xui_argv_d200);
   else
-    ret = XuiOpen(xui_argc, xui_argv_s920);
+    ret = XuiOpen(2, xui_argv_s920);
 
   if (ret == XUI_RET_OK)
     return RET_OK;
