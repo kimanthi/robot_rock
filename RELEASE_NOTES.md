@@ -7,6 +7,69 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.0.1 - 2016-10-03
+
+- da_funk (0.7.9)
+  - Implement seconds to Scheduler timer.
+  - Implement Device::IO.getxy to support touchscreen.
+  - Adopt try_user in Device::Network.
+  - Implement Helper#try_user to implement a user interruption.
+  - Use getc(milliseconds) instead of sleep to improve UX in Helper.
+  - Replace ContextLog.error by ContextLog.exception.
+  - Adopt DaFunk::Struct instead of Struct in Notifications.
+  - Send a Serf#event if creation interval exceed.
+  - Fix leak I18n copying translation in every call.
+  - Close serf socket if command has no reply.
+  - Implement DaFunk::Struct to avoid memory leaks from mruby.
+  - Check key cancel and return it at get_format.
+  - Update README.
+- main (1.1.1)
+  - Bug fix timer handler call.
+  - Refactoring admin menu improving UX and translation.
+  - EMV Listener only call initialise if icc.detected.
+  - Enable Notifications
+  - Display emv password in the next line.
+- funky-emv (0.4.0)
+  - Fix script processing sending to TLV command only what EMVCompleteTrans require.
+  - Change POS Entry for 0x04.
+  - Display clear after get_pin functions.
+  - Replace 0x9C(Transaction Type) from EMV_PAYMENT(0x40) EMV_GOODS&EMV_CASH (0x00)
+  - Implement InitData.localtion_mode.
+  - Add EmvTransaction.to_json/from_json methods to serialise and deserialise data and info structures.
+  - Add refund to process_data.
+  - Delete and load pki’s keys on every transaction.
+  - Set tlv 0x8A from self.finish_data.auth_resp_code at EmvPax.finish
+  - Remove ICC Application Usage Control definition.
+  - Do not generate tags map in load time, but pre define in ruby to improve performance.
+  - Refactoring lines and row to display application label.
+  - Add EmvRow#string
+  - Support to start EmvStruct with pre defined values.
+  - Bug fix doesn’t call set_tlv for amount_other if the value is 0.
+  - Refactoring all returns at EmvPax to use values from biblioteca compartilhada.
+  - Return PPCOMP_TABERR if problem to load any table row.
+  - Review timeouts and commentaries at pin block callbacks.
+  - Refactoring selection block using menu function from helper and return values from constants of PAX::EMV.
+  - Delete pkis before read tables.
+  - Use random to generate Unpredictable Number.
+  - Indent emv_pax.rb.
+  - Review get_pin_block clear and message display.
+  - Clear display after print :emv_not_accept.
+  - Add 200 milliseconds sleep time before call any get pin function to fix display problems.
+  - Replace application label tag from 0x50 to 0x9F12.
+- posxml_parser (0.9.3)
+  - Replace schedule minutes for seconds.
+  - Support INIT_DATA[:bAcquirerLocationMode].
+  - input_money returns -2 if Device::IO::CANCEL.
+  - Do not start a new runtime in EventHandlers.
+  - Refactoring card_read changing check order.
+  - Replace ContextLog.error by ContextLog.exception.
+  - Return empty value at input_money if user cancel.
+  - Add bfRefund/refund from PROCESS_DATA.
+  - Support json intilization parameter at runtime level.
+  - Comment ContextLog.info calls.
+  - Add funky-emv version in gem spec.
+- Add Custom crash report.
+
 ### 5.0.0 - 2016-09-06
 
 - Update mruby-dir, mruby-hmac, mruby-json, mruby-pack, mruby-regexp-pcre, mruby-socket, mruby-tempfile, mruby-tinyxml2.
