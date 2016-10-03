@@ -86,15 +86,34 @@ static void GuiDeinit(void)
   XuiClose();
 }
 
+static void RobotRockCrash(int sig)
+{
+  mrbc_context *c;
+  mrb_state *mrb;
+
+  display("before crash");
+  OsSaveCrashReport(sig);
+  display("after crash");
+
+  mrb = mrb_open();
+  c = mrbc_context_new(mrb);
+  ContextLog(mrb, 3, "CRASH");
+  mrbc_context_free(mrb, c);
+  mrb_close(mrb);
+  return 0;
+
+  OsReboot();
+}
+
 static void CrashReportInit(void)
 {
-  signal(SIGILL,    OsSaveCrashReport);
-  signal(SIGABRT,   OsSaveCrashReport);
-  signal(SIGBUS,    OsSaveCrashReport);
-  signal(SIGFPE,    OsSaveCrashReport);
-  signal(SIGSEGV,   OsSaveCrashReport);
-  signal(SIGSTKFLT, OsSaveCrashReport);
-  signal(SIGPIPE,   OsSaveCrashReport);
+  signal(SIGILL,    RobotRockCrash);
+  signal(SIGABRT,   RobotRockCrash);
+  signal(SIGBUS,    RobotRockCrash);
+  signal(SIGFPE,    RobotRockCrash);
+  signal(SIGSEGV,   RobotRockCrash);
+  signal(SIGSTKFLT, RobotRockCrash);
+  signal(SIGPIPE,   RobotRockCrash);
 }
 
 int ScreenInit(void)
