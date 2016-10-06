@@ -100,7 +100,6 @@ static void RobotRockCrash(int sig)
   ContextLog(mrb, 3, "CRASH");
   mrbc_context_free(mrb, c);
   mrb_close(mrb);
-  return 0;
 
   OsReboot();
 }
