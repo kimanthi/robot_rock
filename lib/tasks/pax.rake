@@ -181,6 +181,8 @@ namespace :pax do
   end
 
   task :generate_aip do
+    signature = ENV["SIGNATURE"] || "mockup"
+    sh "echo signer=#{signature} > #{File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig")}"
     FileUtils.cd "#{File.join(MRUBY_PAX_ROOT, "out")}"
     sh "#{File.join(PAX_LIB_ROOT, "sdk", "tools", "genaip")} -I pkginfo -o pkg/RobotRock.aip"
   end
