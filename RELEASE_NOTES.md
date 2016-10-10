@@ -7,6 +7,10 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.0.3 - 2016-10-10
+
+- funky-emv (0.4.2)
+
 ### 5.0.2 - 2016-10-06
 
 - Implement task to generate device.sig.
