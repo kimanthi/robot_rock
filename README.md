@@ -90,6 +90,11 @@ $ ln -s lib/sdk/emv/libEMVS2FMProlin_v506.so ./out/lib
 - Change version number on the files `mrblib/version.rb` and `out/appinfo`.
 
 
+## Certificates
+
+- You can find all certificates at our Dropbox account [here](https://www.dropbox.com/home/Walk/Pos/PAX/certificates)
+
+
 ## Contributing
 
 1. Fork it
