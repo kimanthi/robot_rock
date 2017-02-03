@@ -19,8 +19,8 @@ int get_string(char *sValue[128], int min, int max, int mode, int y, int x);
 #define S920_SCREEN_X 240
 #define S920_SCREEN_Y 320
 
-#define D200_LINE_WIDTH 17
-#define D200_LINE_HEIGHT 30
+#define D200_LINE_WIDTH 16
+#define D200_LINE_HEIGHT 27
 
 #define S920_LINE_WIDTH 12
 #define S920_LINE_HEIGHT 22
