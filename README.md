@@ -85,9 +85,11 @@ $ pwd
 $ ln -s lib/sdk/emv/libEMVS2FMProlin_v506.so ./out/lib
 ```
 
-## Bump version
+## Release and Bump version
 
 - Change version number on the files `mrblib/version.rb` and `out/appinfo`.
+- Generate mrb files `rake pax:mrbc SIGNATURE=production`
+- Generate aip `rake pax:rebuild SIGNATURE=production`
 
 
 ## Certificates

@@ -11,6 +11,7 @@ MRUBY_PAX_INC  = File.join(MRUBY_PAX_ROOT, "src")
 GCC_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")
 AR_PAX_BIN     = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-ar")
 LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"), File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include"), File.join(PAX_LIB_ROOT, "emv")]
+SIGNATURE      = ENV["SIGNATURE"] == "production" ? "production" : "mockup"
 
 SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
@@ -181,8 +182,7 @@ namespace :pax do
   end
 
   task :generate_aip do
-    signature = ENV["SIGNATURE"] || "mockup"
-    sh "echo signer=#{signature} > #{File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig")}"
+    File.open(File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig"), "wb") {|f| f.write("signer=#{SIGNATURE}") }
     FileUtils.cd "#{File.join(MRUBY_PAX_ROOT, "out")}"
     sh "#{File.join(PAX_LIB_ROOT, "sdk", "tools", "genaip")} -I pkginfo -o pkg/RobotRock.aip"
   end
@@ -225,7 +225,13 @@ namespace :pax do
 
     # PAX
     pax_out = File.join(mrb, "pax.mrb")
-    pax_rb  = Dir[File.join(MRUBY_PAX_ROOT, "mrblib", "*.rb")]
+    pax_rb = [
+      File.join(MRUBY_PAX_ROOT, "mrblib", "version.rb"),
+      File.join(MRUBY_PAX_ROOT, "mrblib", "init.rb"),
+      File.join(MRUBY_PAX_ROOT, "mrblib", "device.rb"),
+      File.join(MRUBY_PAX_ROOT, "mrblib", "#{SIGNATURE}.rb")
+    ]
+
     sh "#{ENV['MRBC']} -g -o #{pax_out} #{pax_rb.join(" ")}"
   end
 
