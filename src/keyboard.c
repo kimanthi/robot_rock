@@ -66,7 +66,7 @@ int GetKey(long timeout)
       /* value 1 means press key */
       /* value 0 means release key */
       /* value 2 means long press key */
-      if (ev[i].type == EV_KEY && ev[i].value == 1){
+      if (ev[i].type == EV_KEY && (ev[i].value == 1 || ev[i].value == 2)){
         code = ev[i].code;
         flag = 0;
       }
