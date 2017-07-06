@@ -263,6 +263,25 @@ namespace :pax do
     sh "mruby ./main.rb"
   end
 
+  desc "Last compilation package generation"
+  task :package do
+    require "archive/zip"
+
+    pkg_path = File.join(MRUBY_PAX_ROOT, "out", "pkg", PAX.version)
+    git_hash = `git rev-parse --short HEAD`.chomp
+    sign     = File.read(File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig")).split("=").last
+    name     = "cloudwalk_framework-prolin-#{PAX.version.gsub(".", "_")}-#{sign}-#{git_hash}.zip"
+    zip      = File.join(MRUBY_PAX_ROOT, "out", "pkg", name)
+
+    FileUtils.rm_rf(pkg_path)
+    FileUtils.mkdir_p(File.join(pkg_path, "driver"))
+    FileUtils.cp_r(File.join(PAX_LIB_ROOT, "TermAssist"), pkg_path)
+    FileUtils.cp(File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip"), File.join(pkg_path, "cloudwalk_framework.aip"))
+    FileUtils.cp(File.join(PAX_LIB_ROOT, "driver", "posvcom_2.5.0.0.rar"), File.join(pkg_path, "driver"))
+
+    Archive::Zip.archive(zip, pkg_path)
+  end
+
   desc "Compile PAX"
   task :compile => [:setup, :link]
 
