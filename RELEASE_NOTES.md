@@ -7,6 +7,22 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.4.3 - 2017-07-12
+
+- Update main (1.8.0)
+    - Do not exclude cw_apns.dat.
+    - Update da_funk (0.9.1)
+        - Fix file deletable check and extra parameters for additional files at ParamsDat.format!.
+    - Update posxml_parser (0.15.2)
+        - Raise InstructionNotFoundError during XsdParser#to_bytecode if instruction not found in xsd.
+        - Fix PosxmlCompiler parser to avoid empty statements.
+        - Add warning for application size limit.
+        - Update da_funk (0.9.1).
+        - Update funky-tlv(0.2.3).
+    - Update funky-tlv (0.2.3)
+        - Refactoring Hash.from_ber_tlv replacing while for loop do, and add a test case.
+        - Add option -b to compilation using cloudwalk CLI.
+
 ### 5.4.2 - 2017-07-05
 
 - Update mruby-pax.
