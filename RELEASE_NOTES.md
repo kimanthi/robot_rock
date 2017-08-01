@@ -7,6 +7,21 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.5.0 - 2017-07-25
+
+- Update main (1.11.0)
+    - Update da_funk(0.9.3)
+        - Refactoring Network.configured? fixing the return which must be a bool.
+        - Create Device::Setting.wifi_password and Device::Setting.apn_password.
+    - Adopt da_funk 0.9.3: - Device::Setting.wifi_password; - Device::Setting.media_primary; - Bool return for Device::Network.connected?
+    - Refactoring Connection Management and Payment Channel handlers to support fallback communication.
+    - Update posxml_parser(0.15.3)
+        - Adopt da_funk 0.9.3: - Device::Setting.wifi_password; - Bool return for Device::Network.connected?
+        - Black variablereturn if mcc information nil at system_info.
+        - Remove windows clear at input_integer.
+        - Refactoring payment channel use to better debug.
+    - Update funky-emv(0.6.0)
+        - Fix finish tags generation.
 
 ### 5.4.5 - 2017-07-13
 
