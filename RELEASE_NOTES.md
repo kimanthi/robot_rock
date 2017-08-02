@@ -7,6 +7,19 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.6.0 - 2017-08-02
+
+- Update mruby-pax
+    - Fix CA Public Key Moddules Byte Length conversation for unexpected value.
+- Update main (1.12.0)
+    - Update funky-emv (0.7.0)
+        - Get AID from table row on SharedLibrary during the init.
+        - Get tag 9F06 to set AID when EMVShared library.
+        - Get tag 9F06 to set AID when EMVPax.
+        - Send aid from 9f06 if isn’t necessary to delete tag too.
+        - Remove EmvSharedLibrary.go_on_chip_tlv_result debugs.
+        - Fix EmvPax.get_aid_tlv getting the correct tags (4F and 9F12).
+
 ### 5.5.0 - 2017-07-25
 
 - Update main (1.11.0)
