@@ -7,6 +7,25 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.9.0 - 2017-08-10
+
+- Update mruby-pax
+- da_funk (0.11.0)
+    - Fix connection_management flag.
+- main (1.16.0)
+    - Decrease getc wait milliseconds of key_main handler from 700 to 200.
+    - Bug fix, only close PaymentChannel client if it was created.
+    - Rescue SocketError at PaymentChannel.
+    - Fix connection management flag.
+    - Update cloudwalk_handshake (0.10.0)
+        - Log SSL exceptions.
+    - funky-emv (0.8.0)
+        - Support to ICC_CMD_ERR on EmvPax.
+        - Remove application version debug.
+        - Change Funky-EMV license.
+    - posxml_parser (0.17.0)
+        - Remove ISO20022 debugs
+
 ### 5.8.0 - 2017-08-08
 
 - Update mruby-pax
