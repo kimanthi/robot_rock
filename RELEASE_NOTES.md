@@ -7,6 +7,15 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.10.0 - 2017-08-16
+
+- Update main (1.18.0).
+    - Support disable_datetime flag.
+- Update da_funk (0.13.0).
+    - Implement tcp_recv_timeout as custom attribute at Device::Setting.
+- Update mruby-pax.
+    - Increase DNS timeout from 5000 to 30000 milliseconds.
+
 ### 5.9.0 - 2017-08-10
 
 - Update mruby-pax
