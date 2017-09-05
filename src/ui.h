@@ -8,9 +8,9 @@ void display(const char *format, ...);
 void display_bitmap(char *path, int y, int x);
 void display_clear_line(int line);
 void display_clear(void);
-XuiFont *OpenFont();
-XuiFont *GetFont();
-void CloseFont();
+XuiFont *OpenFont(int r, int g, int b, int a, int x, int y, int width, int height, char *path);
+XuiFont *GetFont(void);
+void CloseFont(void);
 int get_string(char *sValue[128], int min, int max, int mode, int y, int x);
 
 #define D200_SCREEN_X 320

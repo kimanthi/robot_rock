@@ -85,39 +85,29 @@ void display_clear(void)
   XuiClearArea(XuiRootCanvas(), 0, 0, screen_x, screen_y);
 }
 
-XuiFont *OpenFont(void)
+XuiFont *OpenFont(int r, int g, int b, int a, int x, int y, int width, int height, char *path)
 {
-  char model[32]="\0";
+  colorMsgFg.r = r;
+  colorMsgFg.g = g;
+  colorMsgFg.b = b;
+  colorMsgFg.a = a;
+  line_width   = width;
+  line_height  = height;
 
-  memset(&model, 0, sizeof(model));
-	OsRegGetValue("ro.fac.mach", model);
+  if (x != 0) screen_x = x;
+  if (y != 0) screen_y = y;
 
-  colorMsgFg.r = 0x00;
-  colorMsgFg.g = 0x00;
-  colorMsgFg.b = 0x00;
-  colorMsgFg.a = 0xff;
-
-  if (strcmp(model, "d200") == 0) {
-    screen_x    = D200_SCREEN_X;
-    screen_y    = D200_SCREEN_Y;
-    line_width  = D200_LINE_WIDTH;
-    line_height = D200_LINE_HEIGHT;
-  } else {
-    screen_x    = S920_SCREEN_X;
-    screen_y    = S920_SCREEN_Y;
-    line_width  = S920_LINE_WIDTH;
-    line_height = S920_LINE_HEIGHT;
-  }
-
-  return xFont = XuiCreateFont("./res/inconsolata.ttf", 0, 0);
+  return xFont = XuiCreateFont(path, 0, 0);
 }
 
 void CloseFont(void)
 {
-  XuiDestroyFont(xFont);
+  if (xFont != NULL) XuiDestroyFont(xFont);
 }
 
 XuiFont *GetFont(void)
 {
   return xFont;
 }
+
+

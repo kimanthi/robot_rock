@@ -131,10 +131,22 @@ int ScreenInit(void)
 
 void Init(void)
 {
+  char model[32]="\0";
+
+  memset(&model, 0, sizeof(model));
+	OsRegGetValue("ro.fac.mach", model);
+
   CrashReportInit();
   GuiInit();
   ScreenInit();
-  OpenFont();
+
+  if (strcmp(model, "d200") == 0) {
+    OpenFont(0x00, 0x00, 0x00, 0xFF, D200_SCREEN_X, D200_SCREEN_Y,
+        D200_LINE_WIDTH, D200_LINE_HEIGHT, "./res/inconsolata.ttf");
+  } else {
+    OpenFont(0x00, 0x00, 0x00, 0xFF, S920_SCREEN_X, S920_SCREEN_Y,
+        S920_LINE_WIDTH, S920_LINE_HEIGHT, "./res/inconsolata.ttf");
+  }
 
   return;
 }
