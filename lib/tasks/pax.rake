@@ -282,6 +282,23 @@ namespace :pax do
     Archive::Zip.archive(zip, pkg_path)
   end
 
+  desc "Last compilation RFU package generation"
+  task :rfu_package do
+    require "archive/zip"
+    require "da_funk"
+
+    git_hash = `git rev-parse --short HEAD`.chomp
+    sign     = File.read(File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig")).split("=").last
+    name     = "cloudwalk_framework-rfu-prolin-#{PAX.version.gsub(".", "_")}-#{sign}-#{git_hash}.zip"
+    zip      = File.join(MRUBY_PAX_ROOT, "out", "pkg", name)
+
+    aip              = File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip")
+    update_files_dat = File.join(MRUBY_PAX_ROOT, "out", "pkg", "update_files.dat")
+    FileDb.new(update_files_dat)["content"] = "RobotRock.aip"
+
+    Archive::Zip.archive(zip, [aip, update_files_dat])
+  end
+
   desc "Compile PAX"
   task :compile => [:setup, :link]
 
