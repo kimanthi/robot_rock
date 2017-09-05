@@ -7,7 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 5.14.0 - 2017-08-30
+### 5.16.0 - 2017-09-05
+
+- Implement custom print at attach helper.
+- Create interface for font customization.
+- Update main (1.24.0)
+    - Bug fix logical number form at initialisation flow.
+    - Support to custom font.
+    - Update posxml_parser (0.23.0).
+        - Move EventListener to main application.
+
+### 5.15.0 - 2017-08-30
 
 - Update main (1.22.0)
     - Move cloudwalk.rb to cloudwalk_setup.rb.
