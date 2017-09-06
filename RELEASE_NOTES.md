@@ -9,9 +9,9 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 
 ### 5.18.0 - 2017-09-06
 
-- Update main (1.26.0)
+- Update main (1.27.0)
     - Add Flags section at README.
-    - Update funky-emv (0.9.0).
+    - Update funky-emv (0.9.1).
         - Add sleep time after application name display.
         - Check params dat flag emv_application_name_table to show application name from table.
 
