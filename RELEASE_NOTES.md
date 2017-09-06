@@ -7,6 +7,14 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.18.0 - 2017-09-06
+
+- Update main (1.26.0)
+    - Add Flags section at README.
+    - Update funky-emv (0.9.0).
+        - Add sleep time after application name display.
+        - Check params dat flag emv_application_name_table to show application name from table.
+
 ### 5.17.0 - 2017-09-06
 
 - Update da_funk (0.16.0)
