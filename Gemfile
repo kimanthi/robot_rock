@@ -1,5 +1,8 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'archive-zip', :require => false
+gem 'cloudwalk'
 gem 'da_funk'
-
+gem 'funky-simplehttp'
+gem 'funky-emv'
+gem 'funky-tlv'
+gem 'rake'
