@@ -7,6 +7,22 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.20.0 - 2017-09-15
+
+- Update main (1.29.0)
+    - Add MIT License to README.
+    - Fix display font setup.
+- Update mruby-pax
+    - Refactoring Audio API.
+    - Apply 22 columns to s920.
+    - Configure terminal to not interrupt print if any problem.
+    - Refactoring Printer sizes
+    - Fix filename paratemer at font Printer API.
+    - Add configuration of gray level, space and indent for printer.
+    - Configure printer to no pre-feeding paper.
+- Udpate da_funk (0.19.0)
+    - Update README_GUIDE.
+
 ### 5.19.0 - 2017-09-08
 
 - Update main (1.28.0)
