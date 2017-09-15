@@ -17,6 +17,8 @@ git submodule update --init --recursive
 
 - Insert the terminal on the VM and check driver recognation, if you have problems, check `lib/sdk/driver*`.
 
+- On repository path, at host machine terminal, install gems with `bundle install`.
+
 - On `Vagrant ssh` setup bundler, execute `rake pax:bundle_install`.
 
 
@@ -24,11 +26,13 @@ git submodule update --init --recursive
 
 1. Compile mruby, generating libmruby.a, on `Visual Studio Prompt Command` using `rake pax:mruby:build`.
 
-2. Compile ruby files, generating mrb files and resources, on `Vagrant ssh` using `rake pax:mrbc`
+2. Compile ruby files, generating mrb files and resources using `rake pax:mrbc`
 
 3. Compile PAX project, generating the final package, on `Vagrant ssh` using `rake pax:rebuild`
 
 4. Upload the package, on `Vagrant ssh` using `rake pax:upload`
+
+    ** * To change com configuration (default COM3) check lib/tasks/pax.rake **
 
 
 ## Usage
