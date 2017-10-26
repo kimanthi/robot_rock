@@ -105,6 +105,7 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-bignum")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-simple-random")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mock")
+  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-thread")
   #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tinyxml2")
 end
 
