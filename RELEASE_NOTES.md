@@ -7,6 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.25.0 - 2017-10-30
+
+- Update main (1.33.0)
+	- Update funky-emv (0.13.0)
+		- Check ICC RSP6985 at process transaction on pax flow.
+- Update mruby-pax
+	- Add “!” To keyboard configuration.
+	- Refactoring all Printer’s print methods to not print in the moment of the call, but instead add the text to a buffer. And added a method specific for print the current buffer.
+	- Add support to print in a separated thread.
+	- Update Print open removing unnecessary calls.
+
 ### 5.24.0 - 2017-10-23
 
 - Update main (1.32.0)
