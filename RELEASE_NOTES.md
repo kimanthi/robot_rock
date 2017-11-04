@@ -7,6 +7,28 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.26.0 - 2017-11-03
+
+- Update mruby-pax
+	- Add “@“ char to keyboard special chars.
+	- Refactoring printer thread:
+		- Add periodically buffer check before print.
+		- Add timeout to loop.
+- Update main (1.35.0)
+	- Check connection before execute mag or emv transaction.
+	- Bug fix the primary connection try logic after reboot.
+	- Add all flags to README.
+	- Update posxml_parser (0.24.0).
+		- Fix tag ttlnbofpmts generation on iso20022.
+	- Update posxml_parser (0.25.0).
+		- Check connection before execute reversal.
+	- Update da_funk (0.20.0)
+		- Adopt connection_management 1 as default.
+	- Update da_funk (0.21.0)
+		- Implement custom Device::Setting.attach_gprs_timeout.
+		- Adopt custom GPRS timeout on Network.attach.
+		- Adopt temporary processing returns at Device::Network.attach.
+
 ### 5.25.0 - 2017-10-30
 
 - Update main (1.33.0)
