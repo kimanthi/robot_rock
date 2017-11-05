@@ -7,6 +7,15 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.27.0 - 2017-11-04
+
+- Update mruby-pax-network
+    - Refactoring GPRS and WIFI power off releasing resource.
+- Update main (1.36.0)
+    - Update da_funk (0.22.0)
+        - Bug fix Device::Network.attach_timeout when dealing with wifi.
+        - Always shutdown interface after communication error/
+
 ### 5.26.0 - 2017-11-03
 
 - Update mruby-pax
