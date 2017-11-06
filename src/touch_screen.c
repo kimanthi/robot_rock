@@ -62,48 +62,42 @@ int get_display_size(int* width, int* height)
 /*In practical application, it is necessary to report the touch point to the message queue ,
 and demo only rotates, calculates and prints the coordinate information of before and after rotation*/
 
-int queue_event_auto_rotate(struct tp_ctx* thiz, struct touch_event* event)
+int queue_event_auto_rotate(struct tp_ctx* thiz, struct touch_event *event, int *x, int *y)
 {
 	int rotate = 0;
 	char rotate_val[64] = {0};
-	int screen_x, screen_y;
 
-	/*display ("touch LCD(%d, %d), type(%d)\n", event->x, event->y, event->type);*/
-
-	OsRegGetValue("ro.fac.lcd.rotate", rotate_val);
+  OsRegGetValue("ro.fac.lcd.rotate", rotate_val);
 	rotate = atoi(rotate_val);
 	switch (rotate) {
 		case 90:
 		{
-			screen_x = event->y;
-			screen_y = thiz->width - event->x;
+			*x = event->y;
+			*y = thiz->width - event->x;
 			break;
 		}
 		case 180:
 		{
-			screen_x = thiz->width - event->x;
-			screen_y = thiz->height - event->y;
+			*x = thiz->width - event->x;
+			*y = thiz->height - event->y;
 			break;
 		}
 		case 270:
 		{
-			screen_x = thiz->height - event->y;
-			screen_y = event->x;
+			*x = thiz->height - event->y;
+			*y = event->x;
 			break;
 		}
 		default:break;
 	}
-	/*display ("touch screen(%d, %d), type(%d)\n", screen_x, screen_y, event->type);*/
 
 	return 0;
 }
 
-int read_tp(struct tp_ctx* thiz)
+int read_tp(struct tp_ctx* thiz, struct touch_event *event, int *x, int *y)
 {
 	int ret;
-	/*int x, y;*/
 	struct input_event ievent;
-  struct touch_event event;
 
 	ret = read(thiz->fd, &ievent, sizeof(ievent));
 	if (ret != sizeof(ievent)) {
@@ -114,7 +108,7 @@ int read_tp(struct tp_ctx* thiz)
 	switch (ievent.type) {
 		case EV_KEY:
 			if (ievent.code == BTN_TOUCH) {
-				event.type = ievent.value ? EVT_MOUSE_DOWN : EVT_MOUSE_UP;
+				event->type = ievent.value ? EVT_MOUSE_DOWN : EVT_MOUSE_UP;
 			}
 			break;
 		/* 绝对坐标报点，我们的系统中均采用这种方式报点 */
@@ -122,15 +116,15 @@ int read_tp(struct tp_ctx* thiz)
 		case EV_ABS:
 			switch (ievent.code) {
 				case ABS_X:
-					event.x = ievent.value;
+					event->x = ievent.value;
 					break;
 				case ABS_Y:
-					event.y = ievent.value;
+					event->y = ievent.value;
 					break;
 				default: break;
 			}
-			if (event.type == EVT_NOP) {
-				event.type = EVT_MOUSE_MOVE;
+			if (event->type == EVT_NOP) {
+				event->type = EVT_MOUSE_MOVE;
 			}
 			break;
 		/* 相对坐标报点，当前我们的系统中未使用这种方式 */
@@ -138,26 +132,37 @@ int read_tp(struct tp_ctx* thiz)
 		case EV_REL:
 			switch (ievent.code) {
 				case REL_X:
-					event.x = ievent.value;
+					event->x = ievent.value;
 					break;
 				case REL_Y:
-					event.y = ievent.value;
+					event->y = ievent.value;
 					break;
 				default: break;
 			}
-			if (event.type == EVT_NOP) {
-				event.type = EVT_MOUSE_MOVE;
+			if (event->type == EVT_NOP) {
+				event->type = EVT_MOUSE_MOVE;
 			}
 			break;
-			/* 收到EV_SYN，说明收到了一个完整的报点事件 */
-			/*Receive EV_SYN，note that a complete report point event has been received*/
+		/* 相对坐标报点，当前我们的系统中未使用这种方式 */
+		/*Relative coordinate points are not used in our system*/
 		case EV_SYN:
-			queue_event_auto_rotate(thiz, &event);
-			event.type = EVT_NOP;
+			queue_event_auto_rotate(thiz, event, x, y);
+			event->type = EVT_NOP;
 			break;
 	}
 
 	return 0;
+}
+
+/* Adds 'interval_ms' to timeval 'a' and store in 'result'
+   - 'interval_ms' is in milliseconds */
+static void add_ms_to_timeval(struct timeval *a, unsigned long interval_ms, struct timeval *result) {
+  result->tv_sec = a->tv_sec + (interval_ms / 1000);
+  result->tv_usec = a->tv_usec + ((interval_ms % 1000) * 1000);
+  if (result->tv_usec > 1000000) {
+    result->tv_usec -= 1000000;
+    result->tv_sec++;
+  }
 }
 
 static int compare_timeval(struct timeval *a, struct timeval *b)
@@ -173,63 +178,67 @@ static int compare_timeval(struct timeval *a, struct timeval *b)
   return 0;
 }
 
-int fd = -1; //open("/dev/tp", O_RDONLY);
-
-int test_touch_screen(long timeout, int *x, int *y)
+int GetTouchScreen(long timeout, int *x, int *y)
 {
+	int width, height, ret, fd_ts = -1;
+  struct timeval tv1, tv2, tv3;
 	static struct tp_ctx tp_ctx;
-	int ret, fd;
-	int width, height;
-	fd_set fdset;
+  struct touch_event event;
 	fd_set err_fdset;
-
-  struct timeval tv1, tv2;
+	fd_set fdset;
 
 	/* 获取屏幕的宽度和高度， 与tp无关，计算屏幕旋转时需要 */
 	/*Get the width and height of the screen, it's needed when calculating the screen rotation and nothing to do with tp*/
 	ret = get_display_size(&width, &height);
-	if (ret < 0) {
-		return -1;
-	}
-	tp_ctx.width = width;
+	if (ret < 0) return -1;
+
+	tp_ctx.width  = width;
 	tp_ctx.height = height;
 
-	if (fd < 0) {
-    fd = open("/dev/tp", O_RDONLY);
-	}
-  if (fd < 0) return fd;
-	tp_ctx.fd = fd;
+  fd_ts = open("/dev/tp", O_RDONLY);
+  if (fd_ts < 0) return fd_ts;
+	tp_ctx.fd = fd_ts;
 
   gettimeofday(&tv1, NULL);
   add_ms_to_timeval(&tv1, timeout, &tv1);
 
-	while (1) {
+  tv3.tv_sec = 0;
+  tv3.tv_usec = 50000;
+
+	while (42) {
 		FD_ZERO(&fdset);
 		FD_ZERO(&err_fdset);
-		FD_SET(fd, &fdset);
-		FD_SET(fd, &err_fdset);
-		ret = select(fd + 1, &fdset, NULL, &err_fdset, NULL);
+		FD_SET(fd_ts, &fdset);
+		FD_SET(fd_ts, &err_fdset);
+		ret = select(fd_ts + 1, &fdset, NULL, &err_fdset, &tv3);
 
 		if (ret < 0) {
       return ret;
 		} else if (ret == 0) {
       if (timeout != 0) {
         gettimeofday(&tv2, NULL);
-        if (compare_timeval(&tv2, &tv1) == 1) return 0;
+        if (compare_timeval(&tv2, &tv1) == 1) {
+          ret = 0;
+          break;
+        }
       }
 
 			continue;
 		} else {
-			if (FD_ISSET(fd, &fdset)) {
-        if (read_tp(&tp_ctx)) {
-        } else {
+			if (FD_ISSET(fd_ts, &fdset)) {
+        if (read_tp(&tp_ctx, &event, x, y) == 0) {
+          if (*x != 0 && *y != 0) {
+            ret = 1;
+            break;
+          }
         }
 			}
-			else if (FD_ISSET(fd, &err_fdset)) {
-				return -1;
+			else if (FD_ISSET(fd_ts, &err_fdset)) {
+        ret = -1;
 			}
 		}
 	}
 
-	return 1;
+  close(fd_ts);
+	return ret;
 }
