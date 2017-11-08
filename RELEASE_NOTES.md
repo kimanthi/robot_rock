@@ -7,6 +7,37 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.28.0 - 2017-11-07
+
+- Touch Screen second approach initial implementation.
+- Finish new touch screen abstraction.
+- Update mruby-io to master HEAD.
+- Update mruby (1.3.0) from mruby/mruby (without bignulls support).
+- Remove mruby gems mruby-bignum, mruby-simple-random mruby-mock and mruby-msgpack.
+- Update main (1.37.0)
+	- Force close payment channel after communication management fail.
+- Update main (1.38.0)
+	- Update posxml_parser (0.26.0)
+		- Fix card_get_variable timeout.
+		- Implemented interface_system_get_touchscreen and interface_system_get_touchscreen_keyboard.
+	- Update cloudwalk_handshake (0.11.0).
+		- Change License to MIT.
+		- Check if web socket exists to close or check response.
+	- Update da_funk (0.23.0)
+		- Implement String#to_big.
+		- Implement custom Float#to_s(16).
+- Update mruby-pax-network
+	- Make GPRS.disconnect return Fixnum value.
+	- Turn wifi connect non-blocking.
+- Update mruby-socket
+	- TCPSocket#initialize temporary fix to make it work with mruby 1.3.0, check https://github.com/iij/mruby-socket/issues/36
+- Update mruby-pax
+	- Set persist.sys.timezone.tz in hwclock.
+	- Touch Screen refactoring.
+	- Refactoring printer thread:
+		- Add periodically buffer check before print.
+		- Add timeout to loop.
+
 ### 5.27.0 - 2017-11-04
 
 - Update mruby-pax-network
