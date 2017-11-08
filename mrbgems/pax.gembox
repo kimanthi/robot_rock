@@ -92,7 +92,7 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-qrcode")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-miniz")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sleep")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-msgpack")
+  #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-msgpack")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-json")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-context")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-pax-network")
@@ -102,10 +102,10 @@ MRuby::GemBox.new do |conf|
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sha2")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-sha1")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-base58")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-bignum")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-simple-random")
-  conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mock")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-thread")
+  #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-bignum")
+  #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-simple-random")
+  #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mock")
   #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tinyxml2")
 end
 
