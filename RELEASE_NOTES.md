@@ -7,6 +7,37 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.30.0 - 2017-11-29
+
+- Add new library to perform msgpack.
+- Update mruby project url to mruby/mruby.git.
+- Update mruby-pax
+	- Add getxy to kernel.
+	- Clear display after pin entry.
+	- Fix getxy memory pointers return.
+	- Implement custom font color on PIN input.
+- Update main (1.40.0)
+	- Check if cw_app_keys has “DEFINIR_APN” for manual entry too.
+	- Update posxml_parser (0.27.0).
+		- Check if application exists to create key_main trigger and if isn’t KEY_EXTRA1.
+- Update main (1.41.0)
+	- Update da_funk (0.25.0)
+		- I18n, check if the current language was already configure to perform the merge options.
+		- Add Support tests.
+		- Implement String#snakecase.
+	- Update da_funk (0.26.0)
+		- Change default serf notification creation timeout to 180 seconds.
+		- Support new MessagePack syntax.
+	- Update funky-emv (0.14.0)
+		- Implement custom RGB for pins input on PAX.
+	- Update posxml_parser (0.28.0).
+		- Implement XsdParser#find to get instruction by name.
+		- Check if Kernel#getxy is defined to call in touch instructions.
+		- Implement the first version of Xml translation to ruby.
+		- Add support to load and execute ruby translation code.
+		- At util_exit rise exit to perform exit on translation.
+		- Update Gemfile.lock.
+
 ### 5.29.0 - 2017-11-08
 
 - Update main (1.39.0)
