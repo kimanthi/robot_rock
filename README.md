@@ -17,6 +17,8 @@ git submodule update --init --recursive
 
 - Insert the terminal on the VM and check driver recognation, if you have problems, check `lib/sdk/driver*`.
 
+- On Vagrant VM install Git for Windows with all binaries available to CMD.
+
 - On repository path, at host machine terminal, install gems with `bundle install`.
 
 - On `Vagrant ssh` setup bundler, execute `rake pax:bundle_install`.
