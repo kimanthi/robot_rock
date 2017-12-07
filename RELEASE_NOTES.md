@@ -7,6 +7,14 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.34.0 - 2017-12-07
+
+- Update main (1.46.0)
+    - Add support to backlight control configuration from parameters.
+    - Add countdown menu entry when communication fail on fallback recovery.
+    - Update da_funk (0.28.0).
+        - Support to interrupt file download if KEY CANCEL pressed.
+
 ### 5.33.0 - 2017-12-04
 
 - Update main (1.45.0).
