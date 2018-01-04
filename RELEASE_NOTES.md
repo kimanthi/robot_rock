@@ -7,6 +7,45 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.36.0 - 2018-01-04
+
+- Touch screen handle became global and GetTouchScreen receive clear option to close handle.
+- Implement ClearTouchScreen to remove TouchScreen handle.
+- Update mruby-pax
+	- Implement PAX::Touch .clear and .getxy_stream.
+- Update main (1.48.0)
+    - Implement menu entry to force app update with crc check (without cache) and force update all files.
+    - Turn on Notification and Notification Callbacks.
+    - Remove chars no ascii table at i18n.json.
+    - Fix system update return line display.
+    - PaymentChannel rescue SocketError and PolarSSL::SSL::Error.
+    - Implement PaymentChannel::configured? to check error.
+    - Replace Device:: for DaFunk:: on Transaction, ParamsDat and Notication.
+    - Receive json on main.
+    - Update cloudwalk_handshake (0.12.0).
+        - Replace Device::Helper for DaFunk::Helper.
+    - Update posxml_parser (0.31.0).
+        - Bug fix add addition check on string_trim and avoid system error.
+        - Fix PosxmlParserTest assertion on posxml2ruby process.
+        - Refactoring interface_system_get_touchscreen_keyboard.
+        - Replace Device::ParamsDat for DaFunk::ParamsDat.
+        - Replace Device::Transaction for DaFunk::Transaction.
+    - Update funky-emv (0.15.0).
+        - Replace Device::ParamsDat for DaFunk::ParamsDat.
+    - Update da_funk (1.0.0).
+        - Remove serfs interface and implement notification interface via web socket.
+        - Adopt ContextLog to store error on file download.
+        - Implement force parameter to application, params dat and file download.
+        - Unzip ruby application after download instead of execution call.
+        - Move Application, Notification*, ParamsDat and Transaction from Device to Dafunk scope.
+        - Remove transaction/emv.rb and refactor loads.
+        - Remove Device:Helper.
+        - Check if application file exists before return local crc.
+        - Adopt custom exception for Application download.
+        - Force unzip ruby application if file is the same.
+        - Do not cache local crc on DaFunk::Application.
+        - Adopt DaDunk::Application CRC check strategy in DaFunk::FileParameter
+
 ### 5.35.0 - 2017-12-07
 
 - Update mruby-pax
