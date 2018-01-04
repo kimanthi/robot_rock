@@ -178,9 +178,11 @@ static int compare_timeval(struct timeval *a, struct timeval *b)
   return 0;
 }
 
-int GetTouchScreen(long timeout, int *x, int *y)
+int fd_ts = -1;
+
+int GetTouchScreen(long timeout, int *x, int *y, int clear)
 {
-  int width, height, ret, fd_ts = -1;
+  int width, height, ret;
   struct timeval tv1, tv2, tv3;
   static struct tp_ctx tp_ctx;
   struct touch_event event;
@@ -195,7 +197,11 @@ int GetTouchScreen(long timeout, int *x, int *y)
   tp_ctx.width  = width;
   tp_ctx.height = height;
 
-  fd_ts = open("/dev/tp", O_RDONLY);
+  if (clear == 1 && fd_ts > 0) {
+    close(fd_ts);
+    fd_ts = -1;
+  }
+  if (fd_ts < 0) fd_ts = open("/dev/tp", O_RDONLY);
   if (fd_ts < 0) return fd_ts;
   tp_ctx.fd = fd_ts;
 
@@ -243,6 +249,5 @@ int GetTouchScreen(long timeout, int *x, int *y)
     }
   }
 
-  close(fd_ts);
   return ret;
 }
