@@ -180,6 +180,14 @@ static int compare_timeval(struct timeval *a, struct timeval *b)
 
 int fd_ts = -1;
 
+void ClearTouchScreen(void)
+{
+  if (fd_ts > 0) {
+    close(fd_ts);
+    fd_ts = -1;
+  }
+}
+
 int GetTouchScreen(long timeout, int *x, int *y, int clear)
 {
   int width, height, ret;
