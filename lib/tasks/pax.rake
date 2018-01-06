@@ -277,6 +277,7 @@ namespace :pax do
     FileUtils.mkdir_p(File.join(pkg_path, "driver"))
     FileUtils.cp_r(File.join(PAX_LIB_ROOT, "TermAssist"), pkg_path)
     FileUtils.cp(File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip"), File.join(pkg_path, "cloudwalk_framework.aip"))
+    FileUtils.cp_r(File.join(MRUBY_PAX_ROOT, "out", "fonts"), File.join(pkg_path))
     FileUtils.cp(File.join(PAX_LIB_ROOT, "driver", "posvcom_2.5.0.0.rar"), File.join(pkg_path, "driver"))
 
     Archive::Zip.archive(zip, pkg_path)
