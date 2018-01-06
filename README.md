@@ -91,6 +91,67 @@ $ pwd
 $ ln -s lib/sdk/emv/libEMVS2FMProlin_v506.so ./out/lib
 ```
 
+## Fonts
+
+The runtime allows the user to customize Printer and Display fonts by DaFunk API or `font.dat`, both Display and Printer configuration can exists in the same file.
+
+### Display Font
+
+User can customize the font upload to the terminal `font.dat` or DaFunk API (`Device::Display.font(r, g, b, a, width, height, path)`), `font.dat` will be loaded on runtime boot time only. PAX support font customization by .tff files and RGB colors, follow `font.dat` example:
+
+```
+r=61
+g=79
+b=102
+a=255
+line_width=15
+line_height=22
+lines=10
+columns=22
+path=shared/MuseoSans_500.ttf
+```
+
+### Printer Font
+
+#### Create and Install font
+
+The font file for printer can't be included in the application `.aip`, must be loaded separted. Follow the steps do create the file:
+
+1. Create a dir called `fonts`
+
+    ```
+    mkdir fonts
+    ```
+2. Copy font file to `fonts` dir
+
+    ```
+    cp AerialMono.ttf fonts/
+    ```
+    
+3. Create tar gz file with the dir
+    
+    ```
+    tar czvf AerialMono.tar.gz fonts
+    ```
+
+To upload the created font, just execute rake task `rake pax:upload` with `TYPE` as `opt` and `PACKAGE` as the font tar.gz file:
+
+```
+rake pax:upload PACKAGE=out/fonts/AerialMono.tar.gz TYPE=opt
+```
+
+The default font adopted is already created and is available on the path `out/fonts/AerialMono.tar.gz`, any new font must be in that directory.
+    
+
+#### Configure font
+
+User can customize the font upload to the terminal `font.dat` or DaFunk API (`Device::Printer.font(path)`), `font.dat` will be loaded on runtime boot time only. PAX support font customization by .tff files and RGB colors, follow `font.dat` example:
+
+```
+printer=AerialMono.ttf
+```
+
+
 ## Release and Bump version
 
 - Change version number on the files `mrblib/version.rb` and `out/appinfo`.
