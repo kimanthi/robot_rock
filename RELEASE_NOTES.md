@@ -7,6 +7,47 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.37.0 - 2018-01-
+
+- Update mruby-mtest.
+- Update mruby-pax
+    - Add beep for success touch event.
+    - Adopt AerialMono.ttf as default font.
+    - Always setup the font after a print. Because of the print/reset in every print, so it’s necessary to avoid terminal print in the old font.
+- Update mruby-pax-network
+    - Implement defensive communication check and avoid manual inputs.
+- Update main (1.49.0)
+    - Main::call receives Json to execute normal or admin menu.
+    - Add menu option to delete only zip files.
+    - Update posxml_parser (1.0.0).
+        - Implement json parameter passing to ruby runtime exec.
+        - Fix -2 check in input_format method.
+        - Bug fix string_insert_at, old code from js.
+    - Update cloudwalk (1.1.0).
+    - Update da_funk (1.0.0).
+        - Remove serfs interface and implement notification
+interface via web socket.
+        - Adopt ContextLog to store error on file download.
+        - Implement force parameter to application, params dat and file download.
+        - Unzip ruby application after download instead of execution call.
+        - Move Application, Notification*, ParamsDat and Transaction from Device to Dafunk scope.
+        - Remove transaction/emv.rb and refactor loads.
+        - Remove Device:Helper.
+        - Check if application file exists before return local crc.
+        - Adopt custom exception for Application download.
+        - Force unzip ruby application if file is the same.
+        - Do not cache local crc on DaFunk::Application.
+        - Adopt DaDunk::Application CRC check strategy in DaFunk::FileParameter
+    - Update da_funk (1.1.0).
+        - Rename Device::Printer#set_font to Device::Printer#font.
+        - Fix #18 - Adopt Integer instead of Fixnum.
+        - Check if adapter isn’t nil before check Crypto class.
+        - Fix Float.to_s method generating implementing Alis for the old.
+        - Refact String.to_i implementing alias for the old.
+        - Refact number_to_currecy float test.
+    - Update da_funk (1.1.1).
+        - Update dependencies versions.
+
 ### 5.36.0 - 2018-01-04
 
 - Touch screen handle became global and GetTouchScreen receive clear option to close handle.
