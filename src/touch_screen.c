@@ -32,32 +32,6 @@ struct tp_ctx {
   int pressed;
 };
 
-int get_display_size(int* width, int* height)
-{
-  int fb_fd;
-  struct fb_fix_screeninfo fix;
-  struct fb_var_screeninfo var;
-
-  fb_fd = open("/dev/fb", O_RDWR);
-  if (fb_fd < 0) {
-    return -1;
-  }
-
-  if (ioctl(fb_fd, FBIOGET_FSCREENINFO, &fix) < 0) {
-    close(fb_fd);
-    return -1;
-  }
-  if (ioctl(fb_fd, FBIOGET_VSCREENINFO, &var) < 0) {
-    close(fb_fd);
-    return -1;
-  }
-
-  *width = var.xres;
-  *height = var.yres;
-
-  return 0;
-}
-
 /* 实际应用中一般需要将触摸点上报到消息队列， demo中仅仅是进行旋转计算并打印出旋转前后的坐标信息 */
 /*In practical application, it is necessary to report the touch point to the message queue ,
   and demo only rotates, calculates and prints the coordinate information of before and after rotation*/
@@ -190,7 +164,7 @@ void ClearTouchScreen(void)
 
 int GetTouchScreen(long timeout, int *x, int *y, int clear)
 {
-  int width, height, ret;
+  int ret;
   struct timeval tv1, tv2, tv3;
   static struct tp_ctx tp_ctx;
   struct touch_event event;
@@ -199,11 +173,10 @@ int GetTouchScreen(long timeout, int *x, int *y, int clear)
 
   /* 获取屏幕的宽度和高度， 与tp无关，计算屏幕旋转时需要 */
   /*Get the width and height of the screen, it's needed when calculating the screen rotation and nothing to do with tp*/
-  ret = get_display_size(&width, &height);
   if (ret < 0) return -1;
 
-  tp_ctx.width  = width;
-  tp_ctx.height = height;
+  tp_ctx.width  = screen_x;
+  tp_ctx.height = screen_y;
 
   if (clear == 1 && fd_ts > 0) {
     close(fd_ts);
@@ -244,7 +217,8 @@ int GetTouchScreen(long timeout, int *x, int *y, int clear)
       continue;
     } else {
       if (FD_ISSET(fd_ts, &fdset)) {
-        if (read_tp(&tp_ctx, &event, x, y) == 0) {
+        ret = read_tp(&tp_ctx, &event, x, y);
+        if (ret == 0) {
           if (*x != 0 && *y != 0) {
             ret = 1;
             break;

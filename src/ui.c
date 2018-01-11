@@ -12,11 +12,6 @@
 XuiFont *xFont;
 XuiColor colorMsgFg;
 
-extern int screen_x;
-extern int screen_y;
-extern int line_width;
-extern int line_height;
-
 static int fix_x(int x)
 {
   return x * line_width;

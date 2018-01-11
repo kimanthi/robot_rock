@@ -3,6 +3,11 @@
 
 #include <xui.h>
 
+extern int screen_x;
+extern int screen_y;
+extern int line_width;
+extern int line_height;
+
 int xdisplay(char *buf, int len, int x, int y);
 void display(const char *format, ...);
 void display_bitmap(char *path, int y, int x);
