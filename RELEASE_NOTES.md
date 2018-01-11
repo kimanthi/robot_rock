@@ -7,7 +7,24 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 5.37.0 - 2018-01-
+### 5.38.0 - 2018-01-11
+
+- Bug fix touch system error when terminal get the display size too many times a system error appears, to avoid it just adopt the display size from extern variables (ui.h).
+- Update AerialMono.tar.gz (signed version).
+- Update main (1.50.0)
+    - Update da_funk (1.2.0)
+        - Remove NotificatioTest, it’s outdated.
+        - Fix DaFunk::Application test when receiving a label that wasn’t expected.
+        - Replace crc16 of downloaded files strategy instead of read the entire file move the responsibility to decide the better approach, 1. Read the entire file, 2. Read each 10k. It’s necessary to avoid a system error on File.read greater than 900k.
+        - Finish the excecution after custom test run to avoid rake to try run a task with the file name.
+        - Check if file is bigger than 500k on Crypto::file_crc16_hex and if it is, calculate the crc in chuncks.
+        - Implement Float.to_s with other bases 10, nil and others.
+        - Refactoring String.to_i adopting Interger() instead of alias.
+        - Add Float tests.
+        - Fix Display Test covering MRuby 1.3.0 puts/print API.
+        - Refactoring NotificationEventTest following the new implementation.
+
+### 5.37.0 - 2018-01-10
 
 - Update mruby-mtest.
 - Update mruby-pax
