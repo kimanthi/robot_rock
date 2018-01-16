@@ -7,6 +7,36 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.39.0 - 2018-01-16
+
+- Update main (1.51.0)
+    - Update posxml_parser (1.1.0).
+        - Update da_funk (1.3.1).
+        - Bug fix posxml translation closing class translated.
+    - Update da_funk(1.3.0).
+        - Call String.to_f when reached Integer conversion limit
+    - Update da_funk(1.3.1).
+        - Fix String.integer? Method supporting Float.
+- Update main (1.52.0)
+    - Update I18n emv_enter_pin text.
+    - Update cloudwalk (1.4.0).
+    - Update da_funk (1.4.0).
+        - Refactoring String.integer? And String.to_i adding more tests and support big numbers integer check.
+        - Do no print menu entry if empty.
+        - Implement Screen.add to print and update x and y.
+        - Support to print background image on menu if title path exists.
+    - Update funky-emv (0.16.0).
+        - Only display emv remove card message if card still present.
+        - Implement class responsible to perform Ui and add support to display image for pin entry and remove card.
+    - Update funky-simplehttp (0.5.0).
+        - Update da_funk (1.3.0).
+        - Adopt da_funk gem structure.
+    - Update posxml_parser (1.2.0).
+        - Support background image on menu instructions.
+        - Check string conversation to integer error on Variable class.
+        - Refactoring string_replace instruction implementing a defensive code conversting to string for all variables.
+
+
 ### 5.38.0 - 2018-01-11
 
 - Bug fix touch system error when terminal get the display size too many times a system error appears, to avoid it just adopt the display size from extern variables (ui.h).
