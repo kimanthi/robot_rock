@@ -7,6 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.40.0 - 2018-01-17
+
+- Update main (1.53.0)
+    - Add wait message before EMVTransaction start.
+    - Update da_funk (1.4.1).
+        - Fix Notification parse to make communication management works.
+    - Update posxml_parser (1.2.1).
+        - Fix parameter passing between applications.
+        - Refactoring posxml menu parsing adopting the text given by options as key to be pressed.
+        - Bugfix translation when use variables for filename on execute instruction.
+
 ### 5.39.0 - 2018-01-16
 
 - Update main (1.51.0)
