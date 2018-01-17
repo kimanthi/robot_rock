@@ -7,6 +7,18 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.41.0 - 2018-01-17
+
+- Update main (1.54.0)
+    - Fix countdown application configuration and implement generic parameter from params.dat.
+    - Update cloudwalk (1.4.2).
+    - Update da_funk (1.4.2).
+        - Extract background pagination helper.
+        - Refactoring menu helper to support footer, header and background customization.
+    - Update posxml_parser (1.2.2).
+        - Fix menu parse instruction removing empty entries.
+        - Support type parameter between application execution.
+
 ### 5.40.0 - 2018-01-17
 
 - Update main (1.53.0)
