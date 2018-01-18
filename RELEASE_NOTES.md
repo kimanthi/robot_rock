@@ -7,6 +7,13 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.43.0 - 2018-01-18
+
+- Upate main (1.56.0)
+    - Update funky-emv (0.16.1)
+        - Fix get pin plain (offline) variable return the variable wasn’t being checked.
+        - Return shared library value to PAX user cancel return.
+
 ### 5.42.0 - 2018-01-18
 
 - Update main (1.55.0)
