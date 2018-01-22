@@ -7,6 +7,18 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.44.0 - 2018-01-22
+
+- Update main (1.57.0)
+    - Bug fix timeout on APN menu.
+    - Replace disconnect and power off functions for shutdown at communication menu.
+    - Support to change terminal signature in about entry.
+- Update mruby-pax-network
+    - Force Wireless switch off during WIFI start.
+    - Return fixnum value to troubleshooting wifi scan.
+    - Close wifi during GPRS start.
+    - Fix SIMID extraction.
+
 ### 5.43.0 - 2018-01-18
 
 - Upate main (1.56.0)
