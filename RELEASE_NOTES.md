@@ -7,6 +7,23 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.45.0 - 2018-01-24
+
+- Update mruby-pax
+    - Add Pinpad::ERR_PED_GROUP_IDX_ERR = -3818 constant.
+    - Fix Pinpad::key_kcv arguments.
+    - Remove repeated Pinpad::load_key definition.
+    - Add Pinpad::key_ksn.
+- Update mruby-pax-network
+    - Refact get_sim_card_id method too avoid system error on s920 terminals, for some reason the old strategy causes a memory leak.
+    - Implement Network::configure
+- Update main (1.58.0)
+    - Update da_funk (1.4.4)
+        - Fix Screen.add when column is missing
+- Update main (1.59.0)
+    - Update da_funk (1.5.0)
+        - Implement Network::configure to split Network::init in two parts, configure for the definition of the interface, and init it self the system call.
+
 ### 5.44.0 - 2018-01-22
 
 - Update main (1.57.0)
