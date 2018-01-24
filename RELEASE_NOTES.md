@@ -7,6 +7,10 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.46.0 - 2018-01-24
+
+- Update mruby-qrcode - Necessary to not invert the generated qrcode.
+
 ### 5.45.0 - 2018-01-24
 
 - Update mruby-pax
