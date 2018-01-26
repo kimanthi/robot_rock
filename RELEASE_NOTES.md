@@ -7,6 +7,12 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.47.0 - 2018-01-26
+
+- Update main (1.60.0)
+    - Update funky-emv (0.16.2).
+        - Return PPCOMP_ERRPIN when PAX::Pinpad::ERR_PED_GROUP_IDX_ERR during pin dukpt input.
+
 ### 5.46.0 - 2018-01-24
 
 - Update mruby-qrcode - Necessary to not invert the generated qrcode.
