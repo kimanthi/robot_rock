@@ -175,8 +175,8 @@ int GetTouchScreen(long timeout, int *x, int *y, int clear)
   /*Get the width and height of the screen, it's needed when calculating the screen rotation and nothing to do with tp*/
   if (ret < 0) return -1;
 
-  tp_ctx.width  = screen_x;
-  tp_ctx.height = screen_y;
+  tp_ctx.width  = S920_SCREEN_Y;
+  tp_ctx.height = S920_SCREEN_X;
 
   if (clear == 1 && fd_ts > 0) {
     close(fd_ts);
