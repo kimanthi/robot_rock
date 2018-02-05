@@ -7,6 +7,19 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.48.0 - 2018-02-05
+
+- Update da_funk (1.6.0)
+    - Remove Notification whitespace.
+    - Implement Notification#reply.
+    - Temporarily remove I18n require.
+- Update main (1.61.0)
+    - Send notification reply to notification.
+    - Fix “AGUARDE” message during system update.
+    - Fix system update message.
+- Update mruby-pax
+    - Fix touch limit check.
+
 ### 5.47.0 - 2018-01-26
 
 - Update main (1.60.0)
