@@ -7,6 +7,25 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.49.0 - 2018-02-09
+
+- Remove memory profiling temporarily.
+- Update mruby-pax
+    - Implement Pinpad.key_ksn.
+- Update mruby-context
+    - Remove memory profiling temporarily.
+- Update main (1.62.0)
+    - Update da_funk (1.7.0)
+        - Adopt “w” for FileDb and Transaction::Download write operation and improve IO time.
+        - Implement ConnectionManagement class based on ParamsDat config.
+        - Implement PaymentChannel via websocket.
+    - Update da_funk (1.7.1)
+        - Fix payment channel compilation.
+    - Update posxml_parser (1.3.0)
+        - Cache FileDb handle.
+        - Adopt posxml mag configuration for card_read.
+        - Implement custom translation to <if> statement to improve performance.
+
 ### 5.48.0 - 2018-02-05
 
 - Update da_funk (1.6.0)
