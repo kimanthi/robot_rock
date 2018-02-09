@@ -104,5 +104,3 @@ XuiFont *GetFont(void)
 {
   return xFont;
 }
-
-
