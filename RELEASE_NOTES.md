@@ -7,6 +7,14 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.50.0 - 2018-02-15
+
+- Update mruby-pax
+    - Implement beep after success magnetic read.
+- Update main (1.63.0)
+    - Update posxml_parser (1.3.1)
+        - Fix PaymentChannel hierarchy call.
+
 ### 5.49.0 - 2018-02-09
 
 - Remove memory profiling temporarily.
