@@ -7,9 +7,46 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 5.52.0 - 2018-03-XX
-
-- Fix Magnetic._read return.
+### 5.52.0 - 2018-03-02
+    
+- Update mruby-context
+    - Implement rescue in start method instead of begin/end block.
+    - Implement Device::System.teardown.
+- Update mruby-pax
+    - Fix Magnetic._read return.
+    - Implement System::shutdown.
+    - Replace System.shutdown by teardown.
+    - Implement Printer.thread_kill.
+- Update main (1.64.0)
+    - Update posxml_parser (2.0.0)
+        - Bug fix interface_menu function to expect “1.” And “1 “ entry numbers.
+        - Support to send a pure xml code on PosxmlCompiler.compile.
+        - Fix private method call at posxml_compiler scope.
+        - Add posxml_compiler to ruby gem.
+        - Release util_wait(miliseconds) if a key is pressed.
+    - Update posxml_parser (2.1.0)
+        - PosxmlCompiler refactoring VariableTypeError message.
+        - PosxmlCompiler supports parameter validation.
+    - Update posxml_parser (2.1.1)
+        - Fix PosxmlCompiler en xsd to wait instruction.
+        - Do not validate parameters if instruction does not support it.
+- Update main (1.65.0)
+    - Update posxml_parser (2.2.0)
+        - Implement PosxmlParser::posxml_file_delete to remove file from cache and filesystem.
+        - Implement extra empty check (“ “) for if parsing.
+        - Remove cw_app_init.dat from cache and filesystem after use.
+        - Remove unnecessary track call at card_read.
+        - Check if file exist before delete at posxml_file_delete helper.
+        - Remove cw_app_init.dat before mag and emv transaction update.
+- Update main (1.66.0)
+    - Update posxml_parser (2.2.1)
+        - Fix getc parameter sent converting to integer.
+        - Fix empty comparison when operator :!= during translation
+    - Update da_funk (1.8.0)
+        - Implement Device::System::shutdown.
+        - Implement Device::Setting::heartbeat ParamsDat check.
+    - Update da_funk (1.9.0)
+        - Replace shutdown by teardown, more appropriated for application loop.
 
 ### 5.51.0 - 2018-02-16
 
