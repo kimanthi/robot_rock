@@ -7,6 +7,14 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.58.0 - 2018-04-06
+
+- Update main (1.72.0)
+    - Check communication before system update.
+- Update mruby-pax
+    - Support bg image and custom font in Device::Pinpad.pin.
+    - Implemented check of ms3des kcv,  ms3des stands for master session 3des.
+
 ### 5.57.0 - 2018-03-22
 
 - Update main (1.71.0)
