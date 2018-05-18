@@ -7,6 +7,30 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.60.0 - 2018-05-18
+
+- Update mruby-pax
+    - Add PAX::Pinpad::ERR_PED_NO_KEY (-3801).
+    - Add some more special chars to keyboard map.
+- Update main (1.73.0)
+    - Remove injected keys debug.
+- Update main (1.74.0)
+    - add KORE apns and set alphabetical order.
+    - Add 3 password attempts to menu.
+    - Refactoring communication countdown.
+    - Update funky-emv (0.17.0)
+        - Implement cvm parse and refactoring some debugs.
+        - PAX: Bug fix verify_cupher_pin return.
+        - PAX: Expect ERR_PED_NO_KEY(-3801) to dukpn pin block exec.
+    - Update cloudwalk (1.9.1)
+    - Update posxml_parser (2.3.3)
+        - Adopt simple quotes when dealing with double quotes on compilation.
+- Update main (1.75.0)
+    - Update da_funk (1.11.0)
+        - Bug fix String.integer? when string starts with “0”
+        - Increase getc timeout to 10 seconds when communication error.
+        - ISO8583 convert bitmap from binary to hex and hex to binary.
+
 ### 5.59.0 - 2018-04-11
 
 - Update mruby-pax
