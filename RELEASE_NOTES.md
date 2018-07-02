@@ -7,6 +7,18 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.62.0 - 2018-07-02
+
+- Update mruby-pax
+    - Implement PAX::Crypto::Newdes::encrypt/decrypt.
+    - Added dynamic timeout for the read serial method.
+- Update mruby-pax-network
+    - Implement attach via at command with imsi selection.
+- Update main (1.76.0)
+    - Support selection of operator when dealing with multioperator chip.
+    - Update da_funk (1.11.2)
+        - Fix ISO8583 bitmap parse when greater than 64 bytes
+
 ### 5.61.0 - 2018-05-25
 
 - Update mruby-pax-network
