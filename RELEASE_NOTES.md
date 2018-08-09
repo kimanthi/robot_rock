@@ -7,6 +7,30 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.65.0 - 2018-08-09
+
+- Add barcode library.
+- Update mruby-pax
+    - Implement PAX::Printer.print_barcode.
+    - Bugfix remove memory leak on pin plain and verify cipher pin routines.
+- Update main (1.80.0)
+    - Add debug flag as false to compilation config.
+    - Implement new update strategy that supports multiple files.
+    - Update cloudwalk (1.10.0)
+    - Update da_funk (1.12.0)
+        - Do not raise exception when bitmap to be display doesn’t exists.
+        - Implement Device::Priter.print_barcode.
+    - Update funky-emv (0.17.2)
+        - Add sleep before call pin methods to avoid problems on display and memory location of PAX EMV Kernel.
+    - Update posxml_parser (2.6.0)
+        - Enable FileDbCache and fix delete process.
+        - Fresh any file db cache on every execute.
+        - Bugfix card_read to works when EMV not enabled.
+        - Do not trow exception the try to read a variable that doesn’t exists on mruby side.
+        - Interface_display_bitmap returns the resulted value.
+        - Bugfix input_money to works even if message is empty.
+        - Implement print_barcode.
+
 ### 5.64.0 - 2018-07-03
 
 - Update main (1.78.0)
