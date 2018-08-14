@@ -7,6 +7,18 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.66.0 - 2018-08-13
+
+- Update SDK
+    - Add support to ITF (i25) barcode.
+- Update mruby-pax
+    - Add support to I25 barcode.
+- Update mruby-pax-net
+    - Remove any extra char at CCID extraction.
+- Update main (1.81.0)
+    - Update posxml_parser (2.6.1)
+        - Support image at card_get_variable.
+
 ### 5.65.0 - 2018-08-09
 
 - Add barcode library.
