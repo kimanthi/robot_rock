@@ -151,6 +151,26 @@ User can customize the font upload to the terminal `font.dat` or DaFunk API (`De
 printer=AerialMono.ttf
 ```
 
+## SO Update
+
+Follow this steps at Windows/Vagrant machine:
+
+1. Open Term assist and following the label "Tools" press "SysLoader".
+2. If not selected, select "Prolin2.4 or Higher"
+3. If not selected, select Zip Package.
+4. In the zip selection, at the last directory field select the SO ZIP file, example: "prolin-2.4.104.6194R-Brazil_SIG.zip”
+5. **DO NOT** SELECT ERASE DATA.
+6. Press the green button on the lower right corner of SysLoader.
+7. Should appear the message "Waiting for USB connection".
+
+After that procedure follow these steps with the POS Terminal:
+
+1. Shudown.
+2. Boot in OS Download Mode:
+- D200: Boot the system with the two buttons on the top side pressed until "OS Update" message appears.
+- S920: Boot the system with yellow and red buttons pressed until "OS Update" message appears.
+3. Connect the terminal to the computer. At this point a new driver setup will be needed, and as well, manually Vagrant connection of the device. It's considered a new device for the system.
+4. With the device successfully connected the new OS upload will start automatically, Sysloader will report the progress.
 
 ## Release and Bump version
 
