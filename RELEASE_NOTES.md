@@ -7,6 +7,26 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.67.0 - 2018-08-17
+
+- Add OS Update procedure to README.
+- Update mruby-pax
+    - Support to UTC time persistence in hwclock when configuration time_utc equals to 1.
+- Update main (1.82.0)
+    - Implement Notification to reboot system.
+    - Reboot system after remote update.
+    - Refactoring wizard and application menu check adding application update at the end of wizard and moving crc check from first ENTER press to boot, speeding up key press on idle.
+    - Support update interval feature, if not configured the default is 7 days interval.
+    - Add admin_communication main entry option.
+    - Update posxml_parser (2.7.0).
+        - Support to execute ruby application in posxml_execute.
+    - Update cloudwalk_handshake (0.13.0)
+        - Implement UTC mode from params.dat to generate TOTP.
+    - Update da_funk (1.13.0)
+        - Add DaFunk::ParamsDat::parameters_load copy of ready?.
+        - ScrenFlow.confirm returns boolean.
+        - Support schedule events in file if using hours parameters.
+
 ### 5.66.0 - 2018-08-13
 
 - Update SDK
