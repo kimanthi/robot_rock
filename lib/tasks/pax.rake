@@ -17,7 +17,7 @@ SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
 require File.join(MRUBY_PAX_ROOT, "mrblib", "version.rb")
 
-if RUBY_PLATFORM == "i386-mingw32"
+if ["i386-mingw32", "x64-mingw32"].include?(RUBY_PLATFORM)
   ENV["MRBC"]  = File.join(MRUBY_LIB, "bin", "mrbc.exe")
 else
   ENV["MRBC"]  ||= "env mrbc"
