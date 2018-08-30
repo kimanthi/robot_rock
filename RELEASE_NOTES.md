@@ -7,6 +7,23 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.68.0 - 2018-08-30
+
+- Update main (1.83.0)
+    - Implement communication test at admin menu.
+    - Refactoring media configuration to support device reboot and communication test after configuration.
+    - Adopt da_funk confirm helper at wizard.
+    - Refactoring language form at wizard to support exit.
+    - Update da_funk (1.13.1).
+        - Fix ScreenFlow navigation when comparing confirmation.
+    - Update posxml_parser (2.8.0).
+        - Support float variable compilation.
+        - Add file line number to compilation error.
+    - Update cloudwalk_handshake (0.13.1).
+        - Add rescue ssl exception on socket operation.
+        - Add rescue tcp exception on socket operation.
+        - Check if socket is created at handshake and ssl handshake.
+
 ### 5.67.0 - 2018-08-17
 
 - Add OS Update procedure to README.
