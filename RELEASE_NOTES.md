@@ -7,6 +7,12 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 5.69.0 - 2018-08-31
+
+- Update mruby-pax
+    - Support EMV pinbypass.
+    - Support Mifare and Sam Card interface.
+
 ### 5.68.0 - 2018-08-30
 
 - Update main (1.83.0)
