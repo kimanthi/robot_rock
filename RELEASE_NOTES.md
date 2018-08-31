@@ -11,6 +11,7 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 
 - Update mruby-pax
     - Implement custom method to print bmp bigger than 20k.
+    - Fix printer thread kill printing last buffer.
 
 ### 5.69.0 - 2018-08-31
 
