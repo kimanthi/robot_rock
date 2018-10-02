@@ -7,6 +7,30 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.0.0 - 2018-10-02
+
+- Add mruby-errno and mruby-error;
+- Update mruby-pax-network
+    - Change GPRS TCP keep alive to 180 seconds;
+- Update mruby-context
+    - Implement ThreadScheduler to support thread spawn and communication;
+    - Add CommunicationChannel as contract to PaymentChannel;
+    - Implement ThreadScheduler::_command timeout;
+- Update mruby-pax
+    - Fix font after bitmap image print;
+- Update main (2.0.0)
+    - Add ThreadScheduler interface to handle threads on communication and status bar operation;
+    - Support Thread scheduling on boot;
+    - Stop/start communication threads between network reconfiguration;
+    - Add link/unlink image to payment channel status;
+    - Fix communication thread printing;
+    - Update da_funk (2.0.0)
+        - Support check specific listener type;
+        - Adopt ThreadScheduler and stop all thread at boot end;
+        - Remove status bar check from engine loop;
+        - Add Support to change link/unlink payment channel image;
+        - Fix IO_INPUT_NUMBERS string change at IO.get_format.
+
 ### 5.72.0 - 2018-09-10
 
 - Update cloudwalk_handshake (0.13.2).
