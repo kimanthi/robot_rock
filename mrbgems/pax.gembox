@@ -73,6 +73,7 @@ MRuby::GemBox.new do |conf|
 
   conf.gem :core => "mruby-eval"
   conf.gem :core => "mruby-exit"
+  conf.gem :core => "mruby-error"
 
   # Use to TestUnit
 
@@ -105,5 +106,6 @@ MRuby::GemBox.new do |conf|
   #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-mock")
   #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tinyxml2")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-simplemsgpack")
+  conf.gem File.join(MRUBY_PAX_MGEM, 'mruby-errno')
 end
 

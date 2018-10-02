@@ -97,3 +97,6 @@
 [submodule "mrbgems/mruby-simplemsgpack"]
 	path = mrbgems/mruby-simplemsgpack
 	url = git@github.com:Asmod4n/mruby-simplemsgpack.git
+[submodule "mrbgems/mruby-errno"]
+	path = mrbgems/mruby-errno
+	url = git@github.com:iij/mruby-errno.git
