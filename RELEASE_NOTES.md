@@ -7,6 +7,24 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.1.0 - 2018-10-03
+
+- Update mruby-pax
+    - Define Platform as PAX class to cover mruby-da-funk interface;
+    - During SAK at MifareCard::uid;
+- Update mruby-context
+    - Fix ConnectionManagement hierarchy class call;
+    - Fix ThreadSchedule cache at ThreadSchedule::command return;
+- Update main (2.1.0)
+    - Remove backlight control in thread;
+    - Remove notification handler on communication thread;
+    - Update status bar updating period from 400 to 1000ms;
+    - Adopt custom notification handle at main thread;
+    - Fix ThreadScheduler command cache always returning the vale to key value structure;
+    - Fix fallback communication in thread communication;
+    - At ThreadChannel handler loop only communicate if string is given;
+    - Change strategy to thread spawn at thread scheduler to avoid missing loaded libs as da_funk execute create eval string in other scope.
+
 ### 6.0.0 - 2018-10-02
 
 - Add mruby-errno and mruby-error;
