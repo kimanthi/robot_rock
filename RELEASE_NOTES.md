@@ -7,6 +7,30 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.2.0 - 2018-10-05
+
+- Update mruby-context
+    - Add support to Platform boot on ruby setup;
+    - Support timeout in CommunicationChannel::handshake?;
+    - CommunicationChannel do not set PaymentChannel client;
+    - Implement CommunicationChannel commands: handshake, connect, handshake_response;
+- Update main (2.1.1)
+    - Increased timeout on getc;
+- Update main (2.1.2)
+    - Check if threads were created to stop them at ThreadScheduler;
+    - ThreadScheduler only start status bar if applicable;
+    - Support payment channel connect between threads;
+    - Remove countdown menu from payment channel handler because this handler is being handle in thread;
+    - Refactoring main execution parser;
+- Update main (2.1.3)
+    - Update da_funk (2.0.1)
+        - Add support to create and close PaymentChannel from CommunicationChannel;
+    - Update funky-emv (0.20.0)
+        - Added FunkyEmv Ui to display remove card message;
+- Update main (2.1.4)
+    - Update posxml_parser (2.8.4)
+        - Return PaymentChannel status when read cw_payment_channel.dat.
+
 ### 6.1.0 - 2018-10-03
 
 - Update mruby-pax
