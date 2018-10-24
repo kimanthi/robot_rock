@@ -191,3 +191,7 @@ After that procedure follow these steps with the POS Terminal:
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## License
+
+This project is released under the [MIT License](https://opensource.org/licenses/MIT).
