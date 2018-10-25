@@ -7,6 +7,11 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.2.1 - 2018-10-26
+
+- Update mruby-pax
+    - Fixed problem calling wrong method on printer context.
+
 ### 6.2.0 - 2018-10-05
 
 - Update mruby-context
@@ -294,7 +299,7 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
         - Implement crypto_xor.
 
 ### 5.52.0 - 2018-03-02
-    
+
 - Update mruby-context
     - Implement rescue in start method instead of begin/end block.
     - Implement Device::System.teardown.
