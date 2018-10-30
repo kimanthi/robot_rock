@@ -7,6 +7,11 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.2.2 - 2018-10-29
+
+- Update mruby-pax
+    - Fixed sleep on printer thread.
+
 ### 6.2.1 - 2018-10-26
 
 - Update mruby-pax
