@@ -7,6 +7,44 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.3.0 - 2018-11-28
+
+- Update EMV Library to v651;
+- Update mruby-pax;
+    - Do not call getc on communication thread;
+- Update mruby-context
+    - Bring ThreadScheduler from cloudwalkio/main;
+    - Support to ThreadScheduler set pause status;
+    - Define DaFunk::PaymentChannel.client on every runtime setup;
+    - Implement ThreadPubSub class to handle notification between threads;
+    - Ensure continue on ThreadScheduler::pausing;
+    - Publish communication update on communication thread pause;
+- Update main (2.2.0)
+    - Review key_main events to link2500 terminals.
+    - Update posxml_parser (2.8.5);
+        - Fresh cache variable in ruby execution;
+    - Update da_funk (2.0.2);
+        - Fix system update removing file existence validation because it could be a not valid path;
+    - Update da_funk (2.0.3);
+        - Fix I18n print and translate to check line and column;
+    - Update da_funk (2.0.4);
+        - Do not print last if not in communication thread;
+        - Replace sleep by getc at ParamsDat download functions;
+    - Update funky-emv (0.20.1);
+        - Refactoring EmvSharedLibrary to check tag 4F after 9F06 at go on chip process to return AID;
+- Update main (2.3.0)
+    - Support ThreadScheduler.pause at communication thread to not execute any event handler during other threads connection attempts;
+    - Move ThreadScheduler to mruby-context;
+    - Check if communication thread is sleeping before checking any communication object;
+    - Remove DaFunk::PaymentChannel.client definition at call and move to mruby-context;
+    - Support to ThreadPubSub subscription performing system reload on communication update event;
+    - Update da_funk (2.1.0);
+        - Support to thread pausing during Network.attach;
+        - Ensure clear on PaymentChannel::close!;
+    - Update posxml_parser (2.8.6);
+        - Fix parseticket xsd;
+        - Improve VariableTypeError message to highlight type;
+
 ### 6.2.2 - 2018-10-29
 
 - Update mruby-pax
