@@ -7,6 +7,19 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.4.0 - 2018-12-04
+
+- Update main (2.4.0)
+    - Refactoring PAX S920 key map inverting ALPHA by FUNC;
+    - Update cloudwalk (1.11.4);
+    - Update da_funk (2.2.0)
+        - Support pausing communication on Network::scan;
+- Update mruby-pax
+    - Support new ALPHA and MENU S920 key layout;
+    - Fix ICC read after EMV library update(v651), added sam slot initialization on EMV library initialization;
+- Update mruby-pax-network
+    - Add timeout to call connected after media initialisation that call could block all thread executions and its been cached with 1 (connecting) while waiting for timeout to access SDK;
+
 ### 6.3.0 - 2018-11-28
 
 - Update EMV Library to v651;
