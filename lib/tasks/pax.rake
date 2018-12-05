@@ -271,6 +271,7 @@ namespace :pax do
     git_hash = `git rev-parse --short HEAD`.chomp
     sign     = File.read(File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig")).split("=").last
     name     = "cloudwalk_framework-prolin-#{PAX.version.gsub(".", "_")}-#{sign}-#{git_hash}.zip"
+    aip      = "cloudwalk_framework-prolin-#{PAX.version.gsub(".", "_")}-#{sign}-#{git_hash}.aip"
     zip      = File.join(MRUBY_PAX_ROOT, "out", "pkg", name)
 
     FileUtils.rm_rf(pkg_path)
@@ -279,6 +280,8 @@ namespace :pax do
     FileUtils.cp(File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip"), File.join(pkg_path, "cloudwalk_framework.aip"))
     FileUtils.cp_r(File.join(MRUBY_PAX_ROOT, "out", "fonts"), File.join(pkg_path))
     FileUtils.cp(File.join(PAX_LIB_ROOT, "driver", "posvcom_2.5.0.0.rar"), File.join(pkg_path, "driver"))
+
+    FileUtils.cp(File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip"), File.join(MRUBY_PAX_ROOT, "out", "pkg", aip))
 
     Archive::Zip.archive(zip, pkg_path)
   end
