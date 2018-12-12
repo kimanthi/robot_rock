@@ -67,12 +67,15 @@ static int GuiInit(void)
   char model[32]="\0";
   char *xui_argv_s920[] = {"ROTATE=90","STATUSBAR=16"};
   char *xui_argv_d200[] = {"ROTATE=0","STATUSBAR=22"};
+  char *xui_argv_d195[] = {"ROTATE=0","STATUSBAR=22"};
 
   memset(&model, 0, sizeof(model));
   OsRegGetValue("ro.fac.mach", model);
 
   if (strcmp(model, "d200") == 0)
     ret = XuiOpen(2, xui_argv_d200);
+  else if (strcmp(model, "D195") == 0)
+    ret = XuiOpen(2, xui_argv_d195);
   else
     ret = XuiOpen(2, xui_argv_s920);
 
@@ -144,6 +147,9 @@ void Init(void)
   if (strcmp(model, "d200") == 0) {
     OpenFont(0x00, 0x00, 0x00, 0xFF, D200_SCREEN_X, D200_SCREEN_Y,
         D200_LINE_WIDTH, D200_LINE_HEIGHT, "./res/inconsolata.ttf");
+  } else if (strcmp(model, "D195") == 0) {
+    OpenFont(0x00, 0x00, 0x00, 0xFF, D195_SCREEN_X, D195_SCREEN_Y,
+        D195_LINE_WIDTH, D195_LINE_HEIGHT, "./res/inconsolata.ttf");
   } else {
     OpenFont(0x00, 0x00, 0x00, 0xFF, S920_SCREEN_X, S920_SCREEN_Y,
         S920_LINE_WIDTH, S920_LINE_HEIGHT, "./res/inconsolata.ttf");
