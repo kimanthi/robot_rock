@@ -72,7 +72,7 @@ void display_bitmap(char *path, int y, int x)
 
 void display_clear_line(int line)
 {
-  XuiClearArea(XuiRootCanvas(), 0, fix_y(line), screen_x, line_height);
+  XuiClearArea(XuiRootCanvas(), 0, fix_y(line), screen_x, line_height+1);
 }
 
 void display_clear(void)
