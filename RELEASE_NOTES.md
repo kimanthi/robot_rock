@@ -7,6 +7,15 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.5.0 - 2018-12-12
+
+- Support d195 on display initialization;
+- Fix pixel left when clear char in any form;
+- Update SDK
+    - Update TermAssist 3.0.9.5418;
+- Update mruby-pax
+    - Support d195 model add keys; columns and lines configuration; model name.
+
 ### 6.4.1 - 2018-12-05
 
 - Update mruby-pax
