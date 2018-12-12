@@ -18,11 +18,17 @@ XuiFont *GetFont(void);
 void CloseFont(void);
 int get_string(char *sValue[128], int min, int max, int mode, int y, int x);
 
+#define D195_SCREEN_X 320
+#define D195_SCREEN_Y 240
+
 #define D200_SCREEN_X 320
 #define D200_SCREEN_Y 240
 
 #define S920_SCREEN_X 240
 #define S920_SCREEN_Y 320
+
+#define D195_LINE_WIDTH 16
+#define D195_LINE_HEIGHT 27
 
 #define D200_LINE_WIDTH 16
 #define D200_LINE_HEIGHT 27
