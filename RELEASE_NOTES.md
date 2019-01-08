@@ -7,6 +7,34 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.6.0 - 2019-01-08
+
+- Update mruby-pax-network
+    - Implement PAX::Network.mac_address;
+    - Fixed cache on connect process;
+    - Implement PAX::Network.mac_address;
+- Update mruby-miniz
+    - Change inflate/deflate parameters to default values;
+    - Add mruby-pack dependency;
+    - Support parameters on deflate operation;
+- Update main (2.5.0)
+    - Update posxml_parser (2.9.0)
+        - Fix network.cloudwalkhandshake variable type declaration;
+        - Fix integer type check at posxml compilation, support camelcase declarations;
+        - Update test xsd from PosxmlParser version;
+        - Fix instruction not found check to instruction with parameters;
+        - Supporr to system.getlog instruction compilation;
+- Update main (2.6.0)
+    - Update posxml_parser (2.10.0)
+        - During translation lowercase first letter function;
+- Update main (2.7.0)
+    - Update da_funk (2.3.0)
+        - Implement Device::Setting.metadata_timestamp;
+        - Implement access to configuration at Device::Setting;
+    - Update posxml_parser (2.11.0)
+        - Add sale context tag and it's attributes at ISO20022 message, this tag is adopted by the sub acquires to identify the merchant;
+    - Add apps and system update to execute options.
+
 ### 6.5.0 - 2018-12-12
 
 - Support d195 on display initialization;
