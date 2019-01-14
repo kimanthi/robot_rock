@@ -7,6 +7,19 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.6.2 - 2019-01-14
+
+- Update mruby-pax-network
+    - Fix mac_address ifname check and fix method typo
+- Update main (2.8.0)
+    - Add MAC address to communication show;
+    - fix symbol name on case;
+    - Update da_funk (2.4.0)
+        - Support Device::Network.mac_address;
+- Update main (2.8.1)
+    - Update posxml_parser
+        - Support to return macaddress at system.info instruction;
+
 ### 6.6.1 - 2019-01-08
 
 - Rollback mruby-miniz
