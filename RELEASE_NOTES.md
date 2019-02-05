@@ -7,6 +7,19 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.6.4 - 2019-02-05
+
+- Update mruby-pax
+    - Refactor common emv functions to emv.h get_rgba(), getAsteriskSize(), fix_x() and fix_y();
+    - Bug fix PIN plain entry font setup, race conditions during pin requires to configure font in the callback cEMVGetHolderPwd();
+- Update main (2.10.0)
+    - Update da_funk (2.5.0)
+        - Bug fix EventHandler with slot configuration (schedule execution impact, example application or system update)
+            - Fix timestamp when configuration has changed;
+            - Fix execution between boots;
+    - Update funky-emv (0.20.2)
+        - Bug fix blanked screen before pin entry on PAX.
+
 ### 6.6.3 - 2019-01-23
 
 - Update main (2.9.0)
