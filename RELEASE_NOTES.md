@@ -7,6 +7,15 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.6.6 - 2019-02-07
+
+- Update main (2.12.0)
+    - Bug fix during communication update between threads to only close the socket if media configuration was changed;
+    - Update da_funk (2.5.1)
+        - Fix EventHandler rescheduler when dealing with slot;
+    - Update posxml_parser (2.13.1)
+        - Adopt a better communication check system on cw_payment_channe.dat call posxml_payment_channel_check function.
+
 ### 6.6.5 - 2019-02-06
 
 - Update main (2.11.0)
