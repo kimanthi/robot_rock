@@ -21,6 +21,7 @@
 #include <xui.h>
 #include "keyboard.h"
 #include "debugger.h"
+#include "runtime_system.h"
 
 const uint8_t start[] = {
   0x52,0x49,0x54,0x45,0x30,0x30,0x30,0x32,0x28,0x53,0x00,0x00,0x00,0xa2,0x4d,0x41,
@@ -172,7 +173,12 @@ int main(int argc, char **argv)
 {
   Init();
   SystemInit();
-  robot_rock_execute();
+  reload_flag = 1;
+  while(reload_flag) {
+    reload_flag = 0;
+    robot_rock_execute();
+    display_clear();
+  }
   DeInit();
 
   return 0;
