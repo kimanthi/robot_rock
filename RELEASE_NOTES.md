@@ -7,6 +7,39 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 6.7.0 - 2019-02-17
+
+- Reload the runtime if flag is configured;
+- Turn on memory mapping on main runtime;
+- Update main (2.13.0)
+    - Update posxml_parser (2.14.0)
+        - Add SysNm tag to iso20022 acceptor authorization request, this tag is responsible sender identification;
+- Update main (2.14.0)
+    - Adopt GC.start run on status bar thread;
+    - Bug fix stuck screen before persist new media config;
+    - Run GC.star every 10 minutes on communication thread;
+    - Run GC.star every 10 minutes on main thread;
+    - Reload runtime engine every 24 hours and if memory reaches 14mb;
+    - Call PaymentChannel.connect on mag and emv listener events, this start the payment channel creation (on communication thread) even if limit is exceed;
+    - Force payment channel creation if it doesn’t exists on comm thread. Logic is trigged if a write message (from main thread) is queued;
+    - Update da_funk (2.6.0)
+        - Support to Device::Runtime::reload on Engine stop;
+    - Update da_funk (2.7.0)
+        - Execute ThreadScheduler::keep_alive every engine check;
+        - Refresh every file on every FileDb set method if key is boot, this is a temporary fix to avoid edit problem between threads;
+        - Add Device::Setting attributes, payment_channel_attempts - To count channels in a day; payment_channel_date - Connection day;
+        - Implement Device::Setting::payment_channel_set_attempts, it’s a simple helper to set both payment_channel_date and payment_channel_attempts;
+        - Implement channel connection limit configuration;
+- Update mruby-pax
+    - Support PAX::Runtime::reload to allow terminal to restart runtime;
+- Update mruby-context
+    - Replace string creation function in ThreadSchedule::_command, from mrb_str_new_cstr to mrb_str_new (fixed size) to try avoid memory leak;
+    - Turn on memory mapping on runtime by Vm class
+    - Change Thread status to stop when thread died at ThreadScheduler;
+    - Implement thread keep alive system;
+    - Bug fix ThreadScheduler::execute rescuing and logging error, this avoid the runtime to be blocked;
+    - Bug fix ThreadScheduler::execute typo when execute connect.
+
 ### 6.6.6 - 2019-02-07
 
 - Update main (2.12.0)
