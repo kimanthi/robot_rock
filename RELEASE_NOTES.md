@@ -7,6 +7,53 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.1.0 - 2019-02-28
+
+- Update main (3.0.0)
+    - Support to close http socket at the end of an event;
+    - Force http socket creation during write event on thread communication;
+    - Update README with new parameter transaction_http_enabled;
+    - Update posxml_parser (2.15.0)
+        - Check if socket is connection process to consider connected;
+    - Update da_funk (3.0.0)
+        - Replace payment channel interface from WebSocket to HTTP;
+        - Support config.dat parameters `transaction_http_enabled`, `transaction_http_host`, `transaction_http_port`;
+    - Update cloudwalk_handshake (1.0.0)
+        - Implement CwMetadata to support request metadata, divide metadata in 2 levels, level 1 with all the values, and level 2 with only Media, Geo-Cell-Info, Signal and Battery;
+        - Implement CwHttpSocket to support http transaction;
+        - Support http host at SSL endpoint configuration to enable new ciphers;
+        - Refactoring CwHttpSocket to support payment channel API;
+        - Support to send transaction to infinitepay directly CwHttpSocket only, and configured by ParamsDat.file[“infinitepay_host”].
+- Update mruby-context
+    - Bug fix ThreadScheduler command and execution block every command was blocked until execution ends;
+    - ContextCommunicationChannel clear ThreadScheduler cache on close method;
+    - Implement connection cache if connect command was called necessary implementation on ContextCommunicationChannel::connect ::connected? ::handshake?;
+    - Rename listen to pubsub_listen on ThreadScheduler necessary to avoid compilation error;
+    - Addd DaFunk::Helper::StatusBar.valid? method for the status bar checking method on the thread_scheduler.rb, that implementation is not necessary on ingenico tetra terminals because it implements native status bar.
+- Update mruby-miniz
+    - Refactoring inflate/deflate default parameters to follow web socket standards;
+- Update mruby-pax
+    - Add MifareCard::close
+- Update mruby-polarssl
+    - Fix typoe of mruby-io and mruby-socket dependency;
+    - Fix type of mruby-io and mruby-socket dependency;
+    - Fix memory leaks found by sanitizer;
+    - Keep dependencies default;
+    - Clone mruby 1.3.0 to perform tests;
+    - Update polarssl (mbedtls) from 1.3.11 to 2.16.0;
+    - Addd mruby-print as dependency and refactoring compilation, compile every file inside of polarssl/library/;
+    - Refactoring pk parse curve strategy adopted functions mbedtls_ecp_curve_info_name to check group id from curve;
+    - Port new mbedtls SSL/TLS socket creation mechanic support to mbedtls conf struct and new initializers;
+    - Update README and license;
+    - Remove COPYING and COPYING.LESSER;
+    - Add mbedtls_ssl_handshake in order to mbedtls programs that call should be in loop checking if it keep in progress;
+    - Support MRUBY_MBEDTLS_DEBUG_C to enable debug;
+    - Support PolarSSL::SSL.set_hostname;
+    - Update README with debug section;
+    - Remove warnings;
+- Update mruby-socket
+    - Remove cloudwalk endpoint enforcement.
+
 ### 6.7.2 - 2019-02-19
 
 - Update mruby-context
