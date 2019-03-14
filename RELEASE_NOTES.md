@@ -7,6 +7,43 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.2.0 - 2019-03-14
+
+- Update main (3.1.0)
+    - Bug fix injected keys log typo;
+    - Add support to params.dat flag log_upload_enabled.
+    - Execute upload log routine every 24 hours;
+    - Refactoring upload logs routine:
+        - Upload the log from yesterday;
+        - User would be able to cancel upload log in 5 seconds;
+        - Minimal fixes and typos.
+    - Update cloudwalk_handshake (1.1.0)
+        - Update cloudwalk (1.14.1);
+        - Implement LogRegiser and MessageParser to log socket read/write operations.
+    - Update cloudwalk_handshake (1.2.0)
+        - Bug fix LogRegister sent size log information;
+        - Rename LogRegister.cw_websocket_trasction_nsu to log_websocket_trasction_nsu and implement support to receive a buffer that could contain a NSU information;
+        - Bug fix MessageParser::identify removing http verb match;
+        - Support CwHttpSocket logging.
+    - Update cloudwalk_handshake (1.2.1)
+        -  Bug fix LogRegister handshake size log;
+        -  Refactoring MessageParser
+            - Add 2 more NSU test scenarios;
+            - Refactoring identification matching strings;
+            - Support to return CwHttp and WebScoket handshake transaction information;
+            - Rescue any exception on must use executions;
+            - Bug fix JSON NSU extraction to bigger informations (16 bytes).
+        - Rename LogRegiser nsu method to LogRegister::nsu;
+        - Refactoring LogRegister debug messages;
+        - Rescue LogRegister exceptions;
+        - Refactoring log read/write strategy do not store open message size, store encrypted, and real, message size instead refactoring log read process to avoid double logging;
+    - Update da_funk (3.1.0)
+        - Replace host config for http (switch-http.cloudwalk.io to pos.cloudwalk.io)
+    - Update da_funk (3.1.1)
+        - Bug fix attach helper loop image and decrease display time to 200ms;
+        - Bugfix flag PaymentChannel::transaction_http use PaymentChannel didn’t change to payment channel approach when demand;
+        - Bug fix extend timeout to PaymentChannel handshake.
+
 ### 7.1.0 - 2019-02-28
 
 - Update main (3.0.0)
