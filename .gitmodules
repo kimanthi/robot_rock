@@ -100,3 +100,6 @@
 [submodule "mrbgems/mruby-errno"]
 	path = mrbgems/mruby-errno
 	url = git@github.com:iij/mruby-errno.git
+[submodule "mrbgems/mruby-emv"]
+	path = mrbgems/mruby-emv
+	url = git@github.com:cloudwalkio/mruby-emv.git
