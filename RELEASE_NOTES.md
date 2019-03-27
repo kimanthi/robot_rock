@@ -7,6 +7,25 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.3.1 - 2019-03-14
+
+- Update mruby-context
+    - Bug fix wrong transaction response between threads cleanning recv queue before enqueue send;
+- Update main (3.3.0)
+    - Change default application update period to 360 hours;
+    - Change default application update interval to 120 hours;
+    - Change system update strategy:
+        - Change default interval to 360 hours;
+        - If params.dat system_update_interval 0 disable system update;
+    - Update posxml_parser (2.16.0)
+        - Remove clean display before posxml execution;
+        - Remove payment channel extra connection check;
+        - Add emv_acquirer_aids file check;
+    - Update funky-emv (0.22.0)
+        - Refactoring displays and wait screen timeout to speed up transaction flow;
+    - Update cloudwalk_handshake (1.2.2)
+        - Bug fix add dependency funky-simplehttp on gemspec and avoid exception on gem use.
+
 ### 7.3.0 - 2019-03-14
 
 - Update main (3.2.0)
