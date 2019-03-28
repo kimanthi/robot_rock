@@ -7,7 +7,13 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.3.1 - 2019-03-14
+### 7.3.2 - 2019-03-28
+
+- Support NO_MAIN_BMP flag;
+- Update main (3.4.0)
+    - Update cw_apns.dat.
+
+### 7.3.1 - 2019-03-27
 
 - Update mruby-context
     - Bug fix wrong transaction response between threads cleanning recv queue before enqueue send;
