@@ -172,12 +172,43 @@ After that procedure follow these steps with the POS Terminal:
 3. Connect the terminal to the computer. At this point a new driver setup will be needed, and as well, manually Vagrant connection of the device. It's considered a new device for the system.
 4. With the device successfully connected the new OS upload will start automatically, Sysloader will report the progress.
 
-## Release and Bump version
+## Bump and Release version
 
-- Change version number on the files `mrblib/version.rb` and `out/appinfo`.
-- Generate mrb files `rake pax:mrbc SIGNATURE=production`
-- Generate aip `rake pax:rebuild SIGNATURE=production`
+### Bumup
 
+- Change version number on the files `mrblib/version.rb` and `out/appinfo`;
+
+### Mockup
+
+Package:
+
+- Change version number on the files `mrblib/version.rb` and `out/appinfo`;
+- Generate mrb files `rake pax:mrbc;
+- Generate aip `rake pax:rebuild;
+- Generate package `rake pax:package.
+
+RFU:
+
+- Change version number on the files `mrblib/version.rb` and `out/appinfo`;
+- Generate mrb files `rake pax:mrbc NO_MAIN_BMP=1`;
+- Generate aip `rake pax:rebuild NO_MAIN_BMP=1`;
+- Generate RFU package `rake pax:rfu_package NO_MAIN_BMP=1`.
+
+### Production
+
+Package:
+
+- Change version number on the files `mrblib/version.rb` and `out/appinfo`;
+- Generate mrb files `rake pax:mrbc SIGNATURE=production`;
+- Generate aip `rake pax:rebuild SIGNATURE=production`;
+- Generate package `rake pax:package SIGNATURE=production`.
+
+RFU:
+
+- Change version number on the files `mrblib/version.rb` and `out/appinfo`;
+- Generate mrb files `rake pax:mrbc SIGNATURE=production NO_MAIN_BMP=1`;
+- Generate aip `rake pax:rebuild SIGNATURE=production NO_MAIN_BMP=1`;
+- Generate RFU package `rake pax:rfu_package SIGNATURE=production NO_MAIN_BMP=1`.
 
 ## Certificates
 

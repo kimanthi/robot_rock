@@ -215,6 +215,12 @@ namespace :pax do
       FileUtils.mv(file, shared)
     end
 
+    if ENV["NO_MAIN_BMP"] == "1"
+      FileList[File.join(shared, "*main*.bmp")].each do |file|
+        FileUtils.rm_rf(file)
+      end
+    end
+
     # DaFunk
     FileUtils.cd DA_FUNK_LIB
     sh "bundle exec rake"
@@ -267,20 +273,24 @@ namespace :pax do
   task :package do
     require "archive/zip"
 
+    if ENV["NO_MAIN_BMP"] == "1"
+      bmp = "-NOMAINBMP"
+    end
+
     pkg_path = File.join(MRUBY_PAX_ROOT, "out", "pkg", PAX.version)
     git_hash = `git rev-parse --short HEAD`.chomp
     sign     = File.read(File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig")).split("=").last
-    name     = "cloudwalk_framework-prolin-#{PAX.version.gsub(".", "_")}-#{sign}-#{git_hash}.zip"
-    aip      = "cloudwalk_framework-prolin-#{PAX.version.gsub(".", "_")}-#{sign}-#{git_hash}.aip"
+    name     = "cloudwalk_framework-prolin-#{PAX.version.gsub(".", "_")}-#{sign}#{bmp}-#{git_hash}.zip"
+    aip      = "cloudwalk_framework-prolin-#{PAX.version.gsub(".", "_")}-#{sign}#{bmp}-#{git_hash}.aip"
     zip      = File.join(MRUBY_PAX_ROOT, "out", "pkg", name)
 
     FileUtils.rm_rf(pkg_path)
     FileUtils.mkdir_p(File.join(pkg_path, "driver"))
     FileUtils.cp_r(File.join(PAX_LIB_ROOT, "TermAssist"), pkg_path)
+    FileUtils.cp(File.join(MRUBY_PAX_ROOT, "RELEASE_NOTES.md"), File.join(pkg_path))
     FileUtils.cp(File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip"), File.join(pkg_path, "cloudwalk_framework.aip"))
     FileUtils.cp_r(File.join(MRUBY_PAX_ROOT, "out", "fonts"), File.join(pkg_path))
     FileUtils.cp(File.join(PAX_LIB_ROOT, "driver", "posvcom_2.5.0.0.rar"), File.join(pkg_path, "driver"))
-
     FileUtils.cp(File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip"), File.join(MRUBY_PAX_ROOT, "out", "pkg", aip))
 
     Archive::Zip.archive(zip, pkg_path)
@@ -291,9 +301,13 @@ namespace :pax do
     require "archive/zip"
     require "da_funk"
 
+    if ENV["NO_MAIN_BMP"] == "1"
+      bmp = "-NOMAINBMP"
+    end
+
     git_hash = `git rev-parse --short HEAD`.chomp
     sign     = File.read(File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig")).split("=").last
-    name     = "cloudwalk_framework-rfu-prolin-#{PAX.version.gsub(".", "_")}-#{sign}-#{git_hash}.zip"
+    name     = "cloudwalk_framework-rfu-prolin-#{PAX.version.gsub(".", "_")}-#{sign}#{bmp}-#{git_hash}.zip"
     zip      = File.join(MRUBY_PAX_ROOT, "out", "pkg", name)
 
     aip              = File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip")
