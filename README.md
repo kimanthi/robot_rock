@@ -183,9 +183,9 @@ After that procedure follow these steps with the POS Terminal:
 Package:
 
 - Change version number on the files `mrblib/version.rb` and `out/appinfo`;
-- Generate mrb files `rake pax:mrbc;
-- Generate aip `rake pax:rebuild;
-- Generate package `rake pax:package.
+- Generate mrb files `rake pax:mrbc`;
+- Generate aip `rake pax:rebuild`;
+- Generate package `rake pax:package`.
 
 RFU:
 
@@ -208,6 +208,7 @@ RFU:
 - Change version number on the files `mrblib/version.rb` and `out/appinfo`;
 - Generate mrb files `rake pax:mrbc SIGNATURE=production NO_MAIN_BMP=1`;
 - Generate aip `rake pax:rebuild SIGNATURE=production NO_MAIN_BMP=1`;
+    - After generate aip files copy signed file to the path `out/pkg/RobotRock.aip` and execute next routines;
 - Generate RFU package `rake pax:rfu_package SIGNATURE=production NO_MAIN_BMP=1`.
 
 ## Certificates
