@@ -308,11 +308,13 @@ namespace :pax do
     git_hash = `git rev-parse --short HEAD`.chomp
     sign     = File.read(File.join(MRUBY_PAX_ROOT, "out", "shared", "device.sig")).split("=").last
     name     = "cloudwalk_framework-rfu-prolin-#{PAX.version.gsub(".", "_")}-#{sign}#{bmp}-#{git_hash}.zip"
+    aip_sign = "cloudwalk_framework-rfu-prolin-#{PAX.version.gsub(".", "_")}-#{sign}#{bmp}-#{git_hash}.aip"
     zip      = File.join(MRUBY_PAX_ROOT, "out", "pkg", name)
 
     aip              = File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip")
     update_files_dat = File.join(MRUBY_PAX_ROOT, "out", "pkg", "update_files.dat")
     FileDb.new(update_files_dat)["content"] = "RobotRock.aip"
+    FileUtils.cp(aip, File.join(MRUBY_PAX_ROOT, "out", "pkg", aip_sign))
 
     Archive::Zip.archive(zip, [aip, update_files_dat])
   end
