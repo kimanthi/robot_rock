@@ -7,6 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+
+### 7.4.0 - 2019-04-09
+
+- Update main (3.5.0)
+    - Add keymap.dat;
+    - Update funky-emv (0.23.0)
+        - EmvSharedLibrary: Reduce timeout on process loop getc;
+        - EmvSharedLibrary: display waiting image after go on chip;
+        - Support icc detection to PAX EmvSharedLibrary devices;
+        - Always EmvSharedLibrary to EmvTransaction.
+
 ### 7.3.2 - 2019-03-28
 
 - Support NO_MAIN_BMP flag;
