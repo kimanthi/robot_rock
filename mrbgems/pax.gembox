@@ -107,5 +107,6 @@ MRuby::GemBox.new do |conf|
   #conf.gem File.join(MRUBY_PAX_MGEM, "mruby-tinyxml2")
   conf.gem File.join(MRUBY_PAX_MGEM, "mruby-simplemsgpack")
   conf.gem File.join(MRUBY_PAX_MGEM, 'mruby-errno')
+  conf.gem File.join(MRUBY_PAX_MGEM, 'mruby-emv')
 end
 
