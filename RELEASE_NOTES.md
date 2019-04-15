@@ -7,6 +7,13 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.4.2 - 2019-04-11
+
+- Update main (3.7.0)
+    - Update posxml_parser (2.18.0)
+        - Move PosxmlParser::FileDbCache.fresh to exit only;
+        - Support _execute0 method on translation execution, that feature is capable to call declaration method once saving some time on execution time;
+
 ### 7.4.1 - 2019-04-11
 
 - Update mruby-emv
