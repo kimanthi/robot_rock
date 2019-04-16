@@ -7,6 +7,14 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.4.4 - 2019-04-16
+
+- Update mruby-emv
+    - Add timeout between input pin form to fix UI glitch
+- Update main (3.9.0)
+    - Update funky-emv (0.23.2)
+        - Remove unnecessary usleep during pin entry.
+
 ### 7.4.3 - 2019-04-15
 
 - Update main (3.8.0)
