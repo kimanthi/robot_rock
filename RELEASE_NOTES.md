@@ -7,6 +7,24 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.4.7 - 2019-05-07
+
+- Update mruby-emv
+    - Do not specify Platform names at pinpad;
+    - Support Pinpad::encrypt to fix 3des encryption;
+ - Update mruby-context
+     - Fix thread scheduler information binary exchange to allow download binary information via payment channel;
+- Update main (3.12.0)
+    - Refactoring fallback communication routine. Create another Listener to handle only communication issues;
+    - Check all possible listener on communication thread;
+    - Added emv_wait messages;
+    - Update funky-emv (0.23.4)
+        - Fix possible format error at acquirer id on EmvSharedLibrary;
+    - Update da_funk (3.3.0)
+        - Remove communication errors from PaymentChannel;
+        - Remove unnecessary MAC address log;
+        - Implement ConnectionManager.check (from PaymentChannel).
+
 ### 7.4.6 - 2019-04-16
 
 - Update main (3.11.0)
