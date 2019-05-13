@@ -7,6 +7,12 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.4.10 - 2019-05-13
+
+- Update main (3.15.0)
+    - Update da_funk (3.3.1)
+        - Mock Device::Setting.logical_number from System if empty.
+
 ### 7.4.9 - 2019-05-10
 
 - Update main (3.14.0)
