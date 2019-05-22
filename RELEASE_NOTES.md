@@ -7,6 +7,19 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+
+### 7.4.14 - 2019-05-21
+
+- Update main (3.18.0)
+    - Do system reload on main thread after communication update to fix communication fallback operations;
+    - Update da_funk (3.6.0)
+        - Avoid memory leak on EventListener, avoid cleaning memory duplicating object;
+        - Check if ContextLog object exists on ISO8583;
+- Update mruby-pax-network
+    - Fix SIM ID read on PAX’s S920, D200 and D195, specifically on D200 the message response is longer than others models;
+- Update mruby-context
+    - Remove ContextCommunicationChannel fallback responsiblity;
+
 ### 7.4.13 - 2019-05-13
 
 - Update main (3.17.0)
