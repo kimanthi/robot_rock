@@ -253,11 +253,9 @@ namespace :pax do
   desc "Upload"
   task :upload do
     xcb = File.join(PAX_LIB_ROOT, "TermAssist", "tools", "xcb.exe")
-    port = "3"
-    port = ENV["PORT"] if ENV.include? "PORT"
-    sh "#{xcb} connect com:com#{port}"
+    sh "#{xcb} connect com:com#{ENV['PORT'] || 'com3'}"
     sh "#{xcb} installer #{ENV['TYPE'] || 'aip'} #{ENV['PACKAGE'] || File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip")}"
-    sh "#{xcb} disconnect com:com#{port}"
+    sh "#{xcb} disconnect com:#{ENV['PORT'] || 'com3'}"
   end
 
   desc "Test Platform Main"
