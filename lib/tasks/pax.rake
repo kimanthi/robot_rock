@@ -255,7 +255,7 @@ namespace :pax do
     xcb = File.join(PAX_LIB_ROOT, "TermAssist", "tools", "xcb.exe")
     sh "#{xcb} connect com:com#{ENV['PORT'] || 'com3'}"
     sh "#{xcb} installer #{ENV['TYPE'] || 'aip'} #{ENV['PACKAGE'] || File.join(MRUBY_PAX_ROOT, "out", "pkg", "RobotRock.aip")}"
-    sh "#{xcb} disconnect com:#{ENV['PORT'] || 'com3'}"
+    sh "#{xcb} disconnect com:com#{ENV['PORT'] || 'com3'}"
   end
 
   desc "Test Platform Main"
