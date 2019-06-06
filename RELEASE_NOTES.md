@@ -7,6 +7,32 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.5.0 - 2019-06-06
+
+- Update mruby-context
+    - Refactoring mrb_eval supporting mruby instance cache. Implement instance structure to store every mrb pointer limited to 20 instances and add Kernel.mrb_stop to remove any instance from pointer instance list;
+    - Refactoring ruby mechanism to cache applications, divide it in two steps, start (loads and requires) and execute (Main.call);
+- Update mruby-pax
+    - During print thread kill add thread.alive? check in order to validate if there's a thread running before the thread join;
+- Update main (3.20.0)
+    - Update cloudwalk_handshake (1.4.0)
+        - Added CwInfinitePayHostSetting class all settings related with infinitepay environments;
+        - Refactoring CwHttpSocket to support infinitepay-authorizer;
+    - Update da_funk (3.8.0)
+        - Do not send host/port information to CwHttpSocket, let it deal with host and port config from config.dat and/or params.dat;
+        - Added infinitepay_authorizer and infinitepay_api on config.dat;
+        - Divide Runtime execution in two steps, start (application loading) execute (application execution);
+        - Support to cache an application after downloading;
+    - Update funky-emv (0.25.0)
+        - Replaced waiting to emv_wait;
+        - Fix tag 4F removal on EmvSharedLibrary;
+    - Update funky-emv (0.26.0)
+        - Refactoring json parameters use on EmvTransaction::open to support emv parameters share between ruby applications;
+        - Store selection result in init_info struct as result key;
+    - Update posxml_parser (2.19.0)
+        - Support to send json parameters at posxml_execute, and add support to share emv data;
+        - Implemented transfer of magstripe data between ruby applications.
+
 ### 7.4.15 - 2019-05-22
 
 - Update mruby-context
@@ -15,15 +41,15 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Refactoring emv Listener supporting Funky-emv (0.24.0), and update emv_enabled flag use to define allowed as default;
     - Fix system update package count and improve interruption ux;
     - Add backup emv table to support funky-emv (0.24.0);
-        - Update funky-emv (0.24.0)
-            - Support backup emv_acquirer_aid load;
-            - Implement EmvTransaction::boot to open, clean and load tables;
-            - Implement EmvTransaction::reboot to close and open handle;
-            - Implement EmvTransaction::set_initial_data to define time operation;
-        - Update cloudwalk_handshake (1.3.0)
-            - Support http code status on CwHttpSocket;
-        - Update da_funk (3.7.0)
-            - Added support to get http code status using payment channel interface.
+    - Update funky-emv (0.24.0)
+        - Support backup emv_acquirer_aid load;
+        - Implement EmvTransaction::boot to open, clean and load tables;
+        - Implement EmvTransaction::reboot to close and open handle;
+        - Implement EmvTransaction::set_initial_data to define time operation;
+    - Update cloudwalk_handshake (1.3.0)
+        - Support http code status on CwHttpSocket;
+    - Update da_funk (3.7.0)
+        - Added support to get http code status using payment channel interface.
 
 ### 7.4.14 - 2019-05-21
 
