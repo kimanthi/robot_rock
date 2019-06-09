@@ -7,6 +7,11 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.5.2 - 2019-06-09
+
+- Update mruby-context
+    -  Fixed memory leak at application_name when alloc or search instances.
+
 ### 7.5.1 - 2019-06-06
 
 - Added a new way to start the runtime.
