@@ -39,7 +39,7 @@ int robot_rock_execute(void)
 
   c = mrbc_context_new(mrb);
 
-  mrb_load_string_cxt(mrb, "Context.start('main', 'PAX'); Context.execute('main', 'PAX');", c);
+  mrb_load_string_cxt(mrb, "Context.start('main', 'PAX'); Device::Runtime.start('main'); Context.execute('main', 'PAX');", c);
 
   mrbc_context_free(mrb, c);
 
