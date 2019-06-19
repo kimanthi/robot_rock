@@ -35,6 +35,8 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
         - Added emv_input_amount_idle parameter on config.dat;
     - Update da_funk (3.9.0)
         - Support to uncompress main application and reboot after it;
+- Update main (3.23.0)
+    - Added InputTransactionAmount class to handle input amount on the idle screen and support CTLS from idle;
 - Update mruby-context
     - Added rescue for ArgumentError to prevent error on app that doesn't receive parameters;
     - Execute system reload on every execution;
