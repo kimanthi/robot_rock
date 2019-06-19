@@ -7,6 +7,40 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.6.0 - 2019-06-18
+
+- Update main (3.22.0)
+    - Replaced executable_apps for ruby_executable_apps that only pre loads ruby applications;
+    - Add main to manager with the version 1.0.0;
+    - Add message to main application update reboot;
+    - Update funky-emv (1.0.0)
+        - Support CTLS emv table;
+        - Support CTLS operation;
+        - Added CTLS attribute in init_info structure;
+    - Update funky-emv (1.1.0)
+        - Support to load information from Json on init_data structure;
+        - Support to build custom parameters on EmvTransaction.params.
+    - Update posxml_parser (2.20.0)
+        - Update funky-emv (1.0.0);
+    - Update posxml_parser (2.21.0)
+        - Support to send magnetic parameters through EmvTransaction;
+    - Update cloudwalk_handshake (1.4.2)
+        - Fixed host value to api connection;
+    - Update da_funk (3.8.1)
+        - Fix ISO8583 binary bitmap generation to CRUBY;
+    - Update da_funk (3.8.2)
+        - Fix ISO 8583 HEX Bitmap generation;
+        - Implemented ParamsDat::ruby_executable_apps;
+    - Update da_funk (3.8.3)
+        - Added emv_input_amount_idle parameter on config.dat;
+    - Update da_funk (3.9.0)
+        - Support to uncompress main application and reboot after it;
+- Update mruby-context
+    - Added rescue for ArgumentError to prevent error on app that doesn't receive parameters;
+    - Execute system reload on every execution;
+- Update mruby-emv
+    - Added support to render image on input card.
+
 ### 7.5.3 - 2019-06-13
 
 - Cache main application to future execute call.
