@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.6.0 - 2019-06-18
+### 7.6.0 - 2019-07-09
 
 - Update main (3.22.0)
     - Replaced executable_apps for ruby_executable_apps that only pre loads ruby applications;
@@ -37,9 +37,49 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
         - Support to uncompress main application and reboot after it;
 - Update main (3.23.0)
     - Added InputTransactionAmount class to handle input amount on the idle screen and support CTLS from idle;
+- Update main (3.24.0)
+    - Update da_funk (3.10.0)
+        - Do not raise load error when cloudwalk_handshake doesn’t exists;
+        - Support to app set on PaymentChannel;
+        - Set PaymentChannel application on Device::System::klass=;
+        - Support CwHttpEvent on PaymentChannel;
+    - Update da_funk (3.10.1)
+        - Fix application set loop on PaymentChannel and System;
+    - Update da_funk (3.10.2)
+        - Fix main application detection on app update;
+        - Support cloudwalk_handshake (1.6.0);
+    - Update cloudwalk_handshake (1.5.0)
+        - Implement CwHttpEvent class to handle CloudWalk http events;
+        - Implement CwInfinitepayHostSetting.authorizer_allowed_application? to check applications allowed to transact on authorizer;
+        - Implement CwInfinitepayHostSetting.api_allowed_application? to check applications allowed to transact on infinitepay api;
+    - Update cloudwalk_handshake (1.6.0)
+        - Move CwHttpEvent to Cloudwalk::HttpEvent and add tests;
+    - Update posxml_parser (2.22.0)
+        - Show message processing after card swiped. After swipe the card it takes some time to the terminal to return a feedback because it is parsing some formations. It can cause confusion to the user. To avoid this we show a messag
+        - Parse card informations and send to emv struct with this we can get:
+            - Track1(if exists);
+            - Track2;
+            - Pan;
+            - Service code;
+            - Expiration date;
+            - Cardholder name(if exists);
+            - Card type;
+            - Result of operation;
+        - Send card info on emv struct;
+    - Update funky-emv (1.2.0)
+        - Implement pre selection of credit and debit applications;
+    - Update funky-emv (1.2.1)
+        - Fixed issue with magnetic card swiped, shared library is not returning magnetic stripe data;
+    - Send Magnetic object instead track2 only on Magnetic Handler triggering;
 - Update mruby-context
     - Added rescue for ArgumentError to prevent error on app that doesn't receive parameters;
     - Execute system reload on every execution;
+    - Increased ThreadScheduler exchange buffers to 50k in order to avoid memory leaks;
+    - Update application Klass on app execution;
+    - Support application set between threads;
+    - Bug fix check if CommunicationThread exist to schedule command;
+    - Bug fix ThreadScheduler application configuration return;
+    - Support Cloudwalk::HttpEvent;
 - Update mruby-emv
     - Added support to render image on input card.
 
