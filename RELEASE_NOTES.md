@@ -7,6 +7,14 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.4.17 - 2019-08-01
+- Update main (3.19.1)
+  - Update funky-emv (0.26.0)
+  - Refactoring json parameters use on EmvTransaction::open to support emv parameters share between ruby applications;
+  - Store selection result in init_info struct as result key.
+  - Replaced waiting to emv_wait;
+  - Fix tag 4F removal on EmvSharedLibrary.
+
 ### 7.4.16 - 2019-07-15
 
 - Update mruby-context
