@@ -32,12 +32,11 @@ int robot_rock_execute(void)
   mrb_allocf allocf;
   void *ud;
 
-  context_memprof_init(&allocf, &ud);
-
-  mrb = mrb_open_allocf(allocf, ud);
-  /*mrb = mrb_open();*/
+  mrb = mrb_open();
 
   c = mrbc_context_new(mrb);
+  c->capture_errors = TRUE;
+  c->no_optimize = TRUE;
 
   mrb_load_string_cxt(mrb, "Context.start('main', 'PAX'); Device::Runtime.start('main'); Context.execute('main', 'PAX');", c);
 
