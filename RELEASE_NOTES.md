@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.6.0 - 2019-07-09
+### 7.6.0 - 2019-09-27
 
 - Update main (3.22.0)
     - Replaced executable_apps for ruby_executable_apps that only pre loads ruby applications;
@@ -82,6 +82,17 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Support Cloudwalk::HttpEvent;
 - Update mruby-emv
     - Added support to render image on input card.
+- Update da_funk (3.11.0)
+  - Added support image or text display when booting a new runtime;
+  - Remove cache ruby application mechanism
+- Update mruby-context
+  - Remove cache ruby application mechanism
+- Update cloudwalk_handshake (1.8.1)
+  - Added support of Authorizer production URL
+- Update main (3.25.0)
+  - Remove cache ruby application mechanism
+- Update posxml_parser (2.24.0)
+  - Support of scheduling tasks from ruby applications through json file.
 
 ### 7.5.3 - 2019-06-13
 
