@@ -27,7 +27,7 @@
 	url = git@github.com:sadasant/mruby-qrcode.git
 [submodule "mrbgems/mruby-socket"]
 	path = mrbgems/mruby-socket
-	url = git@github.com:cloudwalkio/mruby-socket.git
+	url = git@github.com:iij/mruby-socket.git
 [submodule "mrbgems/mruby-sleep"]
 	path = mrbgems/mruby-sleep
 	url = git@github.com:matsumoto-r/mruby-sleep.git
