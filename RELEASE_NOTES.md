@@ -109,6 +109,8 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 - Update mruby-emv
     - Added touchscreen support in the callback application selection;
 - Remove memory leaks on mruby-miniz, mruby-context, mruby-socket, mruby-io, mruby-require and mruby-tempfile;
+- Update mruby-pax
+    - Support OsPiccIsoCommand on MifareCard interface;
 
 ### 7.5.3 - 2019-06-13
 
