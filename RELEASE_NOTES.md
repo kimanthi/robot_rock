@@ -93,6 +93,22 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
   - Remove cache ruby application mechanism
 - Update posxml_parser (2.24.0)
   - Support of scheduling tasks from ruby applications through json file.
+- Update main (3.26.0)
+    - posxml_parser (2.24.1)
+        - Fix on scheduler rb apps. The handler should search for cw_app_schedule.json file in the root of the application folder;
+    - da_funk (3.11.1)
+        - Fixed method call on ISO8583Exception rescue;
+    - da_funk (3.12.0)
+        - Added DaFunk::Helper#wait_touchscreen_or_keyboard_event;
+        - Added Added DaFunk::Helper#menu_image_touchscreen_or_keyboard;
+    - da_funk (3.12.1)
+        - Bug fix local jump error: unexpected return. Error found on methods added to touch screen operations (Helper);
+- Update main (3.27.0)
+    - da_funk (3.12.2)
+        - Bug fix undefined method 'x' on parse_touchscreen_event. This method was not receiving x and y which were local variables;
+- Update mruby-emv
+    - Added touchscreen support in the callback application selection;
+- Remove memory leaks on mruby-miniz, mruby-context, mruby-socket, mruby-io, mruby-require and mruby-tempfile;
 
 ### 7.5.3 - 2019-06-13
 
