@@ -111,6 +111,9 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 - Remove memory leaks on mruby-miniz, mruby-context, mruby-socket, mruby-io, mruby-require and mruby-tempfile;
 - Update mruby-pax
     - Support OsPiccIsoCommand on MifareCard interface;
+- Update mruby-context
+    - Fix memory leak between thread command execution;
+    - Wait other thread collect response. On thread command execution it’s necessary to wait until any other thread collect the response to try scheduling a new command;
 
 ### 7.5.3 - 2019-06-13
 
