@@ -114,6 +114,8 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 - Update mruby-context
     - Fix memory leak between thread command execution;
     - Wait other thread collect response. On thread command execution it’s necessary to wait until any other thread collect the response to try scheduling a new command;
+    - Define default value to cache ThreadScheduler.command as nil;
+    - Return true as string on ThreadScheduler.command;
 
 ### 7.5.3 - 2019-06-13
 
