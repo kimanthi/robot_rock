@@ -116,6 +116,12 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Wait other thread collect response. On thread command execution it’s necessary to wait until any other thread collect the response to try scheduling a new command;
     - Define default value to cache ThreadScheduler.command as nil;
     - Return true as string on ThreadScheduler.command;
+- Update main (3.28.0)
+    - Update da_funk (3.12.3)
+        - Duplicate string before mrb_eval to avoid possible memory leak;
+- Update mruby-json
+- Update mruby-context
+    - Bugfix memory leak adopting mrb_load_nstring_cxt on mrb_eval. This avoid consider a NULL pointer string;
 
 ### 7.5.3 - 2019-06-13
 
