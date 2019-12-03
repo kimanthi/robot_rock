@@ -122,6 +122,22 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 - Update mruby-json
 - Update mruby-context
     - Bugfix memory leak adopting mrb_load_nstring_cxt on mrb_eval. This avoid consider a NULL pointer string;
+- Update mruby-pax
+    - Add Kernel.touch_clear;
+- Update main (3.29.0)
+    - Update da_funk (3.13.0)
+        - Added funky-mock library;
+        - Add status bar spinner to system update;
+        - Support background update;
+        - Refactoring touch events handling;
+    - posxml_parser (2.25.0)
+        - Move file_exists Listener to main application;
+    - Added new :file_exists handler to update applications;
+    - Add system update icon message;
+    - Add support to system update in background;
+- Update main (3.30.0)
+    - Update cloudwalk_handshake (1.9.0)
+        - Add check_update to see if there's a notification to update system or application comming from header.
 
 ### 7.5.3 - 2019-06-13
 
