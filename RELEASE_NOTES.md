@@ -137,7 +137,16 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Add support to system update in background;
 - Update main (3.30.0)
     - Update cloudwalk_handshake (1.9.0)
-        - Add check_update to see if there's a notification to update system or application comming from header.
+        - Add check_update to see if there's a notification to update system or application comming from header;
+- Update mruby-pax
+    - Update MifareCard.command strategy;
+- Update main 3.30.1
+    - Update funky-emv (1.2.2)
+        - Fixed tags size calculation;
+- Update main 3.31.0
+    - Update da_funk (3.13.1)
+        - Update funky-emv (1.2.2);
+        - Updated cloudwalk_handshake (1.9.0).
 
 ### 7.5.3 - 2019-06-13
 
