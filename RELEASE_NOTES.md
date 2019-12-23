@@ -146,7 +146,9 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 - Update main 3.31.0
     - Update da_funk (3.13.1)
         - Update funky-emv (1.2.2);
-        - Updated cloudwalk_handshake (1.9.0).
+        - Updated cloudwalk_handshake (1.9.0);
+- Update mruby-pax
+    - Support OsPiccActive on MifareCard;
 
 ### 7.5.3 - 2019-06-13
 
