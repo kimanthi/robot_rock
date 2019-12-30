@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.6.0 - 2019-09-27
+### 7.6.0 - 2019-12-30
 
 - Update main (3.22.0)
     - Replaced executable_apps for ruby_executable_apps that only pre loads ruby applications;
@@ -149,6 +149,23 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
         - Updated cloudwalk_handshake (1.9.0);
 - Update mruby-pax
     - Support OsPiccActive on MifareCard;
+- Update mruby-pax-network
+    - check if communication was initialized to execute network commands;
+    - Refactoring Wifi::connected? returning an array instead of set all the instance variables;
+    - Fix wifi rssi conversation to signal percentage;
+    - Improve network initialisation control storing the result;
+- Update mruby-context
+    - Remove communication update event publish;
+- Update da_funk (3.14.0)
+    - Notify all threads that modifications on network was made;
+    - Support Device::Setting::network_init to improve network initialisation control;
+    - Load metadata after successfully attach;
+    - Update cloudwalk_handshake (1.10.0);
+- Update main (3.32.0)
+    - Display message before wait to stop communication on network configuration;
+    - Create $thread_name global variable;
+    - Update cloudwalk_handshake (1.10.0);
+    - Update da_funk (3.14.0);
 
 ### 7.5.3 - 2019-06-13
 
