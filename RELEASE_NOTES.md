@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.6.0 - 2019-12-30
+### 7.6.0 - 2020-01-06
 
 - Update main (3.22.0)
     - Replaced executable_apps for ruby_executable_apps that only pre loads ruby applications;
@@ -166,6 +166,12 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Create $thread_name global variable;
     - Update cloudwalk_handshake (1.10.0);
     - Update da_funk (3.14.0);
+- Update main (3.33.0)
+    - Added ruby apps tasks scheduler handler;
+    - Changed method name setup_app_events to setup_keyboard_events_from_rb_apps;
+    - Changed file name CwKeys.json to cw_keys.json to have a name pattern;
+    - Added :boot handler event listener;
+    - Update posxml_parser (2.26.0);
 
 ### 7.5.3 - 2019-06-13
 
