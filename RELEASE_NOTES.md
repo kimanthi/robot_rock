@@ -172,6 +172,8 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Changed file name CwKeys.json to cw_keys.json to have a name pattern;
     - Added :boot handler event listener;
     - Update posxml_parser (2.26.0);
+- Update mruby-pax
+    - Support OsPiccTransfer on MifareCard;
 
 ### 7.5.3 - 2019-06-13
 
