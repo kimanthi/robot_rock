@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.6.0 - 2020-01-06
+### 7.6.0 - 2020-01-16
 
 - Update main (3.22.0)
     - Replaced executable_apps for ruby_executable_apps that only pre loads ruby applications;
@@ -174,7 +174,13 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Update posxml_parser (2.26.0);
 - Update mruby-pax
     - Support OsPiccTransfer on MifareCard;
-
+- Update main (3.34.0)
+    - Added exist validation when delete shared/system_update folder;
+    - Update cloudwalk_handshake (1.11.0)
+    - Update da_funk (3.15.0)
+- Update da_funk (3.15.0)
+    - Load/update config.dat file before set payment channel attempts
+        
 ### 7.5.3 - 2019-06-13
 
 - Cache main application to future execute call.
