@@ -221,7 +221,10 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
         - Store selection result in init_info struct as result key;
     - Update posxml_parser (2.19.0)
         - Support to send json parameters at posxml_execute, and add support to share emv data;
-        - Implemented transfer of magstripe data between ruby applications.
+        - Implemented transfer of magstripe data between ruby applications;
+- Update main (3.35.0)
+    - Update da_dunk (3.15.1)
+        - Just removed some debug points.
 
 ### 7.4.15 - 2019-05-22
 
