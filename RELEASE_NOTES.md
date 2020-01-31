@@ -7,6 +7,23 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.7.0 - 2020-01-31
+
+- Update mruby-pax;
+- Update main (3.38.0)
+  - Use infinitepay logo as default image;
+  - Removed amount text from main display when ctls is enabled;
+  - Added :touchscreen event listener;
+  - Refactored InputTransactionAmount class. CTLS Amount is not being captured from idle anymore, now this call is based on a touch screen event;
+  - Added event handler for contactless transactions;
+  - Set getc and with getxy_stream timeout to 100ms to have a better UX;
+  - Change reset time from 24hrs to 5hrs;
+  - Update da_funk (3.16.3)
+    - Changed setting emv_input_amount_idle to emv_contactless_amount.
+  - Update cloudwalk (1.15.0);
+  - Update cloudwalk_handshake (1.12.0)
+    - Add metadata information in transactions payload.
+
 ### 7.6.2 - 2020-01-17
 
 - Fix version description.
