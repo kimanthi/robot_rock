@@ -11,7 +11,18 @@ MRUBY_PAX_INC  = File.join(MRUBY_PAX_ROOT, "src")
 GCC_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")
 AR_PAX_BIN     = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-ar")
 LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"), File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include"), File.join(PAX_LIB_ROOT, "emv"), File.join(PAX_LIB_ROOT, "barcode")]
-SIGNATURE      = ENV["SIGNATURE"] == "production" ? "production" : "mockup"
+
+if ENV["SIGNATURE"] == "production"
+  SIGNATURE = "production"
+elsif ENV["SIGNATURE"] == "mockup"
+  SIGNATURE = "mockup"
+elsif ENV["SIGNATURE"] == "7mockup"
+  SIGNATURE = "7mockup"
+elsif ENV["SIGNATURE"] == "7production"
+  SIGNATURE = "7production"
+else
+  SIGNATURE = "mockup"
+end
 
 SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
