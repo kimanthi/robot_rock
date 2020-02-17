@@ -7,6 +7,25 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.8.0 - 2020-02-17
+
+- Added support to 7production and 7mockup signature;
+- Update da_funk (3.17.0)
+ - Added support to infinitepay dns on config.dat file;
+ - Update cloudwalk (1.15.0);
+ - cloudwalk_handshake (1.13.0);
+- Update main (3.39.0)
+  - Added support to infinitepay endpoint configuration on cloudwalk menu;
+  - Update cloudwalk_handshake (1.13.0);
+  - Clear queue of touch events;
+  - Increase range of touch to start contactless transaction;
+  - Fixed error when amount is KEY_TIMEOUT on InputTransactionAmount;
+  - Check battery level each 5 minutes in order to warning the user that the battery is low when it's in idle;
+  - Increase timeout on getxy_stream to avoid click many times;
+  - Update da_funk (3.17.0);
+- Update main (3.40.0)
+ - Added handler to also start ctls transaction pressing key number.
+
 ### 7.7.0 - 2020-01-31
 
 - Update mruby-pax;
