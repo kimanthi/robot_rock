@@ -7,6 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.8.1 - 2020-02-17
+
+- Update main (3.41.0)
+    - Adopt new THREAD_* flags and pause timeout (200 msec);
+- Update mruby-context
+    - Support timeout on thread pause check;
+    - Thread.command only change thread status if thread status is on response status;
+    - Fix thread check algorithm
+        - There was a bug during the thread status check, the process was always checking the status bar, instead of communication when communication thread;
+        - Refactoring constant names.
+
 ### 7.8.0 - 2020-02-17
 
 - Added support to 7production and 7mockup signature;
