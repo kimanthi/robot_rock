@@ -11,6 +11,8 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 
 - Update main (3.41.0)
     - Adopt new THREAD_* flags and pause timeout (200 msec);
+- Update main (3.42.0)
+    - Change reboot timeout to 1440 minutes;
 - Update mruby-context
     - Support timeout on thread pause check;
     - Thread.command only change thread status if thread status is on response status;
