@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.8.1 - 2020-02-17
+### 7.8.1 - 2020-04-17
 
 - Update main (3.41.0)
     - Adopt new THREAD_* flags and pause timeout (200 msec);
@@ -19,6 +19,19 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Fix thread check algorithm
         - There was a bug during the thread status check, the process was always checking the status bar, instead of communication when communication thread;
         - Refactoring constant names.
+- Update main (3.43.0)
+  - Update rake from 10.5.0 to 12.3.3;
+  - Refactor on logs send mechanism, it's not necessary to proxy with switch anymore;
+  - Update da_funk (3.18.0).
+- Update mruby-context
+- Updated da_funk (3.18.0)
+  - Added enable_txt_ui parameter on the following methods:
+   - DaFunk::ParamsDat#download;
+   - DaFunk::ParamsDat#update_apps;
+   - DaFunk::ParamsDat#update_app;
+   - DaFunk::ParamsDat#update_file;
+   - DaFunk::Helper#attach_options;
+   - DaFunk::Helper#check_download_error.
 
 ### 7.8.0 - 2020-02-17
 
