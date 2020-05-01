@@ -78,7 +78,7 @@
 	url = git@github.com:scalone/mruby-sha1.git
 [submodule "mrbgems/mruby-sha2"]
 	path = mrbgems/mruby-sha2
-	url = git@github.com:h2so5/mruby-sha2.git
+	url = git@github.com:scalone/mruby-sha2.git
 [submodule "mrbgems/mruby-bignum"]
 	path = mrbgems/mruby-bignum
 	url = git@github.com:chasonr/mruby-bignum.git
