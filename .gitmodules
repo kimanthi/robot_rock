@@ -90,7 +90,7 @@
 	url = git@github.com:mruby/mruby.git
 [submodule "mrbgems/mruby-tinyxml2"]
 	path = mrbgems/mruby-tinyxml2
-	url = git@github.com:h2so5/mruby-tinyxml2.git
+	url = git@github.com:scalone/mruby-tinyxml2.git
 [submodule "mrbgems/mruby-thread"]
 	path = mrbgems/mruby-thread
 	url = git@github.com:mattn/mruby-thread.git
