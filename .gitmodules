@@ -60,7 +60,7 @@
 	url = git@github.com:scalone/mruby-msgpack.git
 [submodule "lib/main"]
 	path = lib/main
-	url = git@github.com:cloudwalkio/main.git
+	url = git@github.com:cloudwalk/main.git
 [submodule "mrbgems/mruby-base58"]
 	path = mrbgems/mruby-base58
 	url = git@github.com:scalone/mruby-base58.git
