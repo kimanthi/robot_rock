@@ -7,6 +7,54 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.9.0 - 2020-05-28
+
+- Enable memory profiling on main execution
+- Update SDK
+    - Update BC to verison 1.39;
+- Update main 3.44.0
+    - Support new ThreadChannel interface (only read/write);
+    - Change GC strategy to freak mode (execute every 2 minutes a full GC in all threads);
+    - Remove stop of engine if memory consumption is to high;
+    - Remove stop of engine if every 1440 minutes;
+    - Remove thread status bar;
+    - Rename PaymentChannel::client to PaymentChannel::current;
+    - Cache CwMetadata on boot time;
+    - Check status bar on communication thread;
+    - Refactoring communication thread loop:
+        - Adopt new ThreadScheduler.execute interface (without sending thread id);
+        - Do not call Listener if payment channel connected
+    - Update da_funk (3.20.0)
+        - Rename PaymentChannel::client to ::current;
+        - Fix status bar change link to cache old value;
+- Update mruby-context
+    - Refactoring ThreadChannel abstraction;
+        - Replace all methods `channel_*` and `queue_*` for write and read only;
+        - Support id per write/read event;
+    - ThreadScheduler: On not cacheable execution return nil if ‘cache’;
+    - Fix mrb_thread_pub_sub_s_publish return;
+    - Implement Contextlog in pure C;
+    - Bug fix memory leak on queue creation;
+    - Check CommunicationThread->status on execution response return;
+    - Ensure NULL value to stop and start thread;
+    - Refactoring context_thread pause, continue and message passing;
+    - Execute GC right after every app execution;
+    - Enable memory profiling on all applications;
+    - Clean up connThreaadEvents on thread_scheduler_stop;
+    - Support PaymentChannel::current syntax;
+    - Remove status bar thread;
+    - Fix channel id parameter on read operation;
+    - Refactor thread scheduler execution function;
+    - Use less chars form Time on thread channel generation id;
+    - Channel now mock `handshake?` function to true;
+    - Major refactoring on thread scheduler
+        - Refactoring between threads command execution, change strategy to reduce memory, and adopt malloc/realloc to the minimal runtime use;
+        - Remove thread status command and response;
+        - Refactor function sessions a rename some of them;
+        - Initialize all pointers with NULL (it was a big memory problem);
+        - Remove execution time of waiting;
+        - Implement ThreadScheduler::_command_once.
+
 ### 7.8.1 - 2020-05-25
 
 - Update main (3.41.0)
