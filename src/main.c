@@ -32,7 +32,8 @@ int robot_rock_execute(void)
   mrb_allocf allocf;
   void *ud;
 
-  mrb = mrb_open();
+  context_memprof_init(&allocf, &ud);
+  mrb = mrb_open_allocf(allocf, ud);
 
   c = mrbc_context_new(mrb);
   c->capture_errors = TRUE;
