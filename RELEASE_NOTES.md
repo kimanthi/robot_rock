@@ -57,7 +57,7 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Do not clear `connected?` command cache on execution thread;
     - Bug fix message Len max between thread channels;
     - define CHANNEL_MAX_MSG_SIZE and THREAD_COMMAND_MAX_MSG_SIZE.
-    - Update main 3.45.0
+    - Update main 3.45.1
      - Update funky-emv 1.3.0
 
 ### 7.8.1 - 2020-05-25
