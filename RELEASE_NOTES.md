@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.9.0 - 2020-05-28
+### 7.9.0 - 2020-06-01
 
 - Enable memory profiling on main execution
 - Update SDK
@@ -57,6 +57,8 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
     - Do not clear `connected?` command cache on execution thread;
     - Bug fix message Len max between thread channels;
     - define CHANNEL_MAX_MSG_SIZE and THREAD_COMMAND_MAX_MSG_SIZE.
+    - Update main 3.45.0
+     - Update funky-emv 1.3.0
 
 ### 7.8.1 - 2020-05-25
 
