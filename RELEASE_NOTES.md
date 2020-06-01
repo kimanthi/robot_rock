@@ -53,7 +53,10 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
         - Refactor function sessions a rename some of them;
         - Initialize all pointers with NULL (it was a big memory problem);
         - Remove execution time of waiting;
-        - Implement ThreadScheduler::_command_once.
+        - Implement ThreadScheduler::_command_once;
+    - Do not clear `connected?` command cache on execution thread;
+    - Bug fix message Len max between thread channels;
+    - define CHANNEL_MAX_MSG_SIZE and THREAD_COMMAND_MAX_MSG_SIZE.
 
 ### 7.8.1 - 2020-05-25
 
