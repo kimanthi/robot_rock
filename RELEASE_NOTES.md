@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.9.0 - 2020-06-01
+### 7.9.0 - 2020-06-23
 
 - Enable memory profiling on main execution
 - Update SDK
@@ -60,6 +60,81 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
   - Fix memory initialisation for pause/continue thread events;
 - Update main 3.45.1
   - Update funky-emv 1.3.0.
+    - Added support to retrieve contactless apps
+    - Implemented Device::EMVRow#ctls?
+    - Check false or empty? on credit and debit appplications
+- Update da_funk (3.21.0)
+ - Removed unnecessary processing method call;
+ - Status bar refactored:
+  - Removed link icon;
+  - Added support to SLOT_MEDIA to print WIFI or GPRS;
+  - Renamed SLOT_CONNECTION to SLOT_SIGNAL_LEVEL;
+  - Added support to SLOT_BATTERY_PERCENTUAL to print percentual of battery level;
+  - Renamed SLOT_BATTERY to SLOT_BATTERY_LEVEL;
+  - Update battery and wifi images;
+  - Added BATTERY_PERCENTAGE_IMAGES;
+  - Show searching icon when network is not connected;
+- Added support to virtual keyboard;
+- Added support to touchscreen event on DaFunk::Helper#menu;
+- Added support to return timeout parameter on DaFunk::Helper#menu when timeout is achieved;
+- Update funky-emv 1.3.0.
+- Update main (3.46.0)
+  - Updated status bar images;
+  - Removed unnecessary images from resources/shared;
+  - Updated AdminConfiguration::KEEP_FILES;
+  - Added boot welcome image;
+  - Added support to emv contactless timeout and user canceled messages;
+  - Update da_funk (3.21.0).
+- Update da_funk (3.21.2)
+  - Fixed timeout return on DaFunK::Helper#menu, it should return Device::IO::KEY_TIMEOUT not options[:timeout];
+  - Set cloudwalk endpoint as default.
+- Update main (3.46.1)
+  - Update da_funk (3.21.2);
+  - Update funky-emv (1.3.1)
+    - Replace emv_wait to emv_processing image display.
+  - Fixed app crash if timeout or cancel is returned on LogsMenu.
+-  Added new BC libraries to the link process;
+- Fixed libs from symblinks in the AIP package. We changed the BC version, but we forgot to load the right files on the AIP;
+- Update mruby-emv;
+  - Added start_check_event and check_event methods;
+  - Added start_check_event and check_event output return as an array.;
+  - Fixed menu selection for timeout when there's no menu image;
+  - Fixed return nil statement (return and return nil is the same thing);
+  - Implemented workaround to solve emv application selection problem when timeout is achieved and return correct value.
+- Update da_funk (3.22.0)
+  - Update cloudwalk_handshake (1.14.0);
+  - funky-emv (1.4.0);
+- Update main (3.47.0)
+  - Update cloudwalk_handshake (1.14.0);
+    - Added authorizer cloudwalk staging url;
+    - Fixed logging message sent and received size and also nsu transaction for infinitepay operation.
+  - Update da_funk (3.22.0)
+    - Update cloudwalk_handshake (1.14.0);
+    - funky-emv (1.4.0);
+  - Update funky-emv (1.4.0)
+    - Since PAX start_get_card and get_card started to block the EMV flow, now it was needed to implement start_check_event and check_event in order to retrieve the non blocking lost behaviour.
+    - Fixed bug on check_event, it wasn't considering when operator was pressing CANCEL.
+- Update mruby-context
+  - Refactoring PubSub to avoid publish event on your on subscription;
+  - Change events queue messa slot creation strategy;
+  - limit CHANNEL_MAX_MSG_SIZE to dequeue;
+- Update da_funk (3.23.0)
+  - Remove ThreadPubSub publication before attach;
+  - Update funky-emv (1.4.1).
+- Update main (3.48.0)
+  - Do not stop ThreadScheduler on media configuration;
+  - Cache ThreadPubSub id on payment_channel listener;
+  - Update some header icons;
+  - Only clear display on ctls amount if timeout or user cancel;
+  - Reboot emv interface on magnetic finish;
+  - Update funky-emv (1.4.1);
+    - Update cloudwalk_handshake (1.14.0).
+  - Update da_funk (3.23.0)
+    - Remove ThreadPubSub publication before attach;
+    - Update funky-emv (1.4.1);
+- Update main (3.48.1)
+  - Update cloudwalk_handshake (1.15.0)
+    - Added support to logging additional Http information.
 
 ### 7.8.1 - 2020-05-25
 
