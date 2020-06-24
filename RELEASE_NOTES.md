@@ -7,7 +7,7 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
-### 7.9.0 - 2020-06-23
+### 7.9.0 - 2020-06-24
 
 - Enable memory profiling on main execution
 - Update SDK
@@ -135,6 +135,12 @@ Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/1
 - Update main (3.48.1)
   - Update cloudwalk_handshake (1.15.0)
     - Added support to logging additional Http information.
+- Update mruby-context
+  - Support to outdate application context:
+    - Implemented Kernel::mrb_start to load application in memory;
+    - mrb_stop set context application as expired if it’s currently been executed;
+    - mrb_eval support to check if context application is expired to restart
+    And execute
 
 ### 7.8.1 - 2020-05-25
 
