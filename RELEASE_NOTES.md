@@ -7,6 +7,40 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.10.0 - 2020-07-25
+
+- Update da_funk (3.24.0)
+  - Added Device::Signature class;
+  - Added support of converting signature after updating params.dat;
+  - Added support to network state on status bar;
+  - Added support to physical number keys on virtual keyboard.
+- update main (3.49.0)
+  - Validates if menu returned KEY_TIMEOUT to avoid crash app;
+  - Fixed title on logs menu;
+  - Removed LogControl#enabled;
+  - Fixed call to LogControl#write_keys;
+  - Keep maximum 7 log files;
+  - Delete log in case user has canceled send;
+  - Update cloudwalk_handshake (1.16.0);
+  - Added ability of dynamic log interval send definition;
+  - Do not return nil on Fixnum comparison to avoid exception;
+  - Fixed date comparison on LogControl#purge;
+  - Emit sound to warning the user that logs are about to be send;
+  - Check if file exists before trying to delete or send it;
+  - Fixed log file path;
+  - Fixed handler to check battery level;
+  - Added new status bar images;
+  - Added method CloudwalkSetup#update_process_in_progess?;
+  - Added CloudwalkSetup#boot_layout method;
+  - Fixed file path on :file_exists handler;
+  - Call to LogControl purge in the end of handler execution;
+  - Added layout files to 6 steps update process;
+  - Call to cw_infinitepay_app to complete update;
+  - Updated emv table backup;
+  - Fixed app crash on LogsMenu;
+  - Update cloudwalk_handshake (1.18.0);
+  - Update da_funk (3.24.0).
+
 ### 7.9.0 - 2020-06-24
 
 - Enable memory profiling on main execution
