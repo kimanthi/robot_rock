@@ -7,6 +7,16 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.12.0 - 2020-08-11
+
+- Update da_funk (3.24.4)
+  - Add defensive code to gsub calls.
+- Update main (3.53.0)
+  - MediaConfiguration defensive code with gsub;
+  - Update da_funk (3.24.4).
+- Update mruby-context
+  - Invert LOAD_PATH to always search dependencies on main application in case app is not present.
+
 ### 7.11.0 - 2020-08-01
 
 - Update da_funk (3.24.2)
