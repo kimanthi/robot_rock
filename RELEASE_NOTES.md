@@ -7,6 +7,44 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.13.0 - 2020-08-18
+
+- Update da_funk (3.25.0)
+  - Added switch_http_enabled setting;
+  - Removed infinitepay_authorizer and infinitepay_api settings.
+- Update main (3.54.0)
+  - Change thread execution and status bar check order, Necessary to not free CPU processing time on transaction execution;
+  - Added CloudwalkSetup#resume_update;
+  - Moved CloudwalkSetup#resume_update to AdminConfiguration#configure;
+  - Implemented AdminConfiguration#device_activated?;
+  - Perform device configs in case device is not activated;
+  - Rename method AdminConfiguration#configure to AdminConfiguration#configure_payment_application;
+  - Update cloudwalk_handshake (1.19.0);
+    - Removed methods:
+      - CwInfinitePayHostSetting#api?;
+      - CwInfinitePayHostSetting#api_allowed_appication?;
+      - CwInfinitePayHostSetting#authorizer_allowed_appication?;
+      - CwInfinitePayHostSetting#authorizer?;
+      - CwInfinitePayHostSetting#google_endpoint?;
+    - Removed authorizer urls constants;
+    - Added CwInfinitePayHostSetting#v2_protocol? method;
+    - Convert infinitepay_url parameter to string and check empty;
+    - Added CwInfinitePayHostSetting#switch_http_enabled?;
+    - Return switch http url if it's enabled otherwise return infinitepay url;
+    - Add headers based on switch http config or acquirer app;
+    - Encode request based on protocol being used (v1/v2);
+    - Use safe navigation on CwHttpSocker.code;
+    - Log possible exception on CwHttpSocket.read;
+    - CwHttpSocket Persist request.code right after response that avoids thread execution window and we are able to reduce 1 second;
+    - Added transaction_accept_encoding parameter support.
+    - Update da_funk (3.25.0).
+- Update mruby-context
+  - Add some extra check before deal with sem thread channel. Check maximum size (possible leak if happen) and check if it’s blocked and return right way, don’t insist.
+  - Change the way of check if thread control is valid
+- Update mruby-pax-network
+  - Increase connection check window to 10 seconds;
+  - Check if there’s a socket open to check connection.
+
 ### 7.12.0 - 2020-08-11
 
 - Update da_funk (3.24.4)
