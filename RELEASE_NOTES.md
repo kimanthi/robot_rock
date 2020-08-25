@@ -7,6 +7,24 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.13.2 - 2020-08-25
+
+- Update main (3.55.0)
+  - Do not perform default gprs config if network_configured is 1;
+  - Added images to be used on log send process;
+  - Added support to send logs from another app call;
+  - Only try to send log if socket is connected, also display images to show operation result.
+  - Convert sim_id to String before access characters;
+  - Only save media on config.dat file if sim_id is not nil;
+- Update main (3.56.0)
+  - Added InputTransactionAmount#contactless_minimum_amount_permited;
+  - Added InputTransactionAmount#contactless_amount_under_permited;
+  - Display amount bitmap inside amount loop;
+  - Added InputTransactionAmount#amount_under_minimum_not_permitted;
+  - Show amount under minimum permitted message on screen;
+  - Fixed i18n message symbol;
+  - Added new i18n text message;
+
 ### 7.13.1 - 2020-08-21
 
 - Update mruby-emv.
