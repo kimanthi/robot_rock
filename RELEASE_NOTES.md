@@ -7,6 +7,21 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.14.0 - 2020-08-28
+
+- Update da_funk (3.25.1)
+  - Set DaFunk::Helper::StatusBar#connected as false on system update process so it will be cached again.
+- Update main (3.57.0)
+  - Update da_funk (3.25.1);
+  - Call to CloudwalkUpdate#system instead of SystemUpdate#start so the user can cancel the update process if he wants;
+  - Added new parameter system_update_main_enabled to enable system update with UI;
+  - Added system_update_interval scheduler on communication thread in order to download all pieces in background;
+  - Added system_update_thread_enable parameter to enable/disable update with thread;
+  - Turn backlight on in the update process;
+  - Delete system_update file if user cancel update process;
+  - Start connection on input amount to make contactless transactions a bit faster;
+  - Added SystemUpdate#done? method in order to check if all pieces were downloaded and to add system_update file again if user has canceled it before.
+
 ### 7.13.2 - 2020-08-25
 
 - Update main (3.55.0)
