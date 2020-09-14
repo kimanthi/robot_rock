@@ -7,6 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.15.0 - 2020-09-14
+
+- Update main (3.58.0)
+  - Update cloudwalk_handshake (1.20.0)
+    - Added CwHttpSocket#to_acquirer_payload method, this method is responsible for returning a common payload for all requests when the requester is the infinitepay payment application;
+  - Update da_funk (3.26.0);
+  - Update virtual keyboard images.
+- Update da_funk (3.26.0)
+  - Fixed error on virtual keyboard, chars y and Y were duplicated;
+  - Update cloudwalk_handshake (1.20.0).
+
 ### 7.14.0 - 2020-08-28
 
 - Update da_funk (3.25.1)
