@@ -7,6 +7,34 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.16.0 - 2020-09-25
+
+- Update main (3.59.0)
+  - Add main application version on config.dat file;
+  - Moved thread loop process to Main#thread_loop metohod, also added rescue on Main#thread_loop;
+  - Update cloudwalk_handshake (1.20.1);
+    - Fixed TypeError String exception, sometimes request does not include a body;
+  - Update da_funk (3.27.0);
+  - Improved system update messages;
+  - Show system update message at line 0 and alway clear it before;
+  - Added system_update_start message;
+  - Check system update status at zero position of string array;
+  - Print system update message after device restart, in case system update is in progress;
+  - Added additional information in the system update file in order to know that the device needs to restart before proceed with the system update;
+  - Added CloudwalkUpdate#wait_connection method;
+  - Added CloudwalkUpdate#count_down method;
+  - Added CloudwalkUpdate#system_in_progress? method;
+  - Wait terminal to connect before start system update in case device has restarted;
+  - Added system update management file on CloudwalkUpdate;
+  - Fixed display messages on application update proccess;
+  - Update da_funk (3.28.0).
+- Update da_funk (3.27.0)
+  - Print bitmap if exists on DaFunk::ParamsDat#restart;
+  - Add main application version on config.dat file.
+- Update da_funk (3.28.0)
+  - Check if system update file is present after device restart in order to continue with system update process;
+  - Implemented block to write and break line if message has '\n'.
+
 ### 7.15.0 - 2020-09-14
 
 - Update main (3.58.0)
