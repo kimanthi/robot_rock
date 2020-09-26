@@ -7,6 +7,16 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.16.1 - 2020-09-26
+
+- Update da_funk (3.28.1)
+  - Close socket in case of ssl exceptions;
+  - Do not assign nil to PaymentChannel#current and client on error because this is already being done on PaymentChannel#close.
+- Update main (3.59.1)
+  - Do not try to download system parts if update file does not exists;
+  - Check if update dat object exists on SystemUpdate#done? before start it;
+  - Update da_funk (3.28.1).
+
 ### 7.16.0 - 2020-09-25
 
 - Update main (3.59.0)
