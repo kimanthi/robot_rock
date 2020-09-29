@@ -7,6 +7,19 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.16.2 - 2020-09-29
+
+- Update main (3.59.2)
+  - Update cloudwalk_handshake (1.21.0)
+    - Added log for ssl handshake;
+    - Fixed CwHttpSocket#connected? method;
+    - Make sure to close socket if exeception is raised;
+    - Added CwHttpSocket#closed? method;
+    - Check if CwHttpSocket#response is a valid response before parse;
+    - Only write on socket if socket is alive;
+    - Return communication error if ssl error or socket closed;
+    - Fixed json body on communication error response.
+
 ### 7.16.1 - 2020-09-26
 
 - Update da_funk (3.28.1)
