@@ -7,6 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.16.3 - 2020-09-30
+
+- Update main (3.59.3)
+  - Concatenate and send all logs at once;
+  - Fixed filename. Log txt should have the date of the day that is being sent;
+  - Do not send full path as LogsMenu#send_file is already adding path;
+  - Send all log files separated;
+  - Moved logs ui feedback to LogsMenu#send_file_menu and LogControl#upload;
+  - LogsMenu#send_file return booleam as result;
+  - Store return of each log send.
+
 ### 7.16.2 - 2020-09-29
 
 - Update main (3.59.2)
