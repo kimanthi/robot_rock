@@ -7,6 +7,20 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.16.4 - 2020-10-07
+
+- Update main (3.60.0)
+  - Update da_funk (3.28.2);
+  - Update some images;
+  - Added new handler to check params.dat status each 60 minutes;
+  - Update cloudwalk_handshake (1.21.1)
+    - Changed method name infinitepay? to http? on log register;
+    - Use transaction_http_enabled flag from params.dat to identify http transactions.
+- Update da_funk (3.28.2)
+  - Added support of params.dat file restore if it was corrupted;
+  - Wait 3 seconds before restart after main update;
+  - Fixed method_missing exception.
+
 ### 7.16.3 - 2020-09-30
 
 - Update main (3.59.3)
