@@ -7,6 +7,18 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.17.0 - 2020-11-04
+
+- Update main (3.60.2)
+  - Update cloudwalk_handshake (1.21.3)
+    - Merge all headers sent by the payment application.
+  - Update da_funk (3.29.1)
+- Update da_funk (3.29.0)
+  - Added support to Ruby SecureRandom;
+  - Update cloudwalk_handshake (1.21.3).
+- Update da_funk (3.29.1)
+  - Fix battery charging status. When power supply is connected the SDK always returns 50% of battery, in this case it won't show the percentage until the SDK returns 100%.
+
 ### 7.16.5 - 2020-10-26
 
 - Update main (3.60.1)
