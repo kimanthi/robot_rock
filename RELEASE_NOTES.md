@@ -7,6 +7,19 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 7.18.0 - 2020-11-16
+
+- Update main
+  - Added new icon for 3G connection;
+  - Added new s920 main screen image;
+  - Added support to touchscreen events which executes other apps;
+  - Added support to send additional parameters in the function executed from scheduler;
+  - Update da_funk (3.30.0).
+- Update da_funk (3.30.0)
+  - Added new method main_image_format on Device::Display;
+  - Use main_image_format method to get the image name instead adapter;
+  - Added new class DaFunk::Transaction::Reversal.
+
 ### 7.17.0 - 2020-11-04
 
 - Update main (3.60.2)
