@@ -23,6 +23,12 @@
 #include "debugger.h"
 #include "runtime_system.h"
 
+#ifndef INFINITE_INIT
+#define INFINITE_INIT()
+#endif /* #ifndef INFINITE_INIT */
+
+int SystemInit(void);
+
 void context_memprof_init(mrb_allocf *funp, void **udp);
 
 int robot_rock_execute(void)
@@ -153,10 +159,10 @@ int DeInit()
   return 0;
 }
 
-int SystemInit(void);
-
 int main(int argc, char **argv)
 {
+  INFINITE_INIT();
+
   Init();
   SystemInit();
   reload_flag = 1;
