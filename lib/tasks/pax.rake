@@ -12,14 +12,19 @@ GCC_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin"
 AR_PAX_BIN     = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-ar")
 LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"), File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include"), File.join(PAX_LIB_ROOT, "emv"), File.join(PAX_LIB_ROOT, "barcode")]
 
-if ENV["SIGNATURE"] == "production"
+case ENV["SIGNATURE"]
+when "production"
   SIGNATURE = "production"
-elsif ENV["SIGNATURE"] == "mockup"
+when "mockup"
   SIGNATURE = "mockup"
-elsif ENV["SIGNATURE"] == "7mockup"
+when "7mockup"
   SIGNATURE = "7mockup"
-elsif ENV["SIGNATURE"] == "7production"
+when "7production"
   SIGNATURE = "7production"
+when "8mockup"
+  SIGNATURE = "8mockup"
+when "8production"
+  SIGNATURE = "8production"
 else
   SIGNATURE = "mockup"
 end
