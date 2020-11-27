@@ -7,6 +7,27 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 8.0.0 - 2020-11-27
+
+- Update mruby-polarssl
+  - Support to SSL socket timeout in ms.
+- Update mruby-pax
+ - Support to new way of getting battery percentage.
+- Update mruby-context
+  - Work with static list instead of linked list on queue/dequeue operations to avoid SIGSEGV errors;
+  - Added support to mutex to lon/unlock shared resources to avoid race conditions.
+- Update da_funk (3.31.0)
+  - Support to new way of getting battery percentage;
+  - Added support to new main screen when there's a pending sale.
+- Update main (3.62.0)
+  - Added new battery percentage icons;
+  - Update cloudwalk_handshake (1.22.0)
+    - Added timeout on ssl socket;
+    - Added new SSL::ReadTimeoutError exception;
+    - Set connected variable as false if socket is not connected.
+  - Enable touchscreen application config on 8.X.X runtime version only;
+  - Update da_funk (3.31.0).
+
 ### 7.18.0 - 2020-11-16
 
 - Update main
