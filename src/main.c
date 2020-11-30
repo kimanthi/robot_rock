@@ -23,9 +23,9 @@
 #include "debugger.h"
 #include "runtime_system.h"
 
-#ifndef INFINITE_INIT
-#define INFINITE_INIT()
-#endif /* #ifndef INFINITE_INIT */
+#ifndef ENGINE_INIT
+#define ENGINE_INIT()
+#endif /* #ifndef ENGINE_INIT */
 
 int SystemInit(void);
 
@@ -161,7 +161,7 @@ int DeInit()
 
 int main(int argc, char **argv)
 {
-  INFINITE_INIT();
+  ENGINE_INIT();
 
   Init();
   SystemInit();
