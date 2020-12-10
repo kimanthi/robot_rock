@@ -23,9 +23,17 @@
 #include "debugger.h"
 #include "runtime_system.h"
 
+#ifdef _ENG_DEBUG_ /* TODO: remove?! */
+#include "libeng/engine.h"
+#endif /* #ifdef _ENG_DEBUG_ */
+
+#if defined ENG_TRACE_INIT && !defined ENGINE_INIT
+#define ENGINE_INIT(...) ENG_TRACE_INIT(__VA_ARGS__)
+#else
 #ifndef ENGINE_INIT
-#define ENGINE_INIT()
+#define ENGINE_INIT(...)
 #endif /* #ifndef ENGINE_INIT */
+#endif /* #if defined ENG_TRACE_INIT && !defined ENGINE_INIT */
 
 int SystemInit(void);
 

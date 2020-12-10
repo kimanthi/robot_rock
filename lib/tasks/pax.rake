@@ -2,15 +2,34 @@ require 'fileutils'
 require 'rake/clean'
 
 MRUBY_PAX_ROOT = ENV["MRUBY_PAX_ROOT"] || File.join(File.dirname(File.expand_path(__FILE__)), "..", "..")
-PAX_LIB_ROOT   = File.join(MRUBY_PAX_ROOT, "lib", "sdk")
-MRUBY_LIB      = File.join(MRUBY_PAX_ROOT, "lib", "mruby")
+
 DA_FUNK_LIB    = File.join(MRUBY_PAX_ROOT, "lib", "da_funk")
 MAIN_LIB       = File.join(MRUBY_PAX_ROOT, "lib", "main")
-MRUBY_PAX_MGEM = File.join(MRUBY_PAX_ROOT, "mrbgems")
+MRUBY_LIB      = File.join(MRUBY_PAX_ROOT, "lib", "mruby")
 MRUBY_PAX_INC  = File.join(MRUBY_PAX_ROOT, "src")
-GCC_PAX_BIN    = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")
-AR_PAX_BIN     = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-ar")
-LOCINCLUDE     = [MRUBY_PAX_INC, File.join(MRUBY_LIB, "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"), File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"), File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include"), File.join(PAX_LIB_ROOT, "emv"), File.join(PAX_LIB_ROOT, "barcode")]
+MRUBY_PAX_MGEM = File.join(MRUBY_PAX_ROOT, "mrbgems")
+PAX_LIB_ROOT   = File.join(MRUBY_PAX_ROOT, "lib", "sdk")
+
+PAX_BIN_ROOT   = File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin")
+
+AR_PAX_BIN     = File.join(PAX_BIN_ROOT, "arm-none-linux-gnueabi-ar")
+CC_PAX_BIN     = File.join(PAX_BIN_ROOT, "arm-none-linux-gnueabi-gcc")
+STRIP_PAX_BIN  = File.join(PAX_BIN_ROOT, "arm-none-linux-gnueabi-strip")
+
+LIBENG_DEF     = (ENV["BUILD_CFG"] != "debug") ? "_ENG_RELEASE_" : "_ENG_DEBUG_"
+
+LIBENG_DIR     = File.join(MRUBY_PAX_ROOT, "lib", "libeng", "0.0.1")
+
+INCLUDE        = [
+  MRUBY_PAX_INC,
+  File.join(MRUBY_LIB, "include"),
+  File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include"),
+  File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "include", "freetype"),
+  File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "arm-none-linux-gnueabi", "libc", "usr", "include"),
+  File.join(PAX_LIB_ROOT, "emv"),
+  File.join(PAX_LIB_ROOT, "barcode"),
+  File.join(LIBENG_DIR, "include")
+].freeze
 
 case ENV["SIGNATURE"]
 when "production"
@@ -28,8 +47,6 @@ when "8production"
 else
   SIGNATURE = "mockup"
 end
-
-SH_EXE         = "C:\\cygwin\\bin\\sh.exe"
 
 require File.join(MRUBY_PAX_ROOT, "mrblib", "version.rb")
 
@@ -98,9 +115,9 @@ if ENV["MRUBY_CONFIG"]
     conf.define_singleton_method(:host_target) { "" }
 
     [conf.cc, conf.cxx, conf.objc, conf.asm].each do |cc|
-      cc.command = GCC_PAX_BIN
+      cc.command = CC_PAX_BIN
       cc.flags = [%w(-O0 -g2 -Wall -funwind-tables -std=gnu99)]
-      cc.include_paths = ["#{MRUBY_ROOT}/include"].concat(LOCINCLUDE)
+      cc.include_paths = ["#{MRUBY_ROOT}/include"].concat(INCLUDE)
       cc.defines = %w(ENABLE_DEBUG MRB_STACK_EXTEND_DOUBLING SHA256_DIGEST_LENGTH=32 SHA512_DIGEST_LENGTH=64)
       cc.option_include_path = '-I%s'
       cc.option_define = '-D%s'
@@ -132,7 +149,7 @@ if ENV["MRUBY_CONFIG"]
     #TODO builddir
     toolchain :pax
 
-    conf.cc.defines = %w(PAX ENABLE_DEBUG)
+    conf.cc.defines = [%w(PAX ENABLE_DEBUG)].concat([LIBENG_DEF])
     conf.cc.include_paths << MRUBY_PAX_INC
     conf.bins = []
     conf.gembox File.join(MRUBY_PAX_MGEM, "pax")
@@ -180,21 +197,64 @@ namespace :pax do
     ::CLOBBER.include "out/obj/*.bin", "out/obj/*.nostrip"
   end
 
-  # TODO Remove or not
   rule '.o' => ["%{out/obj,src}X.c"] do |t|
-    sh "#{GCC_PAX_BIN} -O0 -g2 -Wall -funwind-tables -I#{LOCINCLUDE.join(" -I")} #{t.source} -c -o #{t.name}"
+    sh "#{CC_PAX_BIN} -O0 -g2 -Wall -funwind-tables -D#{LIBENG_DEF} -I#{INCLUDE.join(" -I")} #{t.source} -c -o #{t.name}"
   end
 
   SRC = FileList["src/*.c"]
   BIN = SRC.pathmap("%{src,out/obj}X.o")
 
   task :link => BIN do
-    #CTLS link
-    #sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")} -o\"app.nostrip\" #{BIN.join(" ")} -L\"#{File.join(PAX_LIB_ROOT, "emv")}\" -L\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -losal -Wl,-rpath=//opt/lib -Wl,-rpath=./lib -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -lm -lcrypto -lfreetype -lpng -lpthread -lts -lxui #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")} -lEMVS2FMProlin_v506 -lClEntryS2FMProlin_ccv_v502 -lClEntryS2FMProlin_v502 -lClMCS2FMProlin_ccv_v402 -lClWaveS2FMProlin_v303"
-    sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-gcc")} -o\"app.nostrip\" #{BIN.join(" ")} -L\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -losal -Wl,-rpath=//opt/lib -Wl,-rpath=./lib -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\" -lm -lMID -lcrypto -lD_DEVICE_LIB_v607 -lF_AE_LIB_v250_03 -lF_DPAS_LIB_v151_01 -lF_EMV_LIB_v653_01 -lF_ENTRY_LIB_v553_01 -lF_MC_LIB_v552_01 -lF_PUBLIC_LIB_v107 -lF_WAVE_LIB_v353 -lPPCOMP_Prolin_v139 -liniparser -lfreetype -lpng -lpthread -lts -lxui -lbarcode #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")} -L\"#{File.join(PAX_LIB_ROOT, "emv")}\" -L\"#{File.join(PAX_LIB_ROOT, "barcode")}\""
-    FileUtils.mv "app.nostrip", "out/app.nostrip"
+    command  = "#{CC_PAX_BIN} -o \"app.nostrip\" #{BIN.join(" ")}"
+
+    command << " -Wl,-rpath=//opt/lib -Wl,-rpath=lib"
+
+    command << " -L\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\""
+    command << " -L\"#{File.join(PAX_LIB_ROOT, "emv")}\""
+    command << " -L\"#{File.join(PAX_LIB_ROOT, "barcode")}\""
+
+    command << " -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "sdk", "platforms", "paxngfp_201205", "lib")}\""
+    command << " -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "emv")}\""
+    command << " -Wl,-rpath-link,\"#{File.join(PAX_LIB_ROOT, "barcode")}\""
+
+    command << " -Wl,--start-group"
+
+    command << " -losal -lcrypto -lfreetype -lm -lpng -lpthread"
+
+    command << " -lMID"
+    command << " -lbarcode"
+    command << " -liniparser"
+    command << " -lts"
+    command << " -lxui"
+
+    command << " -lPPCOMP_Prolin_v139"
+
+    command << " -lD_DEVICE_LIB_v607"
+    command << " -lF_AE_LIB_v250_03"
+    command << " -lF_DPAS_LIB_v151_01"
+    command << " -lF_EMV_LIB_v653_01"
+    command << " -lF_ENTRY_LIB_v553_01"
+    command << " -lF_MC_LIB_v552_01"
+    command << " -lF_PUBLIC_LIB_v107"
+    command << " -lF_WAVE_LIB_v353"
+
+    command << " #{File.join(MRUBY_LIB, "build", "pax", "lib", "libmruby.a")}"
+
+    if ENV["BUILD_CFG"] == "debug"
+      command << " -L\"#{File.join(LIBENG_DIR)}\" -Wl,-rpath-link,\"#{LIBENG_DIR}\""
+
+      command << " -l:libeng.a"
+    end
+
+    command << " -Wl,--end-group"
+
+    sh "#{command}"
+
+    FileUtils.mv "app.nostrip", "#{File.join("out", "app.nostrip")}"
+
     FileUtils.cd "#{File.join(MRUBY_PAX_ROOT, "out")}"
-    sh "#{File.join(PAX_LIB_ROOT, "sdk", "toolchains", "arm-4.4.1", "bin", "arm-none-linux-gnueabi-strip")} -g app.nostrip -o\"RobotRock\""
+
+    sh "#{STRIP_PAX_BIN} -g app.nostrip -o\"RobotRock\""
   end
 
   task :generate_aip do
