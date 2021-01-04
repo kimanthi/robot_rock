@@ -7,6 +7,30 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 8.1.0 - 2021-01-04
+
+- Update mruby-context
+  - Fixed errors on pubsub_publish:
+    - id should be equal to target_id in order to publish;
+    - return_value was always returning false.
+- Update da_funk (3.32.0)
+  - Remapped virtual keyboard to add support to new layout;
+  - Make timeout of virtual keyboard parametrized;
+  - Limit size of string to 20 on virtual keyboard.
+  - Refactoring status bar:
+    - Check if thread is paused which means communication it's being configured. In this case 'sem sinal' message should be displayed;
+    - Do not show media type an media icon if thread is paused;
+  - Removed thread pause from attach and scan calls, let the application that is doing the configuration take care of that;
+  - Move reload of metadata to communication thread;
+  - Added support to check network conn status from time to time, default is each 5 minutes.
+- Update main (3.63.0)
+  - Update keyboard screens;
+  - Call to thread pause before configuring communication;
+  - Reload metadata after switching communication;
+  - Added log in order to know that communication config was updated;
+  - Set statusbar attributes as nil if thread is paused;
+  - Update da_funk (3.32.0).
+
 ### 8.0.1 - 2020-11-27
 
 - Update main (3.62.1)

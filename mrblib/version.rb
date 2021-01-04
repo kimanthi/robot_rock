@@ -1,5 +1,5 @@
 class PAX
   def self.version
-    "8.0.1"
+    "8.1.0"
   end
 end
