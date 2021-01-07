@@ -7,6 +7,13 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 8.1.1 - 2021-01-07
+
+- Update mruby-pax
+  - Fixed error on System#update method, an error of logic was introduced in this method on version 8.0.1.
+- Update main (3.63.1)
+  - Added workaround to solve system update error. There's a bug in the PAX::System#update method which returns a wrong result that causes an error in the system update flow, this change workaround this error.
+
 ### 8.1.0 - 2021-01-04
 
 - Update mruby-context
