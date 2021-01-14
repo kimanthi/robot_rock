@@ -7,6 +7,12 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 8.1.2 - 2021-01-14
+
+- Update main (3.63.2)
+  - Added log of pusbsub id registered;
+  - Close socket on communication thread after media switch only in case media changed and socket is connected.
+
 ### 8.1.1 - 2021-01-07
 
 - Update mruby-pax
