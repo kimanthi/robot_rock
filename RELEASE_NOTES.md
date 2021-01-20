@@ -7,6 +7,12 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 8.1.3 - 2021-01-20
+
+- Update main (3.63.3)
+  - Added PATH_UPDATE_DONE constant on SystemUpdate class;
+  - Delete PATH_UPDATE_DONE file if device is up to date.
+
 ### 8.1.2 - 2021-01-14
 
 - Update main (3.63.2)
