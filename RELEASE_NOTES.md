@@ -7,6 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 8.2.0 - 2021-02-08
+
+- Update da_funk (3.33.0)
+  - Added method Device::IO#get_format_or_touchscreen_action;
+  - Added support to images on ParamsDat#download, ParamsDat#update_app and ParamsDat#update_file;
+  - Return result of ParamsDat#update_apps call to the caller.
+- Update main (3.64.0)
+  - Update da_funk (3.33.0);
+  - Added support to images on CloudwalkUpdate#system and CloudwalkUpdate#application;
+  - Added support to images on system update process.
+
 ### 8.1.3 - 2021-01-20
 
 - Update main (3.63.3)
