@@ -7,6 +7,17 @@ RobotRock is the Ruby Walk Framework for PAX.
 If you have any problem, please get in touch with us by the [e-mail - support@cloudwalk.io](mailto:support@cloudwalk.io) or ZenDesk.
 Documentation could be found on the [here](https://dl.dropboxusercontent.com/u/10674904/ruby/doc/frames.html#!_index.html).
 
+### 8.3.0 - 2021-02-19
+
+- Update da_funk (3.33.1)
+  - Fixed argument being passed to hours2seconds method which was nil.
+- Update main (3.65.0)
+  - Added new handler to check if emv_table_reload file exists, it means InfinitePay payment application has updated the table and main application needs to reload it;
+  - Map menu# button to access payment application, only for versions >= 8.1 and S920 model;
+  - Added :main_menu option which access main menu without password, because in this case the password was validated in another process;
+  - Added possibility to schedule tasks in minutes and hours for ruby applications;
+  - Update da_funk (3.33.1)
+
 ### 8.2.0 - 2021-02-08
 
 - Update da_funk (3.33.0)
